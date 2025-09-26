@@ -1,3 +1,25 @@
+/* Smooth page scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Small/thin scrollbar */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #999 transparent;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Import Google Font: Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ROG Fonts */
 @font-face {
   font-family: 'ROG Fonts';
   src: url('/Assets/ROGFonts-Regular.woff2') format('woff2'),
@@ -9,69 +31,26 @@
   font-display: swap;
 }
 
-h1 {
-  font-family: 'ROG Fonts', sans-serif;
-}
-
+/* Typography */
 body {
   color: #1E1E1E;
 }
 
-.lightfont {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  /* Regular */
-}
-
-/* Import Google Font: Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-/* Apply Poppins to p, b, span */
-p,
-b,
-span {
-  font-family: 'Poppins', sans-serif;
-}
-
-
+h1,
 .rog {
   font-family: 'ROG Fonts', sans-serif;
 }
 
-/* Import your ROG font */
-@font-face {
-  font-family: 'ROG Fonts';
-  src: url('/Assets/ROGFonts-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+p,
+b,
+span,
+.lightfont {
+  font-family: 'Poppins', sans-serif;
 }
 
-.hero h1 {
-  font-family: 'ROG Fonts', sans-serif;
-  font-size: clamp(2rem, 5vw, 4rem);
-  /* desktop & tablet fluid */
-  font-weight: 700;
-  line-height: 1.2;
-  color: #fff;
-  text-transform: uppercase;
+.lightfont {
+  font-weight: 400;
 }
-
-/* Mobile only */
-@media (max-width: 575px) {
-  .hero h1 {
-    font-size: 1rem;
-    /* reduced size for small screens */
-  }
-
-  .hero p {
-    font-size: 0.95rem;
-  }
-}
-
-
-
-
 
 /* ===== Navbar Base ===== */
 .navbar {
@@ -107,14 +86,12 @@ span {
   transition: background-color 0.25s ease, color 0.25s ease, padding 0.25s ease;
 }
 
-/* Hover → white background, black text, wider pill */
 .navbar-nav .nav-link:hover {
   background: #fff !important;
   color: #000 !important;
   padding: 8px 28px;
 }
 
-/* Active → red pill, white text */
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link.show,
 .navbar-nav .dropdown-toggle.active {
@@ -124,7 +101,6 @@ span {
   padding: 8px 28px;
 }
 
-/* Apply Now button */
 .btn-apply {
   border: 1px solid #fff;
   border-radius: 50px;
@@ -140,6 +116,7 @@ span {
   color: #000;
 }
 
+/* Dropdown */
 .navbar-nav .dropdown-menu {
   background: rgba(255, 255, 255, 0.18);
   border-radius: 12px;
@@ -162,7 +139,6 @@ span {
   border-radius: 8px;
 }
 
-/* Dropdown chevron */
 .navbar .dropdown-toggle::after {
   display: none !important;
 }
@@ -177,14 +153,14 @@ span {
   transform: rotate(180deg);
 }
 
-/* ===== Desktop (≥992px) ===== */
+/* Desktop Dropdown Hover */
 @media (min-width: 992px) {
   .navbar .dropdown:hover .dropdown-menu {
     display: block;
   }
 }
 
-/* ===== Mobile (≤991px) ===== */
+/* ===== Mobile Navbar (≤991px) ===== */
 @media (max-width: 991px) {
   .navbar {
     background: #fff !important;
@@ -221,7 +197,6 @@ span {
     border-radius: 8px;
   }
 
-  /* Mobile Active → red pill with white text */
   .navbar-nav .nav-link.active,
   .navbar-nav .nav-link.show,
   .navbar-nav .dropdown-toggle.active {
@@ -258,9 +233,10 @@ span {
 .hero {
   position: relative;
   background: url('/Assets/Hero bg.jpg') center/cover no-repeat;
-  height: 80vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
+  padding: 60px 0;
   text-align: left;
   color: #fff;
 }
@@ -279,10 +255,13 @@ span {
 }
 
 .hero h1 {
-  font-size: 3rem;
-  font-weight: 800;
-  text-transform: uppercase;
+  font-family: 'ROG Fonts', sans-serif;
+  font-size: 2rem;
+  /* base mobile */
+  font-weight: 700;
   line-height: 1.2;
+  text-transform: uppercase;
+  color: #fff;
 }
 
 .hero p {
@@ -304,6 +283,25 @@ span {
   color: #000;
 }
 
+/* Hero responsive typography */
+@media (min-width: 576px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero h1 {
+    font-size: 4rem;
+  }
+}
+
 /* ===== Scrolled Navbar ===== */
 .navbar.scrolled .navbar-custom {
   background: #fff !important;
@@ -314,13 +312,6 @@ span {
   color: #000 !important;
 }
 
-.navbar.scrolled .nav-link:hover {
-  background: #fff !important;
-  color: #000 !important;
-  padding: 8px 28px;
-}
-
-/* Scrolled Active → red pill, white text */
 .navbar.scrolled .nav-link.active,
 .navbar.scrolled .nav-link.show,
 .navbar.scrolled .dropdown-toggle.active {
@@ -358,70 +349,30 @@ span {
   filter: none;
 }
 
-.black {
-  color: #1E1E1E;
-}
-
-.hero {
-  min-height: 100vh;
-  /* full height on all screens */
-  display: flex;
-  align-items: center;
-  padding: 60px 0;
-  /* safe spacing for small screens */
-}
-
-.hero h1 {
-  font-size: 2rem;
-  /* default for mobile */
-}
-
-@media (min-width: 576px) {
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .hero h1 {
-    font-size: 3rem;
-  }
-}
-
-
+/* ===== Goals Section ===== */
 .goals-section {
   margin-top: -80px;
-  /* pull it slightly up to overlap in a neat way */
   position: relative;
   z-index: 2;
-  /* make sure it stays above hero background */
 }
 
-/* Base for mobile */
-/* Small mobile screens */
 .responsive-heading {
   font-size: 18px;
 }
 
-/* Tablet */
 @media (min-width: 768px) {
   .responsive-heading {
     font-size: 22px;
   }
 }
 
-/* Desktop */
 @media (min-width: 992px) {
   .responsive-heading {
     font-size: 28px;
   }
-}
 
-/* Only show border on large screens (desktop) */
-@media (min-width: 992px) {
   .custom-border-lg-end {
     border-right: 1px solid #dee2e6;
-    /* Bootstrap’s default gray */
   }
 }
 
@@ -441,7 +392,6 @@ span {
   position: relative;
 }
 
-/* Vertical line between steps */
 .step-circle::after {
   content: "";
   position: absolute;
@@ -453,12 +403,11 @@ span {
   background-color: #4CAF50;
 }
 
-/* Remove line after last step */
 .d-flex:last-child .step-circle::after {
   display: none;
 }
 
-/* Animation */
+/* Step Animation */
 .animate-step {
   opacity: 0;
   transform: translateX(-20px);
@@ -489,14 +438,13 @@ span {
   }
 }
 
-
+/* ===== Carousel Buttons ===== */
 .custom-carousel-btn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: none;
   background: #E5E5E5;
-  /* Light gray circle */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -505,43 +453,39 @@ span {
 
 .custom-carousel-btn:hover {
   background: #d6d6d6;
-  /* Slightly darker hover */
 }
 
-/* Arrow base */
 .custom-carousel-btn .carousel-control-prev-icon,
 .custom-carousel-btn .carousel-control-next-icon {
   width: 16px;
   height: 16px;
-  background-color: #555555;
-  /* Dark gray arrow */
+  background-color: #555;
   mask-size: contain;
   -webkit-mask-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-/* Left (chevron) */
+/* Left chevron */
 .custom-carousel-btn .carousel-control-prev-icon {
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath stroke='%23555' stroke-width='2' fill='none' d='M10 2L4 8l6 6'/%3E%3C/svg%3E") no-repeat center;
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath stroke='%23555' stroke-width='2' fill='none' d='M10 2L4 8l6 6'/%3E%3C/svg%3E") no-repeat center;
 }
 
-/* Right (chevron) */
+/* Right chevron */
 .custom-carousel-btn .carousel-control-next-icon {
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath stroke='%23555' stroke-width='2' fill='none' d='M6 2l6 6-6 6'/%3E%3C/svg%3E") no-repeat center;
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath stroke='%23555' stroke-width='2' fill='none' d='M6 2l6 6-6 6'/%3E%3C/svg%3E") no-repeat center;
 }
 
+/* ===== Buttons ===== */
 .btn-danger {
   background-color: #f43b2f;
-  /* Red */
   border: none;
 }
 
 .btn-danger:hover {
   background-color: #d92c20;
-  /* Darker red */
 }
 
 .btn-outline-dark:hover {
@@ -549,40 +493,25 @@ span {
   color: #fff;
 }
 
-.quote-icon {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 24px;
-  color: #ED230D;
-}
-
-/* Default font size */
+/* ===== Footer ===== */
 .footertext {
   font-size: 0.9rem;
-  /* base size */
   line-height: 1.5;
 }
 
-/* Mobile devices (up to 767px) */
 @media (max-width: 767px) {
   .footertext {
     font-size: 0.75rem;
-    /* smaller on mobile */
     line-height: 1.4;
   }
 }
 
-/* Larger devices (desktop) */
 @media (min-width: 1200px) {
   .footertext {
     font-size: 1rem;
-    /* slightly larger for desktops */
   }
 }
 
-
-/* Main heading responsiveness */
 .footer-heading {
   font-size: 2rem;
   line-height: 1.3;
@@ -595,16 +524,36 @@ span {
   color: #fff;
 }
 
-/* Medium devices (tablet) */
 @media (min-width: 768px) {
   .footer-heading {
     font-size: 3rem;
   }
 }
 
-/* Large devices (desktop) */
 @media (min-width: 1200px) {
   .footer-heading {
     font-size: 4rem;
   }
+}
+
+/* Prevent horizontal scroll on mobile */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Make sure all images and sections shrink properly */
+img,
+section,
+div,
+.container-fluid,
+.row {
+  max-width: 100%;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  left: 0 !important;
+  right: 0 !important;
 }

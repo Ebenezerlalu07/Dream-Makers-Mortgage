@@ -251,7 +251,7 @@
     </section>
 
 
-    <!-- Home Loan Process Section -->
+    <!-- ✅ Home Loan Process Section -->
     <section class="container my-5">
         <!-- Desktop View (image only) -->
         <div class="position-relative d-none d-md-block">
@@ -292,6 +292,49 @@
             </div>
         </div>
     </section>
+
+    <!-- ✅ Animation Styles -->
+    <style>
+        /* Keep step circle style as is (no color changes) */
+        .step-circle {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        /* Fade + Slide animation */
+        .animate-step {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeSlideUp 0.8s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.8s;
+        }
+
+        .delay-3 {
+            animation-delay: 1.3s;
+        }
+
+        @keyframes fadeSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
 
 
 

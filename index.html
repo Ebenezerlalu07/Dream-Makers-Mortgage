@@ -682,9 +682,10 @@
 
 
     <!-- Footer Section -->
-    <footer class="bg-white text-dark pt-5 border-top">
+    <footer class="bg-white text-dark pt-5 border-top footer-custom">
         <div class="container">
             <div class="row gy-4">
+
                 <!-- About Us -->
                 <div class="col-12 col-md-6 col-lg-3">
                     <h6 class="fw-bold mb-3">About Us</h6>
@@ -697,7 +698,7 @@
                 </div>
 
                 <!-- Contact Us -->
-                <div class="col-12 col-md-6 col-lg-3">
+                <div class="col-6 col-md-6 col-lg-3">
                     <h6 class="fw-bold mb-3">Contact Us</h6>
                     <p class="small mb-1">10707 Corporate Drive</p>
                     <p class="small mb-1">Suite 100-A</p>
@@ -707,7 +708,7 @@
                 </div>
 
                 <!-- Disclaimers -->
-                <div class="col-12 col-md-6 col-lg-3">
+                <div class="col-6 col-md-6 col-lg-3">
                     <h6 class="fw-bold mb-3">Disclaimers</h6>
                     <ul class="list-unstyled small mb-0">
                         <li><a href="#" class="text-dark text-decoration-none">Legal</a></li>
@@ -739,7 +740,39 @@
                 <p class="mb-0">Texas Consumer Compliant Recovery Fund Notice</p>
             </div>
         </div>
-    </footer><br>
+    </footer>
+
+
+    <!-- Custom CSS -->
+    <style>
+        /* Reduce padding and font size on mobile */
+        @media (max-width: 576px) {
+            .footer-custom {
+                padding-top: 2rem !important;
+                /* less height */
+            }
+
+            .footer-custom h6 {
+                font-size: 0.9rem;
+                /* smaller headings */
+                margin-bottom: 0.5rem;
+            }
+
+            .footer-custom p,
+            .footer-custom a,
+            .footer-custom li {
+                font-size: 0.75rem !important;
+                /* compact text */
+                line-height: 1.3;
+            }
+
+            .footer-custom .border-top {
+                padding-top: 0.5rem !important;
+                margin-top: 1rem !important;
+            }
+        }
+    </style>
+    <br>
 
     <style>
         /* Preloader Styles */

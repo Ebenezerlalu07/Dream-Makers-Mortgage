@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mortgage Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="/Assets/Logo only.png" alt="Logo" class="rounded-circle">
+            </a>
+
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav navbar-custom text-center text-lg-center">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Mortgage Calculator</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Resources <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu text-start" aria-labelledby="resourcesDropdown">
+                            <li><a class="dropdown-item" href="#">Loan Programs</a></li>
+                            <li><a class="dropdown-item" href="#">Loan Process</a></li>
+                            <li><a class="dropdown-item" href="#">Mortgage Basics</a></li>
+                            <li><a class="dropdown-item" href="#">Online Forms</a></li>
+                            <li><a class="dropdown-item" href="#">FAQ</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <a href="#" class="btn btn-apply d-none d-lg-block ms-3">Apply Now</a>
+        </div>
+    </nav>
+
+    <div class="main">
+        <!-- Hero Section -->
+        <section class="hero d-flex align-items-center position-relative text-white"
+            style="background:url('/Assets/Hero bg.jpg') center/cover no-repeat; min-height:70vh;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-10 col-12">
+                        <div class="hero-content text-start text-md-start text-center">
+
+                            <!-- Heading -->
+                            <h1 class="fw-bold display-4 display-md-3 display-sm-5">
+                                FIND THE <br class="d-none d-sm-block">
+                                RIGHT MORTGAGE <br class="d-none d-sm-block">
+                                OPTION FOR YOU!
+                            </h1>
+
+                            <!-- Paragraph -->
+                            <p class="lead mt-3">
+                                We know that each customer has specific needs, so we strive to
+                                meet those specific needs.
+                            </p>
+
+                            <!-- Buttons -->
+                            <div class="mt-4 d-flex flex-wrap gap-3 justify-content-center justify-content-md-start">
+                                <a href="#" class="btn rounded-pill px-4 py-3 d-flex align-items-center text-white"
+                                    style="background-color:#ED230D; border:none;">
+                                    Contact Now
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="ms-2" width="22" height="22"
+                                        viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="7" y1="17" x2="17" y2="7" />
+                                        <polyline points="7 7 17 7 17 17" />
+                                    </svg>
+                                </a>
+
+                                <a href="#"
+                                    class="btn btn-outline-light rounded-pill px-4 py-3 d-flex align-items-center">
+                                    Loan Programs
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="ms-2" width="22" height="22"
+                                        viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="7" y1="17" x2="17" y2="7" />
+                                        <polyline points="7 7 17 7 17 17" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Goals Section -->
+        <section class="goals-section">
+            <div class="container">
+                <div class="row align-items-center bg-white shadow rounded-4 p-4">
+
+                    <!-- Left Text -->
+                    <div class="col-lg-7 col-md-12 mb-4 mb-lg-0 pe-lg-4 custom-border-lg-end">
+                        <h2 class="fw-bold text-uppercase mb-3 responsive-heading"
+                            style="font-family: 'ROG Fonts', sans-serif;">
+                            TELL US ABOUT YOUR GOALS <br>
+                            PURCHASE ? | REFINANCE ?
+                        </h2>
+
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                        </p>
+                    </div>
+
+                    <!-- Right Options -->
+                    <div class="col-lg-5 col-md-12 d-flex flex-wrap justify-content-center gap-4 pt-3 pt-lg-0 ps-lg-4">
+                        <!-- Buy New Home -->
+                        <div class="text-center">
+                            <img src="/Assets/goal 1.jpg" alt="Buy Home" class="img-fluid mb-2"
+                                style="width:180px; height:120px; object-fit:cover; border-radius:100px;">
+                            <p class="mb-0">i want to buy <strong>New Home</strong></p>
+                        </div>
+
+                        <!-- Refinance -->
+                        <div class="text-center">
+                            <img src="/Assets/Goal 2.jpg" alt="Refinance" class="img-fluid mb-2"
+                                style="width:180px; height:120px; object-fit:cover; border-radius:100px;">
+                            <p class="mb-0">i’m ready to <strong>Refinance</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Welcome Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center g-5">
+
+                <!-- Left Content -->
+                <div class="col-lg-6 col-md-12">
+                    <h2> <span class="lightfont">Welcome</span> <span class="fw-bold">Dream Makers Mortgage</span></h2>
+                    <p>
+                        We know that each customer has specific needs, so we strive to meet those specific needs with a
+                        wide array of
+                        products, investment tools, mortgages and best of all quality service and individual attention.
+                    </p>
+                    <p>
+                        Today's technology is providing a more productive environment to work in. For example, through
+                        our website you
+                        can submit a complete on-line, secure loan application or pre-qualify for a home loan. You may
+                        also evaluate your
+                        different financing options by using our interactive calculators and going over various mortgage
+                        scenarios.
+                    </p>
+                </div>
+
+                <!-- Right Image -->
+                <div class="col-lg-6 col-md-12 text-center">
+                    <img src="/Assets/House.jpg" alt="Modern House" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Home Loan Process Section -->
+    <section class="container my-5">
+        <!-- Desktop View (image only) -->
+        <div class="position-relative d-none d-md-block">
+            <img src="/Assets/Proces today.png" class="img-fluid w-100 rounded-4" alt="Process Today">
+        </div>
+
+        <!-- Mobile View (steps only with animation) -->
+        <div class="d-block d-md-none p-2">
+            <h2 class="mb-4">Begin Your Home Loan <span class="fw-bold">Process Today!</span></h2>
+
+            <!-- Step 1 -->
+            <div class="d-flex align-items-start mb-4 position-relative step-item animate-step delay-1">
+                <div class="step-circle">1</div>
+                <div>
+                    <h6 class="fw-bold mb-1">Answer a few questions</h6>
+                    <p class="mb-0 small">Tell us what you're looking for so we can match you with the perfect mortgage
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="d-flex align-items-start mb-4 position-relative step-item animate-step delay-2">
+                <div class="step-circle">2</div>
+                <div>
+                    <h6 class="fw-bold mb-1">Find your lender</h6>
+                    <p class="mb-0 small">We'll search for the top rates from our network of lenders in your area</p>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="d-flex align-items-start position-relative step-item animate-step delay-3">
+                <div class="step-circle">3</div>
+                <div>
+                    <h6 class="fw-bold mb-1">Lock in your rate</h6>
+                    <p class="mb-0 small">Your lender will contact you shortly so you get more info or lock in your rate
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Mortgage Section -->
+    <section class="container my-5">
+        <div class="row align-items-center">
+
+            <!-- Left Side Image with Overlay Text -->
+            <!-- Left Side Image with Overlay Text -->
+            <div class="col-md-6 mb-4 mb-md-0">
+                <div class="position-relative">
+                    <img src="/Assets/Bo With dog.jpg" class="img-fluid rounded-4 w-100" alt="Mortgage">
+                    <div class="position-absolute bottom-0 start-50 translate-middle-x p-3 text-white text-center w-100"
+                        style="border-radius:0 0 20px 20px;">
+                        <h5 class="mb-0">Find the Right Mortgage <strong>Option for You!</strong></h5>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Right Side Auto-Slider Text -->
+            <div class="col-md-6">
+                <div id="textCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+                    <div class="carousel-inner">
+                        <!-- Slide 1 -->
+                        <div class="carousel-item active">
+                            <h3>Purchase</h3>
+                            <p>Whether you're buying your first home or your dream home, we have a mortgage solution for
+                                you. Get your custom rate quote today.</p>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="carousel-item">
+                            <h3>Refinance</h3>
+                            <p>
+                                We're committed to helping you refinance with the lowest rates and fees in the industry
+                                today. Check out our Low Rates, Calculate your Payment, or Start the Process Today!
+                            </p>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="carousel-item">
+                            <h3>Apply Now</h3>
+                            <p>
+                                Our Secure Application takes about 7-10 minutes to complete, and is required for a
+                                "Pre-Approval." You will be contacted once your application is submitted.
+                            </p>
+                        </div>
+                        <!-- Slide 4 -->
+                        <div class="carousel-item">
+                            <h3>Mortgage Calculators</h3>
+                            <p>
+                                Our mortgage calculators help you hone in on the loan options that are best for you.
+                                Calculate your mortgage payments, affordability, and more.
+                            </p>
+                        </div>
+                        <!-- Slide 5 -->
+                        <div class="carousel-item">
+                            <h3>Loan Programs</h3>
+                            <p>
+                                Explore various loan program options to find the right fit for you and your family. We
+                                support everything from fixed rate to adjustable rate mortgages.
+                            </p>
+                        </div>
+                        <!-- Slide 6 -->
+                        <div class="carousel-item">
+                            <h3>Step by Step Guide</h3>
+                            <p>
+                                Learn about the Loan Process end to end. We have made it our mission to help you at
+                                every step of the way so you get the best loan option available to you.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Custom Round Buttons -->
+                    <div class="d-flex gap-2 mt-3">
+                        <button class="custom-carousel-btn" type="button" data-bs-target="#textCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="custom-carousel-btn" type="button" data-bs-target="#textCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <!-- Client Review Section -->
+    <section class="py-2">
+        <div class="container">
+            <div class="row text-md-start">
+                <div class="col-lg-10">
+
+                    <!-- Heading -->
+                    <h2 class="fw-bold">
+                        <span class="lightfont"> What our clients say </span><span class="text-dark">About us!</span>
+                    </h2>
+
+                    <!-- Paragraph -->
+                    <p class="text-muted">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        It has survived not only five centuries
+                    </p>
+
+
+                    <!-- Buttons -->
+                    <div class="mt-4 d-flex flex-wrap gap-2 justify-content-start">
+                        <!-- Red Button -->
+                        <a href="#" class="btn rounded-pill px-3 py-2 d-flex align-items-center text-white"
+                            style="background-color:#ED230D; border:none; font-size:0.9rem;">
+                            Leave a Review
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ms-2" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7" />
+                                <polyline points="7 7 17 7 17 17" />
+                            </svg>
+                        </a>
+
+                        <!-- Outline Button -->
+                        <a href="#" class="btn btn-outline-dark rounded-pill px-3 py-2 d-flex align-items-center"
+                            style="font-size:0.9rem;">
+                            View More
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ms-2" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7" />
+                                <polyline points="7 7 17 7 17 17" />
+                            </svg>
+                        </a>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section><br><br>
+
+
+
+    <!-- Footer Section -->
+    <footer class="text-white position-relative"
+        style="background:url('/Assets/Home-Footer.jpg') center/cover no-repeat;">
+
+        <div class="container d-flex flex-column justify-content-between" style="min-height:60vh;">
+
+            <!-- Top: Logo + Social Media -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center pt-3">
+                <!-- Logo -->
+                <div class="mb-2 mb-md-0">
+                    <img src="/Assets/Logo only.png" alt="Logo" class="img-fluid" style="max-height:60px;">
+                </div>
+
+                <!-- Social Media -->
+                <div class="d-flex gap-3 fs-4">
+                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+
+            <!-- Middle: Main Heading -->
+            <div class="text-center my-auto px-2">
+                <h3 class="footer-heading fw-light fw-md-normal">
+                    <span>Your Home Journey</span><br>
+                    <b>Starts Here !</b>
+                </h3>
+            </div>
+
+            <!-- Bottom: Navigation + Text -->
+            <div class="text-center mt-auto pb-3 px-2">
+                <!-- Navigation -->
+                <nav class="mb-3">
+                    <ul class="nav justify-content-center gap-2 flex-wrap">
+                        <li class="nav-item"><a href="#" class="nav-link text-white px-2">Home</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white px-2">About</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white px-2">Contact</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white px-2">Mortgage Calculator</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white px-2">Blog</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Description -->
+                <p class="small footertext mb-2">
+                    We are a trusted mortgage service provider dedicated to helping individuals and families achieve
+                    their homeownership dreams. <br>
+                    With cost-effective solutions, personalized guidance, and innovative approaches, we simplify the
+                    mortgage process and secure your financial future with confidence.
+                </p>
+
+                <!-- Copyright -->
+                <p class="small mb-0">&copy; Copyright Dream Makers Mortgage, LLC</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+
+    <!-- Footer Section -->
+    <footer class="bg-white text-dark pt-5 border-top">
+        <div class="container">
+            <div class="row gy-4">
+                <!-- About Us -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">About Us</h6>
+                    <p class="small mb-2">
+                        We've been helping customers afford the home of their dreams for many years and we love what we
+                        do...
+                    </p>
+                    <p class="small mb-1">Company NMLS: 2244116</p>
+                    <p class="small mb-0">Personal NMLS: 1828636</p>
+                </div>
+
+                <!-- Contact Us -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">Contact Us</h6>
+                    <p class="small mb-1">10707 Corporate Drive</p>
+                    <p class="small mb-1">Suite 100-A</p>
+                    <p class="small mb-1">Stafford, TX 77477</p>
+                    <p class="small mb-1">Phone: (832) 348-3711</p>
+                    <a href="mailto:info@dmmtg.com" class="small text-decoration-none">info@dmmtg.com</a>
+                </div>
+
+                <!-- Disclaimers -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">Disclaimers</h6>
+                    <ul class="list-unstyled small mb-0">
+                        <li><a href="#" class="text-dark text-decoration-none">Legal</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Accessibility Statement</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Site Map</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">NMLS Consumer Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">Resources</h6>
+                    <ul class="list-unstyled small mb-0">
+                        <li><a href="#" class="text-dark text-decoration-none">Loan Programs</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Loan Process</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Mortgage Basics</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Online Forms</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full-Width Bottom Bar -->
+        <div class="border-top mt-4 pt-3 small w-100">
+            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p class="mb-2 mb-md-0">All Rights Reserved</p>
+                <p class="mb-0">Texas Consumer Compliant Recovery Fund Notice</p>
+            </div>
+        </div>
+    </footer><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const navbar = document.querySelector('.navbar');
+        const scrollToggle = () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        };
+        scrollToggle();
+        window.addEventListener('scroll', scrollToggle);
+    </script>
+</body>
+
+</html>

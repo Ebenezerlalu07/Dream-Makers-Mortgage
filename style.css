@@ -349,13 +349,6 @@ span,
   filter: none;
 }
 
-/* ===== Goals Section ===== */
-.goals-section {
-  margin-top: -80px;
-  position: relative;
-  z-index: 2;
-}
-
 .responsive-heading {
   font-size: 18px;
 }

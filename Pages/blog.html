@@ -387,15 +387,15 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            /* use viewport width */
+            height: 100vh;
+            /* use viewport height */
             background: #fff;
-            /* you can change to dark (#000) or any color */
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            /* stay above everything */
             transition: opacity 0.5s ease, visibility 0.5s ease;
         }
 
@@ -409,18 +409,26 @@
         #preloader img {
             max-width: 150px;
             width: 30vw;
-            /* scales with screen */
             height: auto;
         }
     </style>
 
     <script>
+        // Fix for mobile viewport height
+        function resizePreloader() {
+            document.getElementById("preloader").style.height = window.innerHeight + "px";
+        }
+        window.addEventListener("resize", resizePreloader);
+        window.addEventListener("orientationchange", resizePreloader);
+        resizePreloader(); // run once on load
+
         // Hide loader when page fully loads
         window.addEventListener("load", () => {
             const preloader = document.getElementById("preloader");
             preloader.classList.add("hidden");
         });
     </script>
+
 
     <script>
         // Scroll animation

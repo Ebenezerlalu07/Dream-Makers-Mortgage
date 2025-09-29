@@ -81,7 +81,7 @@
         <!-- Heading -->
         <div class="text-center mb-4">
             <h2 class="fw-bold">
-                Have a question or <span class="text-dark">need assistance?</span>
+                <span class="lightfont"> Have a question or </span><span class="text-dark">need assistance?</span>
             </h2>
             <p class="text-muted">
                 Questions, comments, or suggestions? Simply fill in the form and we’ll be in touch shortly.
@@ -226,7 +226,8 @@
                                 class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">Contact</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">Mortgage
                                 Calculator</a></li>
-                        <li class="nav-item"><a href="/Pages/blog.html" class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">Blog</a>
+                        <li class="nav-item"><a href="/Pages/blog.html"
+                                class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">Blog</a>
                         </li>
                     </ul>
                 </nav>
@@ -311,13 +312,43 @@
     </footer>
 
 
-
     <!-- Preloader -->
     <div id="preloader">
         <img src="/Assets/Logo only.png" alt="Loading...">
     </div>
 
+    <style>
+        /* Fullscreen preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            /* you can change to dark (#000) or any color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* stay above everything */
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
 
+        /* Hide smoothly */
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Responsive image */
+        #preloader img {
+            max-width: 150px;
+            width: 30vw;
+            /* scales with screen */
+            height: auto;
+        }
+    </style>
 
     <script>
         // Hide loader when page fully loads
@@ -326,7 +357,9 @@
             preloader.classList.add("hidden");
         });
     </script>
+
     <script>
+        // Scroll animation
         document.addEventListener("scroll", function () {
             document.querySelectorAll(".scroll-transition").forEach(el => {
                 let rect = el.getBoundingClientRect();
@@ -335,8 +368,8 @@
                 }
             });
         });
-
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const navbar = document.querySelector('.navbar');

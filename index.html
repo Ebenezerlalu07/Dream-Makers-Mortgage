@@ -756,30 +756,68 @@
 
 
     <!-- Preloader -->
-    <div id="preloader"
-        class="d-flex align-items-center justify-content-center bg-white position-fixed top-0 start-0 w-100 h-100">
-        <div class="text-center">
-            <!-- Spinner -->
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-            <p class="mt-3 mb-0">Loading...</p>
-        </div>
+    <div id="preloader">
+        <img src="/Assets/Logo only.png" alt="Loading...">
     </div>
 
-    <!-- Your page content -->
-    <section class="container py-5">
-        <h1 class="text-center">Hello World</h1>
-        <p class="text-center">This is your website content.</p>
-    </section>
+    <style>
+        /* Fullscreen preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            /* full viewport width */
+            height: 100vh;
+            /* full viewport height */
+            background: #fff;
+            /* white background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* stay above everything */
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        /* Hide smoothly */
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Responsive logo */
+        #preloader img {
+            max-width: 150px;
+            width: 30vw;
+            /* scales with screen size */
+            height: auto;
+        }
+
+        /* Ensure no scrollbars */
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            /* prevent scrolling while loader is active */
+        }
+
+        body.loaded {
+            overflow: auto;
+            /* restore scrolling once loader hides */
+        }
+    </style>
 
     <script>
-        // Hide loader after page loads
-        window.addEventListener("load", function () {
+        // Hide loader when page fully loads
+        window.addEventListener("load", () => {
             const preloader = document.getElementById("preloader");
-            preloader.classList.add("d-none");
+            preloader.classList.add("hidden");
+            document.body.classList.add("loaded"); // re-enable scroll
         });
     </script>
+
 
 
     <script>

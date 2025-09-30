@@ -30,7 +30,7 @@
                     <li class="nav-item"><a class="nav-link " href="/index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Mortgage Calculator</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button"
+                        <a class="nav-link active  dropdown-toggle" href="#" id="resourcesDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Resources <i class="fa-solid fa-chevron-down"></i>
                         </a>
@@ -42,8 +42,8 @@
                             <li><a class="dropdown-item" href="#">FAQ</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link active" href="/Pages/about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Pages/contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link " href="/Pages/about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link " href="/Pages/contact.html">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Pages/blog.html">Blog</a></li>
                 </ul>
             </div>
@@ -53,9 +53,9 @@
     </nav>
 
 
-    <!-- Navbar -->
+    <!-- Banner -->
     <section class="position-relative text-white"
-        style="background: url('/Assets/Dog\ frame.jpg') center/cover no-repeat; min-height: 60vh;">
+        style="background: url('/Assets/Interest\ Only.jpg') center/cover no-repeat; min-height: 60vh;">
         <!-- Overlay -->
         <div class="position-absolute top-0 start-0 w-100 h-100"></div>
 
@@ -63,19 +63,75 @@
         <div class="container position-absolute bottom-0 start-0 end-0 pb-4">
             <div class="row">
                 <div class="col-lg-6 col-md-8 col-12">
-                    <h2 class="fw-bold mb-3">About Us</h2>
-                    <p class="mb-0">
+                    <h2 class="fw-bold mb-3">Interest Only Mortgages</h2>
+                    <!-- <p class="mb-0">
                         <span class="lightfont">
-                            Our mission is to serve our customers with honesty, integrity and competence.
-                            Our goal is to provide home loans to our clients while providing them with
-                            the lowest interest rates and closing costs possible. Furthermore, we pledge
-                            to help borrowers overcome roadblocks that can arise while securing a loan.</span>
-                    </p>
+                            10707 Corporate Drive Suite 100-AStafford, TX 77477Phone: (832) 348-3711Email:
+                            info@dmmtg.com</span>
+                    </p> -->
                 </div>
             </div>
         </div>
     </section>
 
+
+    <section class="py-3">
+        <div class="container">
+            <!-- Heading -->
+            <h3 class="fw-bold">
+                <span class="lightfont">Interest</span><span class=""> Only Mortgages</span>
+            </h3>
+
+            <!-- Paragraph 1 -->
+            <p class=" mt-3">
+                A mortgage is called “Interest Only” when its monthly payment does not include the repayment of
+                principal for a certain period of time. Interest Only loans are offered on fixed rate or adjustable rate
+                mortgages as wells as on option ARMs. At the end of the interest only period, the loan becomes fully
+                amortized, thus resulting in greatly increased monthly payments. The new payment will be larger than it
+                would have been if it had been fully amortizing from the beginning. The longer the interest only period,
+                the larger the new payment will be when the interest only period ends.
+            </p>
+
+            <!-- Paragraph 2 -->
+            <p class=" mt-3 mb-0">
+                You won't build equity during the interest-only term, but it could help you close on the home you want
+                instead of settling for the home you can afford.
+            </p>
+
+            <!-- Paragraph 3 -->
+            <p class=" mt-3 mb-0">
+                Since you'll be qualified based on the interest-only payment and will likely refinance before the
+                interest-only term expires anyway, it could be a way to effectively lease your dream home now and invest
+                the principal portion of your payment elsewhere while realizing the tax advantages and appreciation that
+                accompany homeownership.
+            </p>
+
+            <!-- Paragraph 4 -->
+            <p class=" mt-3 mb-0">
+                As an example, if you borrow $250,000 at 6 percent, using a 30-year fixed-rate mortgage, your monthly
+                payment would be $1,499. On the other hand, if you borrowed $250,000 at 6 percent, using a 30-year
+                mortgage with a 5-year interest only payment plan, your monthly payment initially would be $1,250. This
+                saves you $249 per month or $2,987 a year. However, when you reach year six, your monthly payments will
+                jump to $1,611, or $361 more per month. Hopefully, your income will have jumped accordingly to support
+                the higher payments or you have refinanced your loan by that time.
+            </p>
+
+            <!-- Paragraph 5 -->
+            <p class=" mt-3 mb-0">
+                Mortgages with interest only payment options may save you money in the short-run, but they actually cost
+                more over the 30-year term of the loan. However, most borrowers repay their mortgages well before the
+                end of the full 30-year loan term.
+            </p>
+
+            <!-- Paragraph 6 -->
+            <p class=" mt-3 mb-0">
+                Borrowers with sporadic incomes can benefit from interest-only mortgages. This is particularly the case
+                if the mortgage is one that permits the borrower to pay more than interest-only. In this case, the
+                borrower can pay interest-only during lean times and use bonuses or income spurts to pay down the
+                principal.
+            </p>
+        </div>
+    </section>
 
 
     <section class="container my-5">
@@ -253,6 +309,18 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Footer Section -->
     <footer class="text-white position-relative"
         style="background:url('/Assets/Home-Footer.jpg') center/cover no-repeat;">
@@ -382,89 +450,77 @@
                 <p class="mb-2 mb-md-0">All Rights Reserved</p>
                 <p class="mb-0">Texas Consumer Compliant Recovery Fund Notice</p>
             </div>
-        </div><br </footer>
+        </div><br>
+    </footer>
 
 
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="/Assets/Logo only.png" alt="Loading...">
+    </div>
 
-        <!-- Preloader -->
-        <div id="preloader">
-            <img src="/Assets/Logo only.png" alt="Loading...">
-        </div>
+    <style>
+        /* Fullscreen preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            /* you can change to dark (#000) or any color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* stay above everything */
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
 
-        <style>
-            /* Fullscreen preloader */
-            #preloader {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: #fff;
-                /* you can change to dark (#000) or any color */
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 9999;
-                /* stay above everything */
-                transition: opacity 0.5s ease, visibility 0.5s ease;
-            }
+        /* Hide smoothly */
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
 
-            /* Hide smoothly */
-            #preloader.hidden {
-                opacity: 0;
-                visibility: hidden;
-            }
+        /* Responsive image */
+        #preloader img {
+            max-width: 150px;
+            width: 30vw;
+            /* scales with screen */
+            height: auto;
+        }
+    </style>
 
-            /* Responsive image */
-            #preloader img {
-                max-width: 150px;
-                width: 30vw;
-                /* scales with screen */
-                height: auto;
-            }
-        </style>
+    <script>
+        // Hide loader when page fully loads
+        window.addEventListener("load", () => {
+            const preloader = document.getElementById("preloader");
+            preloader.classList.add("hidden");
+        });
+    </script>
 
-        <script>
-            // Hide loader when page fully loads
-            window.addEventListener("load", () => {
-                const preloader = document.getElementById("preloader");
-                preloader.classList.add("hidden");
+    <script>
+        // Scroll animation
+        document.addEventListener("scroll", function () {
+            document.querySelectorAll(".scroll-transition").forEach(el => {
+                let rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    el.classList.add("active");
+                }
             });
-        </script>
+        });
+    </script>
 
-
-        <script>
-            // Scroll animation
-            document.addEventListener("scroll", function () {
-                document.querySelectorAll(".scroll-transition").forEach(el => {
-                    let rect = el.getBoundingClientRect();
-                    if (rect.top < window.innerHeight - 100) {
-                        el.classList.add("active");
-                    }
-                });
-            });
-        </script>
-
-        <script>
-            document.addEventListener("scroll", function () {
-                document.querySelectorAll(".scroll-transition").forEach(el => {
-                    let rect = el.getBoundingClientRect();
-                    if (rect.top < window.innerHeight - 100) {
-                        el.classList.add("active");
-                    }
-                });
-            });
-
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
-            const navbar = document.querySelector('.navbar');
-            const scrollToggle = () => {
-                navbar.classList.toggle('scrolled', window.scrollY > 50);
-            };
-            scrollToggle();
-            window.addEventListener('scroll', scrollToggle);
-        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const navbar = document.querySelector('.navbar');
+        const scrollToggle = () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        };
+        scrollToggle();
+        window.addEventListener('scroll', scrollToggle);
+    </script>
 </body>
 
 </html>

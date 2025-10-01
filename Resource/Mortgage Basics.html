@@ -38,7 +38,7 @@
                             <li><a class="dropdown-item" href="/Resource/loanprograms.html">Loan Programs</a></li>
                             <li><a class="dropdown-item" href="/Resource/loan process.html">Loan Process</a></li>
                             <li><a class="dropdown-item" href="/Resource/Mortgage Basics.html">Mortgage Basics</a></li>
-                            <li><a class="dropdown-item" href="/Resource/Online Forms.html">Online Forms</a></li>
+                            <li><a class="dropdown-item" href="#">Online Forms</a></li>
                             <li><a class="dropdown-item" href="#">FAQ</a></li>
                         </ul>
                     </li>
@@ -86,9 +86,9 @@
         </div>
 
         <!-- First Row -->
-        <div class="row g-4 scroll-transition">
+        <div class="card-row">
             <!-- Card 1 -->
-            <div class="col-sm-6 col-lg-3">
+            <div>
                 <a href="/Mortgage basics/Application Checklist.html"
                     class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
                     <img src="/Assets/Application Checklist.png" class="w-100 rounded-top-4" alt="Application Checklist"
@@ -105,7 +105,7 @@
             </div>
 
             <!-- Card 2 -->
-            <div class="col-sm-6 col-lg-3">
+            <div>
                 <a href="/Mortgage basics/credit.html"
                     class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
                     <img src="/Assets/Credit.png" class="w-100 rounded-top-4" alt="Credit"
@@ -122,7 +122,7 @@
             </div>
 
             <!-- Card 3 -->
-            <div class="col-sm-6 col-lg-3">
+            <div>
                 <a href="/Mortgage basics/Closing Cost.html"
                     class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
                     <img src="/Assets/Closing Costs.png" class="w-100 rounded-top-4" alt="Closing Costs"
@@ -138,7 +138,7 @@
             </div>
 
             <!-- Card 4 -->
-            <div class="col-sm-6 col-lg-3">
+            <div>
                 <a href="/Mortgage basics/Appraisals.html"
                     class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
                     <img src="/Assets/Appraisals.png" class="w-100 rounded-top-4" alt="Appraisals"
@@ -155,10 +155,10 @@
         </div>
 
         <!-- Second Row -->
-        <div class="scroll-transition row g-4 mt-3">
+        <div class="card-row mt-3">
             <!-- Card 5 -->
-            <div class="col-sm-6 col-lg-3">
-                <a href="/Mortgage basics/Private Mortgage Insurance (PMI).html"
+            <div>
+                <a href="#"
                     class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
                     <img src="/Assets/Private Mortgage Insurance (PMI).png" class="w-100 rounded-top-4"
                         alt="Private Mortgage Insurance (PMI)" style="height:220px;object-fit:cover;">
@@ -173,8 +173,8 @@
             </div>
 
             <!-- Card 6 -->
-            <div class="col-sm-6 col-lg-3">
-                <a href="/Mortgage basics/Refinance.html"
+            <div>
+                <a href="#"
                     class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
                     <img src="/Assets/Refinance.png" class="w-100 rounded-top-4" alt="Refinance"
                         style="height:220px;object-fit:cover;">
@@ -189,8 +189,8 @@
             </div>
 
             <!-- Card 7 -->
-            <div class="col-sm-6 col-lg-3">
-                <a href="/Mortgage basics/Glossary.html"
+            <div>
+                <a href="#"
                     class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
                     <img src="/Assets/Glossary of Terms.png" class="w-100 rounded-top-4" alt="Glossary of Terms"
                         style="height:220px;object-fit:cover;">
@@ -204,8 +204,8 @@
             </div>
 
             <!-- Card 8 -->
-            <div class="col-sm-6 col-lg-3">
-                <a href="/Mortgage basics/Foreclosure.html"
+            <div>
+                <a href="#"
                     class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
                     <img src="/Assets/Foreclosure.png" class="w-100 rounded-top-4" alt="Foreclosure"
                         style="height:220px;object-fit:cover;">
@@ -222,6 +222,47 @@
     </section>
 
     <style>
+        .hover-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            /* spacing between cards */
+            justify-content: center;
+            /* keeps row centered */
+        }
+
+        /* Default mobile: 1 per row */
+        .card-row>div {
+            flex: 1 1 100%;
+            max-width: 100%;
+        }
+
+        /* Tablet: 2 per row */
+        @media (min-width: 576px) {
+            .card-row>div {
+                flex: 1 1 calc(50% - 1.5rem);
+                max-width: calc(50% - 1.5rem);
+            }
+        }
+
+        /* Desktop: 4 per row */
+        @media (min-width: 992px) {
+            .card-row>div {
+                flex: 1 1 calc(25% - 1.5rem);
+                max-width: calc(25% - 1.5rem);
+            }
+        }
+
+        /* Hover effect */
         .hover-card {
             transition: transform 0.3s, box-shadow 0.3s;
         }
@@ -362,7 +403,7 @@
                         <li><a href="#" class="text-dark text-decoration-none">Loan Programs</a></li>
                         <li><a href="#" class="text-dark text-decoration-none">Loan Process</a></li>
                         <li><a href="#" class="text-dark text-decoration-none">Mortgage Basics</a></li>
-                        <li><a class="dropdown-item" href="/Resource/Online Forms.html">Online Forms</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Online Forms</a></li>
                         <li><a href="#" class="text-dark text-decoration-none">FAQ</a></li>
                     </ul>
                 </div>

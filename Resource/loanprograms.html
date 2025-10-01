@@ -118,7 +118,7 @@
 
     <section class="container py-5">
         <!-- Heading -->
-        <div class="mb-4 scroll-transition">
+        <div class="mb-4 scroll-transition text-center">
             <h2 class="fw-bold"><span class="lightfont">Mortgage </span>Rate Options</h2>
             <p class="text-muted">
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -126,10 +126,10 @@
             </p>
         </div>
 
-        <!-- Cards -->
-        <div class="scroll-transition row g-4">
+        <!-- Custom Row -->
+        <div class="scroll-transition custom-row">
             <!-- Card 1 -->
-            <div class="col-12 col-md-6 col-lg-3">
+            <div class="custom-col">
                 <div class="card-custom h-100">
                     <h5><i class="bi bi-lock-fill me-2"></i> Fixed Rate</h5>
                     <p>
@@ -140,9 +140,7 @@
                     <div class="mt-auto">
                         <a href="/Loan Programs/fixedrate.html" class="btn-pill-white">
                             Contact Now
-                            <!-- corrected arrow SVG -->
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"
-                                focusable="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7 17L17 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                                     stroke-linejoin="round" fill="none" />
                                 <path d="M7 7H17V17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -154,18 +152,17 @@
             </div>
 
             <!-- Card 2 -->
-            <div class="col-12 col-md-6 col-lg-3">
+            <div class="custom-col">
                 <div class="card-custom h-100">
                     <h5><i class="bi bi-infinity me-2"></i> Adjustable ARM</h5>
                     <p>
                         Adjustable-rate mortgages include interest payments which shift during the loan's term,
-                        depending on current market conditions. Typically, these loans carry a fixed-i...
+                        depending on current market conditions.
                     </p>
                     <div class="mt-auto">
                         <a href="/Loan Programs/Adjustable.html" class="btn-pill-white">
                             Contact Now
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"
-                                focusable="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7 17L17 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                                     stroke-linejoin="round" fill="none" />
                                 <path d="M7 7H17V17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -177,19 +174,17 @@
             </div>
 
             <!-- Card 3 -->
-            <div class="col-12 col-md-6 col-lg-3">
+            <div class="custom-col">
                 <div class="card-custom h-100">
                     <h5><i class="bi bi-percent me-2"></i> Interest Only</h5>
                     <p>
                         Interest only mortgages are home loans in which borrowers make monthly payments
-                        solely toward the interest accruing on the loan, rather than the principle,
-                        for a specif...
+                        solely toward the interest accruing on the loan.
                     </p>
                     <div class="mt-auto">
                         <a href="/Loan Programs/InterestOnly.html" class="btn-pill-white">
                             Contact Now
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"
-                                focusable="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7 17L17 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                                     stroke-linejoin="round" fill="none" />
                                 <path d="M7 7H17V17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -201,18 +196,17 @@
             </div>
 
             <!-- Card 4 -->
-            <div class="col-12 col-md-6 col-lg-3">
+            <div class="custom-col">
                 <div class="card-custom h-100">
                     <h5><i class="bi bi-currency-dollar me-2"></i> Graduated Payments</h5>
                     <p>
                         Graduated Payment Mortgages are loans in which mortgage payments increase annually
-                        for a predetermined period of time (e.g. five or ten years) and...
+                        for a predetermined period of time (e.g. five or ten years).
                     </p>
                     <div class="mt-auto">
                         <a href="/Loan Programs/Graduated Payments.html" class="btn-pill-white">
                             Contact Now
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"
-                                focusable="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7 17L17 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                                     stroke-linejoin="round" fill="none" />
                                 <path d="M7 7H17V17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -226,14 +220,45 @@
     </section>
 
     <style>
+        /* Custom row (instead of Bootstrap .row) */
+        .custom-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .custom-col {
+            flex: 1 1 100%;
+            /* full width on mobile */
+            max-width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .custom-col {
+                flex: 1 1 calc(50% - 1.5rem);
+                /* 2 columns on tablets */
+                max-width: calc(50% - 1.5rem);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .custom-col {
+                flex: 1 1 calc(25% - 1.5rem);
+                /* 4 columns on desktops */
+                max-width: calc(25% - 1.5rem);
+            }
+        }
+
+        /* Card design */
         .card-custom {
             background: #EF4B3A;
-            /* coral red */
             color: #fff;
             border-radius: 18px;
             padding: 1.6rem;
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
 
         .card-custom h5 {
@@ -264,7 +289,6 @@
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
         }
 
-        /* Make the inline SVG small and aligned */
         .btn-pill-white svg {
             width: 18px;
             height: 18px;
@@ -286,9 +310,9 @@
         </div>
 
         <!-- Cards -->
-        <div class="row g-4">
+        <div class="custom-row">
             <!-- Conventional Loans -->
-            <div class="col-12 col-md-6 col-lg-3">
+            <div class="custom-col">
                 <a href="/Loan Programs/Conventional Loans.html" class="text-decoration-none">
                     <div class="card shadow-sm border-0 h-100">
                         <img src="/Assets/Conventional Loans.png" class="card-img-top rounded-top"
@@ -305,7 +329,7 @@
             </div>
 
             <!-- FHA Home Loans -->
-            <div class="col-12 col-md-6 col-lg-3">
+            <div class="custom-col">
                 <a href="/Loan Programs/FHA Home Loans.html" class="text-decoration-none">
                     <div class="card shadow-sm border-0 h-100">
                         <img src="/Assets/FHA Home Loans.png" class="card-img-top rounded-top" alt="FHA Home Loans">
@@ -321,7 +345,7 @@
             </div>
 
             <!-- VA Loans -->
-            <div class="col-12 col-md-6 col-lg-3">
+            <div class="custom-col">
                 <a href="/Loan Programs/VA Home Loans.html" class="text-decoration-none">
                     <div class="card shadow-sm border-0 h-100">
                         <img src="/Assets/VA Loans.png" class="card-img-top rounded-top" alt="VA Loans">
@@ -338,7 +362,7 @@
             </div>
 
             <!-- Jumbo Loans -->
-            <div class="col-12 col-md-6 col-lg-3">
+            <div class="custom-col">
                 <a href="/Loan Programs/Jumbo Loans.html" class="text-decoration-none">
                     <div class="card shadow-sm border-0 h-100">
                         <img src="/Assets/Jumbo Loans.png" class="card-img-top rounded-top" alt="Jumbo Loans">
@@ -355,6 +379,37 @@
         </div>
     </section>
 
+    <style>
+        /* Custom row (instead of Bootstrap .row) */
+        .custom-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .custom-col {
+            flex: 1 1 100%;
+            /* full width on mobile */
+            max-width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .custom-col {
+                flex: 1 1 calc(50% - 1.5rem);
+                /* 2 columns on tablet */
+                max-width: calc(50% - 1.5rem);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .custom-col {
+                flex: 1 1 calc(25% - 1.5rem);
+                /* 4 columns on desktop */
+                max-width: calc(25% - 1.5rem);
+            }
+        }
+    </style>
 
 
 

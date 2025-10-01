@@ -36,6 +36,14 @@ body {
   color: #1E1E1E;
 }
 
+.text {
+  text-decoration: none;
+}
+
+.bold {
+  font-weight: 700;
+}
+
 h1,
 .rog {
   font-family: 'ROG Fonts', sans-serif;
@@ -45,6 +53,10 @@ p,
 b,
 span,
 .lightfont {
+  font-family: 'Poppins', sans-serif;
+}
+
+.Paragraph {
   font-family: 'Poppins', sans-serif;
 }
 

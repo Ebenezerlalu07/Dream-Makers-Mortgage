@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream Makers Mortgage</title>
+    <link rel="icon" type="image/x-icon" href="/Assets/Logo only.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/index.html">
+                <img src="/Assets/Logo only.png" alt="Logo" class="rounded-circle">
+            </a>
+
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav navbar-custom text-center text-lg-center">
+                    <li class="nav-item"><a class="nav-link " href="/index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Mortgage Calculator</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active  dropdown-toggle" href="#" id="resourcesDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Resources <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu text-start" aria-labelledby="resourcesDropdown">
+                            <li><a class="dropdown-item" href="/Resource/loanprograms.html">Loan Programs</a></li>
+                            <li><a class="dropdown-item" href="/Resource/loan process.html">Loan Process</a></li>
+                            <li><a class="dropdown-item" href="/Resource/Mortgage Basics.html">Mortgage Basics</a></li>
+                            <li><a class="dropdown-item" href="/Resource/Online Forms.html">Online Forms</a></li>
+                            <li><a class="dropdown-item" href="/Resource/faq.html">FAQ</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link " href="/Pages/about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link " href="/Pages/contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Pages/blog.html">Blog</a></li>
+                </ul>
+            </div>
+
+            <a href="#" class="btn btn-apply d-none d-lg-block ms-3">Apply Now</a>
+        </div>
+    </nav>
+
+
+    <!-- Navbar -->
+    <section class="position-relative text-white"
+        style="background: url('/Assets/FAQ.png') center/cover no-repeat; min-height: 60vh;">
+        <!-- Overlay -->
+        <div class="position-absolute top-0 start-0 w-100 h-100"></div>
+
+        <!-- Text aligned at bottom -->
+        <div class="container position-absolute bottom-0 start-0 end-0 pb-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-12">
+                    <h2 class="fw-bold mb-3">FAQ</h2>
+                    <!-- <p class="mb-0">
+                        <span class="lightfont">
+                            10707 Corporate Drive Suite 100-AStafford, TX 77477Phone: (832) 348-3711Email:
+                            info@dmmtg.com</span>
+                    </p> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section Paragraph container py-3">
+        <h2 class="fw-bold  mb-4">Frequently Asked Questions</h2>
+
+        <div class="faq-item mb-4">
+            <h4 class="fw-semibold">When should I refinance?</h4>
+            <p class="">
+                It's generally a good time to refinance when mortgage rates are 2% lower than the current rate on your
+                loan. It may be a viable option even if the interest rate difference is only 1% or less. Any reduction
+                can trim your monthly mortgage payments. Example: Your payment, excluding taxes and insurance, would be
+                about $770 on a $100,000 loan at 8.5%; if the rate were lowered to 7.5%, your payment would then be
+                $700, now you're saving $70 per month. Your savings depend on your income, budget, loan amount, and
+                interest rate changes. Your trusted lender can help you calculate your options.
+            </p>
+        </div>
+
+        <div class="faq-item mb-4">
+            <h4 class="fw-semibold">What are points?</h4>
+            <p class="">
+                A point is a percentage of the loan amount, or 1-point = 1% of the loan, so one point on a $100,000 loan
+                is $1,000. Points are costs that need to be paid to a lender to get mortgage financing under specified
+                terms. Discount points are fees used to lower the interest rate on a mortgage loan by paying some of
+                this interest up-front. Lenders may refer to costs in terms of basic points in hundredths of a percent,
+                100 basis points = 1 point, or 1% of the loan amount.
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <h4 class="fw-semibold">Should I pay points to lower my interest rate?</h4>
+            <p class="">
+                Yes, if you plan to stay in the property for at least a few years. Paying discount points to lower the
+                loan’s interest rate is a good way to lower your required monthly loan payment, and possibly increase
+                the loan amount that you can afford to borrow. However, if you plan to stay in the property for only a
+                year or two, your monthly savings may not be enough to recoup the cost of the discount points that you
+                paid up-front.
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <h4 class="fw-semibold">What is an APR?</h4>
+            <p class="">
+                The annual percentage rate (APR) is an interest rate reflecting the cost of a mortgage as a yearly rate.
+                This rate is likely to be higher than the stated note rate or advertised rate on the mortgage, because
+                it takes into account points and other credit costs. The APR allows homebuyers to compare different
+                types of mortgages based on the annual cost for each loan. The APR is designed to measure the "true cost
+                of a loan." It creates a level playing field for lenders. It prevents lenders from advertising a low
+                rate and hiding fees.<br><br>
+
+                The APR does not affect your monthly payments. Your monthly payments are strictly a function of the
+                interest rate and the length of the loan.<br><br>
+
+                Because APR calculations are effected by the various different fees charged by lenders, a loan with a
+                lower APR is not necessarily a better rate. The best way to compare loans is to ask lenders to provide
+                you with a good-faith estimate of their costs on the same type of program (e.g. 30-year fixed) at the
+                same interest rate. You can then delete the fees that are independent of the loan such as homeowners
+                insurance, title fees, escrow fees, attorney fees, etc. Now add up all the loan fees. The lender that
+                has lower loan fees has a cheaper loan than the lender with higher loan fees.<br><br>
+
+                The following fees are generally included in the APR:
+            <ul>
+                <li> Points - both discount points and origination points</li>
+                <li> Pre-paid interest. The interest paid from the date the loan closes to the end of the month. </li>
+                <li> Loan-processing fee</li>
+                <li> Underwriting fee</li>
+                <li> Document-preparation fee</li>
+                <li> Private mortgage-insurance</li>
+                <li> Escrow fee </li>
+            </ul><br>
+            The following fees are normally not included in the APR:
+            <ul><br>
+                <li>Title or abstract fee</li>
+                <li>Borrower Attorney fee</li>
+                <li>Home-inspection fees</li>
+                <li>Recording fee</li>
+                <li>Transfer taxes</li>
+                <li>Credit report</li>
+                <li>Appraisal fee</li>
+            </ul>
+
+            </p>
+        </div>
+
+        <div class="faq-item mb-4">
+            <h4 class="fw-semibold">What does it mean to lock the interest rate?</h4>
+            <p class="">
+                Mortgage rates can change from the day you apply for a loan to the day you close the transaction. If
+                interest rates rise sharply during the application process it can increase the borrower's mortgage
+                payment unexpectedly. Therefore, a lender can allow the borrower to "lock-in" the loan's interest rate
+                guaranteeing that rate for a specified time period, often 30-60 days, sometimes for a fee.
+            </p>
+        </div>
+
+        <div class="faq-item mb-4">
+            <h4 class="fw-semibold">What documents do I need to prepare for my loan application?</h4>
+            <p class="">
+                Below is a list of documents that are required when you apply for a mortgage. However, every situation
+                is unique and you may be required to provide additional documentation. So, if you are asked for more
+                information, be cooperative and provide the information requested as soon as possible. It will help
+                speed up the application process.
+            </p>
+        </div>
+
+        <div class="faq-item mb-4">
+            <h5 class="fw-bold mb-3">Your Property</h5>
+            <ul>
+                <li>Copy of signed sales contract including all riders</li>
+                <li>Verification of the deposit you placed on the home</li>
+                <li>Names, addresses and telephone numbers of all realtors, builders, insurance agents and attorneys
+                    involved</li>
+                <li>Copy of Listing Sheet and legal description if available (if the property is a condominium please
+                    provide condominium declaration, by-laws and most recent budget)</li>
+            </ul>
+        </div>
+
+        <!-- Income -->
+        <div class="faq-item mb-4">
+            <h5 class="fw-bold mb-3">Your Income</h5>
+            <ul>
+                <li>Copies of your pay-stubs for the most recent 30-day period and year-to-date</li>
+                <li>Copies of your W-2 forms for the past two years</li>
+                <li>Names and addresses of all employers for the last two years</li>
+                <li>Letter explaining any gaps in employment in the past 2 years</li>
+                <li>Work visa or green card (copy front &amp; back)</li>
+            </ul>
+        </div>
+
+        <!-- Self-employed -->
+        <div class="faq-item mb-4">
+            <h6 class="fw-semibold mb-2">
+                If <span class="fw-bold">self-employed</span> or receive <span class="fw-bold">commission</span> or
+                <span class="fw-bold">bonus, interest/dividends, or rental income</span>:
+            </h6>
+            <ul>
+                <li>Provide full tax returns for the last two years PLUS year-to-date Profit and Loss statement (please
+                    provide complete tax return including attached schedules and statements. If you have filed an
+                    extension, please supply a copy of the extension.)</li>
+                <li>K-1’s for all partnerships and S-Corporations for the last two years (please double-check your
+                    return. Most K-1’s are not attached to the 1040.)</li>
+                <li>Completed and signed Federal Partnership (1065) and/or Corporate Income Tax Returns (1120) including
+                    all schedules, statements and addenda for the last two years. (Required only if your ownership
+                    position is 25% or greater.)</li>
+            </ul>
+        </div>
+
+        <!-- Alimony / Child Support -->
+        <div class="faq-item mb-4">
+            <h6 class="fw-semibold mb-2">
+                If you will use <span class="fw-bold">Alimony</span> or <span class="fw-bold">Child Support</span> to
+                qualify:
+            </h6>
+            <ul>
+                <li>Provide divorce decree/court order stating amount, as well as, proof of receipt of funds for last
+                    year</li>
+            </ul>
+        </div>
+
+        <!-- Social Security / Disability -->
+        <div class="faq-item">
+            <h6 class="fw-semibold mb-2">
+                If you receive <span class="fw-bold">Social Security income</span>, <span
+                    class="fw-bold">Disability</span> or <span class="fw-bold">VA</span> benefits:
+            </h6>
+            <ul>
+                <li>Provide award letter from agency or organization</li>
+            </ul>
+        </div>
+
+        <!-- Source of Funds and Down Payment -->
+        <div class="faq-item mb-4">
+            <h5 class="fw-bold mb-3">Source of Funds and Down Payment</h5>
+            <ul>
+                <li>Sale of your existing home - provide a copy of the signed sales contract on your current residence
+                    and statement or listing agreement if unsold (at closing, you must also provide a settlement/Closing
+                    Statement)</li>
+                <li>Savings, checking or money market funds - provide copies of bank statements for the last 3 months
+                </li>
+                <li>Stocks and bonds - provide copies of your statement from your broker or copies of certificates</li>
+                <li>Gifts - If part of your cash to close, provide Gift Affidavit and proof of receipt of funds</li>
+                <li>Based on information appearing on your application and/or your credit report, you may be required to
+                    submit additional documentation</li>
+            </ul>
+        </div>
+
+        <!-- Debt or Obligations -->
+        <div class="faq-item">
+            <h5 class="fw-bold mb-3">Debt or Obligations</h5>
+            <ul>
+                <li>Prepare a list of all names, addresses, account numbers, balances, and monthly payments for all
+                    current debts with copies of the last three monthly statements</li>
+                <li>Include all names, addresses, account numbers, balances, and monthly payments for mortgage holders
+                    and/or landlords for the last two years</li>
+                <li>If you are paying alimony or child support, include marital settlement/court order stating the terms
+                    of the obligation</li>
+                <li>Check to cover Application Fee(s)</li>
+            </ul>
+        </div>
+
+        <div class="faq-item mb-4">
+            <h4 class="fw-semibold">How is my credit judged by lenders?</h4>
+            <p class="">
+                Credit scoring is a system creditors use to help determine whether to give you credit. Information about
+                you and your credit experiences, such as your bill-paying history, the number and type of accounts you
+                have, late payments, collection actions, outstanding debt, and the age of your accounts, is collected
+                from your credit application and your credit report. Using a statistical program, creditors compare this
+                information to the credit performance of consumers with similar profiles. A credit scoring system awards
+                points for each factor that helps predict who is most likely to repay a debt. A total number of points
+                -- a credit score -- helps predict how creditworthy you are, that is, how likely it is that you will
+                repay a loan and make the payments when due.<br><br>
+
+                The most widely use credit scores are FICO scores, which were developed by Fair Isaac Company, Inc. Your
+                score will fall between 350 (high risk) and 850 (low risk).<br><br>
+
+                Because your credit report is an important part of many credit scoring systems, it is very important to
+                make sure it's accurate before you submit a credit application. To get copies of your report, contact
+                the three major credit reporting agencies:<br><br>
+
+                Equifax: (800) 685-1111<br>
+                Experian (formerly TRW): (888) EXPERIAN (397-3742)<br>
+                Trans Union: (800) 916-8800<br>
+                These agencies may charge you up to $9.00 for your credit report.<br><br>
+
+                You are entitled to receive one free credit report every 12 months from each of the nationwide consumer
+                credit reporting companies – Equifax, Experian and TransUnion. This free credit report may not contain
+                your credit score and can be requested through the following website: https://www.annualcreditreport.com
+            </p>
+        </div>
+
+        <div class="faq-item mb-4">
+            <h4 class="fw-semibold">What can I do to improve my credit score?</h4>
+            <p class="">
+                Credit scoring models are complex and often vary among creditors and for different types of credit. If
+                one factor changes, your score may change -- but improvement generally depends on how that factor
+                relates to other factors considered by the model. Only the creditor can explain what might improve your
+                score under the particular model used to evaluate your credit application.<br><br>
+
+                Nevertheless, scoring models generally evaluate the following types of information in your credit
+                report:<br><br>
+            <ul>
+                <li>
+                    Have you paid your bills on time? Payment history typically is a significant factor. It is likely
+                    that
+                    your score will be affected negatively if you have paid bills late, had an account referred to
+                    collections, or declared bankruptcy, if that history is reflected on your credit report.
+                </li>
+                <li>
+                    What is your outstanding debt? Many scoring models evaluate the amount of debt you have compared to
+                    your
+                    credit limits. If the amount you owe is close to your credit limit, that is likely to have a
+                    negative
+                    effect on your score.
+                </li>
+                <li>
+                    How long is your credit history? Generally, models consider the length of your credit track record.
+                    An
+                    insufficient credit history may have an effect on your score, but that can be offset by other
+                    factors,
+                    such as timely payments and low balances.
+                </li>
+                <li>
+                    Have you applied for new credit recently? Many scoring models consider whether you have applied for
+                    credit recently by looking at "inquiries" on your credit report when you apply for credit. If you
+                    have
+                    applied for too many new accounts recently, that may negatively affect your score. However, not all
+                    inquiries are counted. Inquiries by creditors who are monitoring your account or looking at credit
+                    reports to make "prescreened" credit offers are not counted.
+                </li>
+                <li>
+                    How many and what types of credit accounts do you have? Although it is generally good to have
+                    established credit accounts, too many credit card accounts may have a negative effect on your score.
+                    In
+                    addition, many models consider the type of credit accounts you have. For example, under some scoring
+                    models, loans from finance companies may negatively affect your credit score.
+                </li>
+            </ul>
+            Scoring models may be based on more than just information in your credit report. For example, the
+            model
+            may consider information from your credit application as well: your job or occupation, length of
+            employment, or whether you own a home.<br><br>
+
+
+
+            To improve your credit score under most models, concentrate on paying your bills on time, paying down
+            outstanding balances, and not taking on new debt. It's likely to take some time to improve your score
+            significantly.
+            </p>
+        </div>
+
+        <div class="faq-item mb-4">
+            <h4 class="fw-semibold">What is an appraisal?</h4>
+            <p class="">
+                An Appraisal is an estimate of a property's fair market value. It's a document generally required
+                (depending on the loan program) by a lender before loan approval to ensure that the mortgage loan amount
+                is not more than the value of the property. The Appraisal is performed by an "Appraiser" typically a
+                state-licensed professional who is trained to render expert opinions concerning property values, its
+                location, amenities, and physical conditions.
+            </p>
+        </div>
+
+        <div class="faq-item mb-4">
+            <h4 class="fw-semibold">What is PMI (Private Mortgage Insurance)?</h4>
+            <p class="">
+                On a conventional mortgage, when your down payment is less than 20% of the purchase price of the home
+                mortgage lenders usually require you get Private Mortgage Insurance (PMI) to protect them in case you
+                default on your mortgage. Sometimes you may need to pay up to 1-year's worth of PMI premiums at closing
+                which can cost several hundred dollars. The best way to avoid this extra expense is to make a 20% down
+                payment, or ask about other loan program options.
+            </p>
+        </div>
+
+        <div class="faq-item mb-4">
+            <h4 class="fw-semibold">What is 80-10-10 financing?</h4>
+            <p class="">
+                Surprising as it may seem, some folks with hefty incomes find that it's mighty tough for them to save
+                enough money to make a 20% cash down payment on their dream homes. Using conventional financing, such
+                buyers must purchase Private Mortgage Insurance (PMI) which increases the cost of home ownership and,
+                ironically, makes it even more difficult to qualify for the mortgage. However, if you're a dues-paying
+                member of the cash-challenged class, don't despair. Given that your income is sufficiently high, it's
+                eminently possible to avoid getting stuck with PMI. That is why 80-10-10 financing was invented. It is
+                called 80-10-10 because a savings and loan association, bank, or other institutional lender provides a
+                traditional 80% first mortgage, you get a 10% second mortgage, and make a cash down payment equal to 10%
+                of the home's purchase price. By using this method, you are no longer obligated to take out PMI on your
+                property.<br><br>
+
+                The same principle applies if you can only afford to make a 5% down, 80-15-5 financing is also
+                available. However, because a smaller cash down payment increases the lender's risk of default, do not
+                be surprised when you are asked to pay higher loan fees and a higher mortgage interest rate for 80-15-5
+                than you pay for 80-10-10.
+            </p>
+        </div>
+
+        <div class="faq-item mb-4">
+            <h4 class="fw-semibold">What happens at closing ?</h4>
+            <p class="">
+                The property is officially transferred from the seller to you at "Closing" or "Funding".<br><br>
+
+                At closing, the ownership of the property is officially transferred from the seller to you. This may
+                involve you, the seller, real estate agents, your attorney, the lender's attorney, title or escrow firm
+                representatives, clerks, secretaries, and other staff. You can have an attorney represent you if you
+                can't attend the closing meeting, i.e., if you're out-of-state. Closing can take anywhere from 1-hour to
+                several depending on contingency clauses in the purchase offer, or any escrow accounts needing to be set
+                up.<br><br>
+
+                Most paperwork in closing or settlement is done by attorneys and real estate professionals. You may or
+                may not be involved in some of the closing activities; it depends on who you are working with.<br><br>
+
+                Prior to closing you should have a final inspection, or "walk-through" to insure requested repairs were
+                performed, and items agreed to remain with the house are there such as drapes, lighting fixtures,
+                etc.<br><br>
+
+                In most states the settlement is completed by a title or escrow firm in which you forward all materials
+                and information plus the appropriate cashier's checks so the firm can make the necessary disbursement.
+                Your representative will deliver the check to the seller, and then give the keys to you.<br><br>
+            </p>
+        </div>
+    </section>
+
+
+
+
+
+
+    <section class="container my-5">
+        <div class="row g-4 align-items-center">
+            <!-- Form Section -->
+            <div class="col-lg-9">
+                <h3 class="fw-bold mb-4">
+                    <span class="lightfont">Get a</span>
+                    <span class="text-dark">Quick Quote</span>
+                </h3>
+
+                <form id="gmailForm">
+                    <div class="row g-3">
+                        <!-- First & Last Name -->
+                        <div class="col-md-6">
+                            <label class="form-label">First Name<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control bg-light border-0" name="firstName"
+                                placeholder="Enter your first name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Last Name<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control bg-light border-0" name="lastName"
+                                placeholder="Enter your last name" required>
+                        </div>
+
+                        <!-- Email & Phone -->
+                        <div class="col-md-6">
+                            <label class="form-label">Email<span class="text-danger">*</span></label>
+                            <input type="email" class="form-control bg-light border-0" name="email"
+                                placeholder="samualjhone01@gmail.com" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Home Phone<span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control bg-light border-0" name="phone"
+                                placeholder="+1 254786258" required>
+                        </div>
+
+                        <!-- Loan Amount & Property Value -->
+                        <div class="col-md-6">
+                            <label class="form-label">Loan Amount<span class="text-danger">*</span></label>
+                            <select class="form-select bg-light border-0" name="loanAmount" required>
+                                <option selected disabled>Select an option</option>
+                                <option value="Below $100,000">Below $100,000</option>
+                                <option value="$100,000 - $300,000">$100,000 - $300,000</option>
+                                <option value="$300,000 - $500,000">$300,000 - $500,000</option>
+                                <option value="Above $500,000">Above $500,000</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Property Value<span class="text-danger">*</span></label>
+                            <select class="form-select bg-light border-0" name="propertyValue" required>
+                                <option selected disabled>Select an option</option>
+                                <option value="Below $200,000">Below $200,000</option>
+                                <option value="$200,000 - $500,000">$200,000 - $500,000</option>
+                                <option value="$500,000 - $1,000,000">$500,000 - $1,000,000</option>
+                                <option value="Above $1,000,000">Above $1,000,000</option>
+                            </select>
+                        </div>
+
+                        <!-- Loan Type & Credit Score -->
+                        <div class="col-md-6">
+                            <label class="form-label">Loan Type<span class="text-danger">*</span></label>
+                            <select class="form-select bg-light border-0" name="loanType" required>
+                                <option selected disabled>Select an option</option>
+                                <option value="Purchase">Purchase</option>
+                                <option value="Refinance">Refinance</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Credit Score<span class="text-danger">*</span></label>
+                            <select class="form-select bg-light border-0" name="creditScore" required>
+                                <option selected disabled>Select an option</option>
+                                <option value="Excellent (720+)">Excellent (720+)</option>
+                                <option value="Good (680-719)">Good (680-719)</option>
+                                <option value="Fair (620-679)">Fair (620-679)</option>
+                                <option value="Poor (below 620)">Poor (below 620)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Disclaimer Section -->
+                    <div class="row align-items-center mt-4">
+                        <!-- Disclaimer Text -->
+                        <div class="col-12 col-md-10">
+                            <small class="text-muted">
+                                By providing your phone number and/or email and clicking "Submit" you agree to our
+                                Terms of Service and Privacy Policy and consent to receive marketing communications
+                                from Dream Makers Mortgage, LLC via text, call, or email, including automated messages.
+                                To opt out, reply 'STOP' to any text. Message and data rates may apply.
+                            </small>
+                        </div>
+
+                        <!-- Toggle Switch -->
+                        <div class="col-12 col-md-2 text-md-end mt-3 mt-md-0">
+                            <div class="form-check form-switch m-0">
+                                <input class="form-check-input custom-toggle" type="checkbox" id="consentToggle"
+                                    checked>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="mt-4 d-flex flex-wrap gap-2 justify-content-start">
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn rounded-pill px-3  py-2 text-white"
+                            style="background-color:#ED230D; border:none;">
+                            Submit Now
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ms-2" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7" />
+                                <polyline points="7 7 17 7 17 17" />
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Side Image -->
+            <div class="col-lg-3 d-none d-lg-block">
+                <img src="/Assets/About cover.jpg" alt="Form Image" class="img-fluid rounded-4">
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Toggle CSS -->
+    <style>
+        .form-check-input.custom-toggle {
+            width: 70px;
+            height: 35px;
+            background-color: #ccc;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-check-input.custom-toggle:checked {
+            background-color: #e6392e;
+        }
+
+        .form-check-input.custom-toggle:focus {
+            box-shadow: none;
+        }
+
+        @media (max-width: 576px) {
+            .form-check-input.custom-toggle {
+                width: 50px;
+                height: 25px;
+            }
+        }
+    </style>
+
+    <!-- Gmail Redirect Script -->
+    <script>
+        document.getElementById("gmailForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const data = new FormData(this);
+            let body = "";
+            data.forEach((value, key) => {
+                body += `${key}: ${value}\n`;
+            });
+
+            const subject = encodeURIComponent("Quick Quote Request");
+            const bodyEncoded = encodeURIComponent(body);
+
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&toMail.com&su=${subject}&body=${bodyEncoded}`;
+
+            window.open(gmailUrl, "_blank");
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer Section -->
+    <footer class="text-white position-relative"
+        style="background:url('/Assets/Home-Footer.jpg') center/cover no-repeat;">
+
+        <div class="container d-flex flex-column justify-content-between" style="min-height:60vh;">
+
+            <!-- Top: Logo + Social Media -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center pt-3">
+                <!-- Logo -->
+                <div class="mb-2 mb-md-0">
+                    <img src="/Assets/Logo only.png" alt="Logo" class="img-fluid" style="max-height:60px;">
+                </div>
+
+                <!-- Social Media -->
+                <div class="d-flex gap-3 fs-4">
+                    <a href="https://www.instagram.com/dreammakersmortgage/#" class="text-white"><i
+                            class="bi bi-instagram"></i></a>
+                    <a href="https://www.facebook.com/DreamMakersMortgage" class="text-white"><i
+                            class="bi bi-facebook"></i></a>
+                    <a href="https://x.com/dreammakersmtg" class="text-white"><i class="bi bi-twitter-x"></i></a>
+                    <a href="https://www.linkedin.com/404/" class="text-white"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+
+            <!-- Middle: Main Heading -->
+            <div class="text-center my-auto px-2">
+                <h3 class="footer-heading fw-light fw-md-normal">
+                    <span>Your Home Journey</span><br>
+                    <b>Starts Here !</b>
+                </h3>
+            </div>
+
+            <!-- Bottom: Navigation + Text -->
+            <div class="text-center mt-auto pb-3 px-2">
+                <!-- Navigation -->
+                <nav class="mb-3">
+                    <ul class="nav justify-content-center flex-wrap gap-2">
+                        <li class="nav-item"><a href="/index.html"
+                                class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">Home</a>
+                        </li>
+                        <li class="nav-item"><a href="/Pages/about.html"
+                                class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">About</a>
+                        </li>
+                        <li class="nav-item"><a href="/Pages/contact.html"
+                                class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">Contact</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">Mortgage
+                                Calculator</a></li>
+                        <li class="nav-item"><a href="/Pages/blog.html"
+                                class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">Blog</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Description -->
+                <p class="small footertext mb-2">
+                    We are a trusted mortgage service provider dedicated to helping individuals and families achieve
+                    their homeownership dreams. <br>
+                    With cost-effective solutions, personalized guidance, and innovative approaches, we simplify the
+                    mortgage process and secure your financial future with confidence.
+                </p>
+
+                <!-- Copyright -->
+                <p class="small mb-0">&copy; Copyright Dream Makers Mortgage, LLC</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+
+
+    <!-- Footer Section -->
+    <footer class="bg-white text-dark pt-5 border-top footer-custom">
+        <div class="container">
+            <div class="row gy-4">
+
+                <!-- About Us -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">About Us</h6>
+                    <p class="small mb-2">
+                        We've been helping customers afford the home of their dreams for many years and we love what we
+                        do...
+                    </p>
+                    <p class="small mb-1">Company NMLS: 2244116</p>
+                    <p class="small mb-0">Personal NMLS: 1828636</p>
+                </div>
+
+                <!-- Contact Us -->
+                <div class="col-6 col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">Contact Us</h6>
+                    <p class="small mb-1">10707 Corporate Drive</p>
+                    <p class="small mb-1">Suite 100-A</p>
+                    <p class="small mb-1">Stafford, TX 77477</p>
+                    <p class="small mb-1">Phone: (832) 348-3711</p>
+                    <a href="mailto:info@dmmtg.com" class="small text-decoration-none">info@dmmtg.com</a>
+                </div>
+
+                <!-- Disclaimers -->
+                <div class="col-6 col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">Disclaimers</h6>
+                    <ul class="list-unstyled small mb-0">
+                        <li><a href="#" class="text-dark text-decoration-none">Legal</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Accessibility Statement</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Site Map</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">NMLS Consumer Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">Resources</h6>
+                    <ul class="list-unstyled small mb-0">
+                        <li><a href="#" class="text-dark text-decoration-none">Loan Programs</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Loan Process</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Mortgage Basics</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Online Forms</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full-Width Bottom Bar -->
+        <div class="border-top mt-4 pt-3 small w-100">
+            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p class="mb-2 mb-md-0">All Rights Reserved</p>
+                <p class="mb-0">Texas Consumer Compliant Recovery Fund Notice</p>
+            </div>
+        </div><br>
+    </footer>
+
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="/Assets/Logo only.png" alt="Loading...">
+    </div>
+
+    <style>
+        /* Fullscreen preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            /* you can change to dark (#000) or any color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* stay above everything */
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        /* Hide smoothly */
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Responsive image */
+        #preloader img {
+            max-width: 150px;
+            width: 30vw;
+            /* scales with screen */
+            height: auto;
+        }
+    </style>
+
+    <script>
+        // Hide loader when page fully loads
+        window.addEventListener("load", () => {
+            const preloader = document.getElementById("preloader");
+            preloader.classList.add("hidden");
+        });
+    </script>
+
+    <script>
+        // Scroll animation
+        document.addEventListener("scroll", function () {
+            document.querySelectorAll(".scroll-transition").forEach(el => {
+                let rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    el.classList.add("active");
+                }
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const navbar = document.querySelector('.navbar');
+        const scrollToggle = () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        };
+        scrollToggle();
+        window.addEventListener('scroll', scrollToggle);
+    </script>
+</body>
+
+</html>

@@ -28,7 +28,8 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav navbar-custom text-center text-lg-center">
                     <li class="nav-item"><a class="nav-link " href="/index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Pages/Mortgage Calculator.html">Mortgage Calculator</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Pages/Mortgage Calculator.html">Mortgage
+                            Calculator</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -55,7 +56,7 @@
 
     <!-- Navbar -->
     <section class="position-relative text-white"
-        style="background: url('/Assets/Dog\ frame.jpg') center/cover no-repeat; min-height: 60vh;">
+        style="background: url('/Assets/Mortgage\ Calculator\ banner.png') center/cover no-repeat; min-height: 60vh;">
         <!-- Overlay -->
         <div class="position-absolute top-0 start-0 w-100 h-100"></div>
 
@@ -63,190 +64,210 @@
         <div class="container position-absolute bottom-0 start-0 end-0 pb-4">
             <div class="row">
                 <div class="col-lg-6 col-md-8 col-12">
-                    <h2 class="fw-bold mb-3">About Us</h2>
+                    <h2 class="fw-bold mb-3">Mortgage Calculator</h2>
                     <p class="mb-0">
                         <span class="lightfont">
-                            Our mission is to serve our customers with honesty, integrity and competence.
-                            Our goal is to provide home loans to our clients while providing them with
-                            the lowest interest rates and closing costs possible. Furthermore, we pledge
-                            to help borrowers overcome roadblocks that can arise while securing a loan.</span>
+                            Our mortgage calculators help you estimate monthly payments, interest, and affordability
+                            with ease. Simply enter your loan details to get instant insights and make confident home
+                            financing decisions.</span>
                     </p>
                 </div>
             </div>
         </div>
+    </section><br>
+
+
+    <section class="faq-section Paragraph container py-3">
+
+        <div class="faq-item">
+            <h4 class="fw-semibold">Mortgage Calculators</h4>
+            <p class="">
+                Quickly estimate your monthly payments, loan affordability, and interest costs. Plan your home purchase
+                with confidence using our easy-to-use calculator.
+            </p>
+        </div>
     </section>
 
 
+    <section class="container">
 
-    <section class="container my-5">
-        <div class="row g-4 align-items-center">
-            <!-- Form Section -->
-            <div class="col-lg-9">
-                <h3 class="fw-bold mb-4">
-                    <span class="lightfont">Get a</span>
-                    <span class="text-dark">Quick Quote</span>
-                </h3>
-
-                <form id="gmailForm">
-                    <div class="row g-3">
-                        <!-- First & Last Name -->
-                        <div class="col-md-6">
-                            <label class="form-label">First Name<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control bg-light border-0" name="firstName"
-                                placeholder="Enter your first name" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Last Name<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control bg-light border-0" name="lastName"
-                                placeholder="Enter your last name" required>
-                        </div>
-
-                        <!-- Email & Phone -->
-                        <div class="col-md-6">
-                            <label class="form-label">Email<span class="text-danger">*</span></label>
-                            <input type="email" class="form-control bg-light border-0" name="email"
-                                placeholder="samualjhone01@gmail.com" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Home Phone<span class="text-danger">*</span></label>
-                            <input type="tel" class="form-control bg-light border-0" name="phone"
-                                placeholder="+1 254786258" required>
-                        </div>
-
-                        <!-- Loan Amount & Property Value -->
-                        <div class="col-md-6">
-                            <label class="form-label">Loan Amount<span class="text-danger">*</span></label>
-                            <select class="form-select bg-light border-0" name="loanAmount" required>
-                                <option selected disabled>Select an option</option>
-                                <option value="Below $100,000">Below $100,000</option>
-                                <option value="$100,000 - $300,000">$100,000 - $300,000</option>
-                                <option value="$300,000 - $500,000">$300,000 - $500,000</option>
-                                <option value="Above $500,000">Above $500,000</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Property Value<span class="text-danger">*</span></label>
-                            <select class="form-select bg-light border-0" name="propertyValue" required>
-                                <option selected disabled>Select an option</option>
-                                <option value="Below $200,000">Below $200,000</option>
-                                <option value="$200,000 - $500,000">$200,000 - $500,000</option>
-                                <option value="$500,000 - $1,000,000">$500,000 - $1,000,000</option>
-                                <option value="Above $1,000,000">Above $1,000,000</option>
-                            </select>
-                        </div>
-
-                        <!-- Loan Type & Credit Score -->
-                        <div class="col-md-6">
-                            <label class="form-label">Loan Type<span class="text-danger">*</span></label>
-                            <select class="form-select bg-light border-0" name="loanType" required>
-                                <option selected disabled>Select an option</option>
-                                <option value="Purchase">Purchase</option>
-                                <option value="Refinance">Refinance</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Credit Score<span class="text-danger">*</span></label>
-                            <select class="form-select bg-light border-0" name="creditScore" required>
-                                <option selected disabled>Select an option</option>
-                                <option value="Excellent (720+)">Excellent (720+)</option>
-                                <option value="Good (680-719)">Good (680-719)</option>
-                                <option value="Fair (620-679)">Fair (620-679)</option>
-                                <option value="Poor (below 620)">Poor (below 620)</option>
-                            </select>
-                        </div>
+        <!-- First Row -->
+        <div class="card-row">
+            <!-- Card 1 -->
+            <div>
+                <a href="/mortgage calculator/mortgage calculator.html"
+                    class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
+                    <img src="/Assets/Mortgage Calculator card 1.png" class="w-100 rounded-top-4" alt="Application Checklist"
+                        style="height:220px;object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Mortgage Calculator</h5>
                     </div>
-
-                    <!-- Disclaimer Section -->
-                    <div class="row align-items-center mt-4">
-                        <!-- Disclaimer Text -->
-                        <div class="col-12 col-md-10">
-                            <small class="text-muted">
-                                By providing your phone number and/or email and clicking "Submit" you agree to our
-                                Terms of Service and Privacy Policy and consent to receive marketing communications
-                                from Dream Makers Mortgage, LLC via text, call, or email, including automated messages.
-                                To opt out, reply 'STOP' to any text. Message and data rates may apply.
-                            </small>
-                        </div>
-
-                        <!-- Toggle Switch -->
-                        <div class="col-12 col-md-2 text-md-end mt-3 mt-md-0">
-                            <div class="form-check form-switch m-0">
-                                <input class="form-check-input custom-toggle" type="checkbox" id="consentToggle"
-                                    checked>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Buttons -->
-                    <div class="mt-4 d-flex flex-wrap gap-2 justify-content-start">
-                        <!-- Submit Button -->
-                        <button type="submit" class="btn rounded-pill px-3  py-2 text-white"
-                            style="background-color:#ED230D; border:none;">
-                            Submit Now
-                            <svg xmlns="http://www.w3.org/2000/svg" class="ms-2" width="18" height="18"
-                                viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <line x1="7" y1="17" x2="17" y2="7" />
-                                <polyline points="7 7 17 7 17 17" />
-                            </svg>
-                        </button>
-                    </div>
-                </form>
+                </a>
             </div>
 
-            <!-- Right Side Image -->
-            <div class="col-lg-3 d-none d-lg-block">
-                <img src="/Assets/About cover.jpg" alt="Form Image" class="img-fluid rounded-4">
+            <!-- Card 2 -->
+            <div>
+                <a href="/Mortgage basics/credit.html"
+                    class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
+                    <img src="/Assets/Refinance Calculator card 2.png" class="w-100 rounded-top-4" alt="Credit"
+                        style="height:220px;object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Refinance Calculator</h5>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Card 3 -->
+            <div>
+                <a href="/Mortgage basics/Closing Cost.html"
+                    class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
+                    <img src="/Assets/Extra Payment Calculator card.png" class="w-100 rounded-top-4" alt="Closing Costs"
+                        style="height:220px;object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Extra Payment Calculator</h5>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Card 4 -->
+            <div>
+                <a href="/Mortgage basics/Appraisals.html"
+                    class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
+                    <img src="/Assets/How card.png" class="w-100 rounded-top-4" alt="Appraisals"
+                        style="height:220px;object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="fw-bold">How much home can I afford?</h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Second Row -->
+        <div class="card-row mt-4">
+            <!-- Card 5 -->
+            <div>
+                <a href="/Mortgage basics/Private Mortgage Insurance (PMI).html"
+                    class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
+                    <img src="/Assets/Principal Calculator card.png" class="w-100 rounded-top-4"
+                        alt="Private Mortgage Insurance (PMI)" style="height:220px;object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Principal Calculator</h5>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Card 6 -->
+            <div>
+                <a href="/Mortgage basics/Refinance.html"
+                    class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
+                    <img src="/Assets/Tax Benefits of Buying card.png" class="w-100 rounded-top-4" alt="Refinance"
+                        style="height:220px;object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Tax Benefits of Buying</h5>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Card 7 -->
+            <div>
+                <a href="/Mortgage basics/Glossary.html"
+                    class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
+                    <img src="/Assets/What's my APR card.png" class="w-100 rounded-top-4" alt="Glossary of Terms"
+                        style="height:220px;object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="fw-bold">What's my APR?</h5>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Card 8 -->
+            <div>
+                <a href="/Mortgage basics/Foreclosure.html"
+                    class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
+                    <img src="/Assets/Interest-Only Calculator card.png" class="w-100 rounded-top-4" alt="Foreclosure"
+                        style="height:220px;object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Interest-Only Calculator</h5>
+                    </div>
+                </a>
+            </div>
+
+            <div>
+                <a href="/Mortgage basics/Private Mortgage Insurance (PMI).html"
+                    class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
+                    <img src="/Assets/How much income to qualify card.png" class="w-100 rounded-top-4"
+                        alt="Private Mortgage Insurance (PMI)" style="height:220px;object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="fw-bold">How much income to qualify?</h5>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Card 6 -->
+            <div>
+                <a href="/Mortgage basics/Refinance.html"
+                    class="card h-100 shadow-sm border-0 rounded-4 text-decoration-none text-dark d-block hover-card">
+                    <img src="/Assets/Refinance.png" class="w-100 rounded-top-4" alt="Refinance"
+                        style="height:220px;object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Buydown Calculator</h5>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Custom Toggle CSS -->
     <style>
-        .form-check-input.custom-toggle {
-            width: 70px;
-            height: 35px;
-            background-color: #ccc;
-            border: none;
-            cursor: pointer;
+        .hover-card {
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .form-check-input.custom-toggle:checked {
-            background-color: #e6392e;
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .form-check-input.custom-toggle:focus {
-            box-shadow: none;
+        .card-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            /* spacing between cards */
+            justify-content: center;
+            /* keeps row centered */
         }
 
-        @media (max-width: 576px) {
-            .form-check-input.custom-toggle {
-                width: 50px;
-                height: 25px;
+        /* Default mobile: 1 per row */
+        .card-row>div {
+            flex: 1 1 100%;
+            max-width: 100%;
+        }
+
+        /* Tablet: 2 per row */
+        @media (min-width: 576px) {
+            .card-row>div {
+                flex: 1 1 calc(50% - 1.5rem);
+                max-width: calc(50% - 1.5rem);
             }
         }
+
+        /* Desktop: 4 per row */
+        @media (min-width: 992px) {
+            .card-row>div {
+                flex: 1 1 calc(25% - 1.5rem);
+                max-width: calc(25% - 1.5rem);
+            }
+        }
+
+        /* Hover effect */
+        .hover-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
     </style>
-
-    <!-- Gmail Redirect Script -->
-    <script>
-        document.getElementById("gmailForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const data = new FormData(this);
-            let body = "";
-            data.forEach((value, key) => {
-                body += `${key}: ${value}\n`;
-            });
-
-            const subject = encodeURIComponent("Quick Quote Request");
-            const bodyEncoded = encodeURIComponent(body);
-
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&toMail.com&su=${subject}&body=${bodyEncoded}`;
-
-            window.open(gmailUrl, "_blank");
-        });
-    </script>
-
 
 
 
@@ -333,7 +354,8 @@
                 <div class="col-12 col-md-6 col-lg-3">
                     <h6 class="fw-bold mb-3">About Us</h6>
                     <p class="small mb-2">
-                        We've been helping customers afford the home of their dreams for many years and we love what we
+                        We've been helping customers afford the home of their dreams for many years and we love what
+                        we
                         do...
                     </p>
                     <p class="small mb-1">Company NMLS: 2244116</p>

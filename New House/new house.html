@@ -423,13 +423,6 @@
 
 
 
-
-
-
-
-
-
-
     <script>
         // ================== Selected Values ==================
         let selectedLoanType = "";
@@ -455,15 +448,19 @@
             btn.classList.remove('disabled-link');
         }
 
+        // ================== Step Navigation ==================
+        function nextStep(currentId, nextId) {
+            toggleSection(currentId, nextId);
+        }
+
         // ================== Step 1: Loan Type ==================
         function selectLoanType(element, type) {
             document.querySelectorAll('.loan-option').forEach(el => el.classList.remove('active'));
             element.classList.add('active');
             selectedLoanType = type;
             enableButton('continueLoanBtn');
+            nextStep('loan-section', 'property-section'); // auto move to next
         }
-
-        function goToPropertySection() { toggleSection('loan-section', 'property-section'); }
 
         // ================== Step 2: Property Type ==================
         function selectProperty(element, type) {
@@ -471,10 +468,8 @@
             element.classList.add('active');
             selectedPropertyType = type;
             enableButton('continuePropertyBtn');
+            nextStep('property-section', 'property-use-section'); // auto move
         }
-
-        function goBackToLoan() { toggleSection('property-section', 'loan-section'); }
-        function goToPropertyUseSection() { toggleSection('property-section', 'property-use-section'); }
 
         // ================== Step 3: Property Use ==================
         function selectPropertyUse(element, type) {
@@ -482,10 +477,8 @@
             element.classList.add('active');
             selectedPropertyUse = type;
             enableButton('continuePropertyUseBtn');
+            nextStep('property-use-section', 'credit-section'); // auto move
         }
-
-        function goBackToProperty() { toggleSection('property-use-section', 'property-section'); }
-        function goToCreditSection() { toggleSection('property-use-section', 'credit-section'); }
 
         // ================== Step 4: Credit ==================
         function selectCredit(element, type) {
@@ -493,10 +486,8 @@
             element.classList.add('active');
             selectedCredit = type;
             enableButton('continueCreditBtn');
+            nextStep('credit-section', 'found-home-section'); // auto move
         }
-
-        function goBackToPropertyUse() { toggleSection('credit-section', 'property-use-section'); }
-        function goToFoundHomeSection() { toggleSection('credit-section', 'found-home-section'); }
 
         // ================== Step 5: Found Home ==================
         function selectFoundHome(element, choice) {
@@ -504,10 +495,8 @@
             element.classList.add('active');
             selectedFoundHome = choice;
             enableButton('continueFoundHomeBtn');
+            nextStep('found-home-section', 'purchase-price-section'); // auto move
         }
-
-        function goBackToCredit() { toggleSection('found-home-section', 'credit-section'); }
-        function goToPurchasePriceSection() { toggleSection('found-home-section', 'purchase-price-section'); }
 
         // ================== Step 6: Purchase Price ==================
         function updatePurchasePrice() {
@@ -515,8 +504,6 @@
             purchasePrice = range.value;
             document.getElementById('purchasePriceValue').innerText = `$${Number(purchasePrice).toLocaleString()}`;
         }
-
-        function goBackToFoundHome() { toggleSection('purchase-price-section', 'found-home-section'); }
         function goToMilitarySection() { toggleSection('purchase-price-section', 'military-section'); }
 
         // ================== Step 7: Military Service ==================
@@ -525,10 +512,8 @@
             element.classList.add('active');
             selectedMilitary = choice;
             enableButton('continueMilitaryBtn');
+            nextStep('military-section', 'buy-time-section'); // auto move
         }
-
-        function goBackToPurchase() { toggleSection('military-section', 'purchase-price-section'); }
-        function goToBuyTimeSection() { toggleSection('military-section', 'buy-time-section'); }
 
         // ================== Step 8: Buy Time ==================
         function selectBuyTime(element, choice) {
@@ -536,10 +521,8 @@
             element.classList.add('active');
             selectedBuyTime = choice;
             enableButton('continueBuyTimeBtn');
+            nextStep('buy-time-section', 'first-time-buyer-section'); // auto move
         }
-
-        function goBackToMilitary() { toggleSection('buy-time-section', 'military-section'); }
-        function goToFirstTimeBuyerSection() { toggleSection('buy-time-section', 'first-time-buyer-section'); }
 
         // ================== Step 9: First Time Home Buyer ==================
         function selectFirstTimeBuyer(element, choice) {
@@ -547,11 +530,7 @@
             element.classList.add('active');
             selectedFirstTimeBuyer = choice;
             enableButton('continueFirstTimeBtn');
-        }
-
-        function goBackToBuyTime() { toggleSection('first-time-buyer-section', 'buy-time-section'); }
-        function completeFirstTimeStep() {
-            toggleSection('first-time-buyer-section', 'second-yes-no-section'); // Navigate to Step 10
+            nextStep('first-time-buyer-section', 'second-yes-no-section'); // auto move
         }
 
         // ================== Step 10: Second Yes/No Question ==================
@@ -562,10 +541,8 @@
             enableButton('continueSecondYesNoBtn');
         }
 
-        function goBackToFirstTimeBuyer() { toggleSection('second-yes-no-section', 'first-time-buyer-section'); }
-
+        // ================== Final Submission ==================
         function completeSecondYesNoStep() {
-            // Final submission example via mailto
             const email = "yourcompanyemail@example.com";
             const subject = encodeURIComponent("Loan Inquiry: " + selectedLoanType);
             const body = encodeURIComponent(
@@ -580,7 +557,6 @@ Receive Loan Updates: ${selectedSecondYesNo}\n\nPlease contact me with more deta
             );
             window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
         }
-
     </script>
 
 
@@ -588,6 +564,16 @@ Receive Loan Updates: ${selectedSecondYesNo}\n\nPlease contact me with more deta
 
 
     <style>
+        /* ---------- Universal Option Card Styles ---------- */
+        .option-card,
+        .loan-option,
+        .property-option,
+        .property-use-option,
+        .credit-option,
+        .found-home-option,
+        .military-option,
+        .buy-time-option,
+        .first-time-buyer-option,
         .second-yes-no-option {
             cursor: pointer;
             border-radius: 14px;
@@ -598,11 +584,31 @@ Receive Loan Updates: ${selectedSecondYesNo}\n\nPlease contact me with more deta
             transition: all 0.3s ease;
         }
 
+        /* Hover effect */
+        .option-card:hover,
+        .loan-option:hover,
+        .property-option:hover,
+        .property-use-option:hover,
+        .credit-option:hover,
+        .found-home-option:hover,
+        .military-option:hover,
+        .buy-time-option:hover,
+        .first-time-buyer-option:hover,
         .second-yes-no-option:hover {
             box-shadow: 0 0 0 3px rgba(237, 35, 13, 0.1);
             transform: translateY(-3px);
         }
 
+        /* Active (selected) effect */
+        .option-card.active,
+        .loan-option.active,
+        .property-option.active,
+        .property-use-option.active,
+        .credit-option.active,
+        .found-home-option.active,
+        .military-option.active,
+        .buy-time-option.active,
+        .first-time-buyer-option.active,
         .second-yes-no-option.active {
             border-color: #ED230D;
             background-color: #fff3f2;
@@ -610,73 +616,45 @@ Receive Loan Updates: ${selectedSecondYesNo}\n\nPlease contact me with more deta
             transform: scale(1.03);
         }
 
+        /* ---------- Universal Image Sizing ---------- */
+        .option-card img,
+        .loan-option img,
+        .property-option img,
+        .property-use-option img,
+        .credit-option img,
+        .found-home-option img,
+        .military-option img,
+        .buy-time-option img,
+        .first-time-buyer-option img,
         .second-yes-no-option img {
-            width: 120px;
-            height: 120px;
+            width: 160px;
+            height: 160px;
             object-fit: cover;
             border-radius: 50%;
-            display: block;
             margin: 0 auto 0.5rem;
+            display: block;
+            transition: all 0.3s ease;
         }
 
+        /* Mobile responsiveness */
         @media (max-width: 576px) {
+
+            .option-card img,
+            .loan-option img,
+            .property-option img,
+            .property-use-option img,
+            .credit-option img,
+            .found-home-option img,
+            .military-option img,
+            .buy-time-option img,
+            .first-time-buyer-option img,
             .second-yes-no-option img {
-                width: 90px;
-                height: 90px;
+                width: 140px;
+                height: 140px;
             }
         }
 
-        .lightfont {
-            font-weight: 300;
-            color: #555;
-        }
-
-        .loan-option,
-        .property-option,
-        .property-use-option,
-        .credit-option {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 12px;
-            padding: 1.5rem;
-            background-color: #fff;
-            border: 2px solid transparent;
-        }
-
-        .loan-option:hover,
-        .property-option:hover,
-        .property-use-option:hover,
-        .credit-option:hover {
-            box-shadow: 0 0 0 3px rgba(237, 35, 13, 0.1);
-            transform: translateY(-3px);
-        }
-
-        .loan-option.active,
-        .property-option.active,
-        .property-use-option.active,
-        .credit-option.active {
-            border-color: #ED230D;
-            background-color: #fff3f2;
-            box-shadow: 0 0 10px rgba(237, 35, 13, 0.25);
-        }
-
-        .property-option img,
-        .property-use-option img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 50%;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .credit-img {
-            width: 120px;
-            height: 120px;
-            display: block;
-            margin: 0 auto;
-        }
-
+        /* ---------- Special Styles for Red Pill Button ---------- */
         .btn-red-pill {
             background-color: #ED230D;
             color: white;
@@ -699,195 +677,12 @@ Receive Loan Updates: ${selectedSecondYesNo}\n\nPlease contact me with more deta
             opacity: 0.5;
         }
 
-        @media (max-width: 576px) {
-
-            .property-option img,
-            .property-use-option img,
-            .credit-img {
-                width: 90px;
-                height: 90px;
-            }
-        }
-
-        .found-home-option {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 12px;
-            padding: 1.5rem;
-            background-color: #fff;
-            border: 2px solid transparent;
-        }
-
-        .found-home-option:hover {
-            box-shadow: 0 0 0 3px rgba(237, 35, 13, 0.1);
-            transform: translateY(-3px);
-        }
-
-        .found-home-option.active {
-            border-color: #ED230D;
-            background-color: #fff3f2;
-            box-shadow: 0 0 10px rgba(237, 35, 13, 0.25);
-        }
-
-        .found-home-option img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 50%;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .military-option {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 12px;
-            padding: 1.5rem;
-            background-color: #fff;
-            border: 2px solid transparent;
-            text-align: center;
-        }
-
-        .military-option:hover {
-            box-shadow: 0 0 0 3px rgba(237, 35, 13, 0.1);
-            transform: translateY(-3px);
-        }
-
-        .military-option.active {
-            border-color: #ED230D;
-            background-color: #fff3f2;
-            box-shadow: 0 0 10px rgba(237, 35, 13, 0.25);
-        }
-
-        .military-option .option-img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 50%;
-            display: block;
-            margin: 0 auto 10px;
-            transition: all 0.3s ease;
-        }
-
-        .military-option.active .option-img {
-            transform: scale(1.05);
-        }
-
-        .grayscale {
-            filter: grayscale(100%);
-        }
-
-        .military-option.active .grayscale {
-            filter: none;
-        }
-
-        /* ---------- Universal option card style ---------- */
-        .loan-type-option,
-        .property-type-option,
-        .property-use-option,
-        .credit-option,
-        .found-home-option,
-        .military-option,
-        .buy-time-option {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 14px;
-            padding: 1.2rem;
-            background-color: #fff;
-            border: 2px solid transparent;
-            text-align: center;
-        }
-
-        /* Hover effect */
-        .loan-type-option:hover,
-        .property-type-option:hover,
-        .property-use-option:hover,
-        .credit-option:hover,
-        .found-home-option:hover,
-        .military-option:hover,
-        .buy-time-option:hover {
-            box-shadow: 0 0 0 3px rgba(237, 35, 13, 0.1);
-            transform: translateY(-3px);
-        }
-
-        /* Active (selected) effect */
-        .loan-type-option.active,
-        .property-type-option.active,
-        .property-use-option.active,
-        .credit-option.active,
-        .found-home-option.active,
-        .military-option.active,
-        .buy-time-option.active {
-            border-color: #ED230D;
-            background-color: #ffe5e2;
-            /* light red tint */
-            box-shadow: 0 0 10px rgba(237, 35, 13, 0.25);
-            transform: scale(1.03);
-        }
-
-        /* For circular image cards */
-        .buy-time-option img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 50%;
-            display: block;
-            margin: 0 auto 0.5rem;
-        }
-
-        @media (max-width: 576px) {
-            .buy-time-option img {
-                width: 90px;
-                height: 90px;
-            }
-        }
-
-        .option-card {
-            cursor: pointer;
-            border-radius: 0.875rem;
-            /* 14px */
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            background-color: #fff;
-            text-align: center;
-        }
-
-        /* Hover effect: lift + shadow */
-        .option-card:hover {
-            box-shadow: 0 0 0 0.1875rem rgba(237, 35, 13, 0.1);
-            /* 3px */
-            transform: translateY(-0.1875rem);
-            /* 3px */
-        }
-
-        /* Active/selected effect */
-        .option-card.active {
-            border-color: #ED230D;
-            background-color: #fff3f2;
-            box-shadow: 0 0 0.625rem rgba(237, 35, 13, 0.25);
-            /* 10px */
-            transform: scale(1.03);
-        }
-
-        /* Image sizing */
-        .option-card img {
-            width: 7.5rem;
-            /* 120px */
-            height: 7.5rem;
-            object-fit: cover;
-            border-radius: 50%;
-            margin: 0 auto 0.5rem;
-        }
-
-        @media (max-width: 576px) {
-            .option-card img {
-                width: 5.625rem;
-                /* 90px */
-                height: 5.625rem;
-            }
+        /* ---------- Misc ---------- */
+        .lightfont {
+            font-weight: 300;
+            color: #555;
         }
     </style>
-
 
 
 

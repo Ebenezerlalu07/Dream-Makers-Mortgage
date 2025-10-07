@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream Makers Mortgage</title>
+    <link rel="icon" type="image/x-icon" href="/Assets/Logo only.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/index.html">
+                <img src="/Assets/Logo only.png" alt="Logo" class="rounded-circle">
+            </a>
+
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav navbar-custom text-center text-lg-center">
+                    <li class="nav-item"><a class="nav-link active  " href="/index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Pages/Mortgage Calculator.html">Mortgage
+                            Calculator</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Resources <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu text-start" aria-labelledby="resourcesDropdown">
+                            <li><a class="dropdown-item" href="/Resource/loanprograms.html">Loan Programs</a></li>
+                            <li><a class="dropdown-item" href="/Resource/loan process.html">Loan Process</a></li>
+                            <li><a class="dropdown-item" href="/Resource/Mortgage Basics.html">Mortgage Basics</a></li>
+                            <li><a class="dropdown-item" href="/Resource/Online Forms.html">Online Forms</a></li>
+                            <li><a class="dropdown-item" href="/Resource/faq.html">FAQ</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link " href="/Pages/about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Pages/Loan orintation.html">Loan Origination
+                            team</a></li>
+                    <li class="nav-item"><a class="nav-link " href="/Pages/contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Pages/blog.html">Blog</a></li>
+                </ul>
+            </div>
+
+            <a href="#" class="btn btn-apply d-none d-lg-block ms-3">Apply Now</a>
+        </div>
+    </nav>
+
+
+    <!-- Navbar -->
+    <section class="position-relative text-white"
+        style="background: url('/Assets/New\ Home.png') center/cover no-repeat; min-height: 60vh;">
+        <!-- Overlay -->
+        <div class="position-absolute top-0 start-0 w-100 h-100"></div>
+
+        <!-- Text aligned at bottom -->
+        <div class="container position-absolute bottom-0 start-0 end-0 pb-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-12">
+                    <h2 class="fw-bold mb-3">Select Loan Type</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- STEP 1: LOAN TYPE -->
+    <section class="py-5 text-center bg-white" id="loan-section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold"><span class="lightfont">Select </span><span class="text-dark">Loan Type</span></h2>
+                <p class="text-muted">Choose your preferred loan category to continue.</p>
+            </div>
+            <div class="row justify-content-center g-4">
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="loan-option card border-0 h-100" onclick="selectLoanType(this, 'Purchase')">
+                        <img src="/Assets/Purchase.png" alt="Purchase" class="img-fluid mb-3 mx-auto d-block">
+                        <h5 class="fw-semibold">Purchase</h5>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="loan-option card border-0 h-100" onclick="selectLoanType(this, 'Refinance')">
+                        <img src="/Assets/Refinance house.png" alt="Refinance" class="img-fluid mb-3 mx-auto d-block">
+                        <h5 class="fw-semibold">Refinance</h5>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="loan-option card border-0 h-100" onclick="selectLoanType(this, 'Home Equity')">
+                        <img src="/Assets/Home Equity.png" alt="Home Equity" class="img-fluid mb-3 mx-auto d-block">
+                        <h5 class="fw-semibold">Home Equity</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                <a href="/index.html"><button class="btn btn-outline-dark rounded-pill px-4 py-2">Back</button></a>
+                <button id="continueLoanBtn" class="btn-red-pill disabled-link" disabled
+                    onclick="goToPropertySection()">Continue</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 2: PROPERTY TYPE -->
+    <section class="py-5 text-center bg-white d-none" id="property-section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold">Select Property Type</h2>
+            </div>
+            <div class="row justify-content-center g-4">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="property-option" onclick="selectProperty(this, 'Single Family')">
+                        <img src="/Assets/Single Family.png" alt="Single Family" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Single Family</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="property-option" onclick="selectProperty(this, 'Multi Family')">
+                        <img src="/Assets/Multi Family.png" alt="Multi Family" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Multi Family</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="property-option" onclick="selectProperty(this, 'Condominium')">
+                        <img src="/Assets/Condominium.png" alt="Condominium" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Condominium</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="property-option" onclick="selectProperty(this, 'Townhouse')">
+                        <img src="/Assets/Townhouse.png" alt="Townhouse" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Townhouse</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="property-option" onclick="selectProperty(this, 'Manufactured Home')">
+                        <img src="/Assets/Manufactured Home.png" alt="Manufactured Home"
+                            class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Manufactured Home</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                <button class="btn btn-outline-dark rounded-pill px-4 py-2" onclick="goBackToLoan()">Back</button>
+                <button id="continuePropertyBtn" class="btn-red-pill disabled-link" disabled
+                    onclick="goToPropertyUseSection()">Continue</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 3: PROPERTY USE -->
+    <section class="py-5 text-center bg-white d-none" id="property-use-section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold">What is the Property Use?</h2>
+            </div>
+            <div class="row justify-content-center g-4">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="property-use-option" onclick="selectPropertyUse(this, 'Primary Residence')">
+                        <img src="/Assets/Primary Residence.png" alt="Primary Residence"
+                            class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Primary Residence</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="property-use-option" onclick="selectPropertyUse(this, 'Vacation Home')">
+                        <img src="/Assets/Vacation Home.png" alt="Vacation Home" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Vacation Home</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="property-use-option" onclick="selectPropertyUse(this, 'Investment Property')">
+                        <img src="/Assets/Investment Property.png" alt="Investment Property"
+                            class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Investment Property</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                <button class="btn btn-outline-dark rounded-pill px-4 py-2" onclick="goBackToProperty()">Back</button>
+                <button id="continuePropertyUseBtn" class="btn-red-pill disabled-link" disabled
+                    onclick="goToCreditSection()">Continue</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 4: CREDIT -->
+    <section class="py-5 text-center bg-white d-none" id="credit-section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold">How is Your Credit?</h2>
+            </div>
+            <div class="row justify-content-center g-4">
+                <div class="col-6 col-sm-4 col-md-2">
+                    <div class="credit-option" onclick="selectCredit(this, 'Excellent')">
+                        <img src="/Assets/Excellent.png" alt="Excellent" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Excellent</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-2">
+                    <div class="credit-option" onclick="selectCredit(this, 'Very Good')">
+                        <img src="/Assets/Very Good.png" alt="Very Good" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Very Good</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-2">
+                    <div class="credit-option" onclick="selectCredit(this, 'Good')">
+                        <img src="/Assets/Good.png" alt="Good" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Good</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-2">
+                    <div class="credit-option" onclick="selectCredit(this, 'Fair')">
+                        <img src="/Assets/Fair.png" alt="Fair" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Fair</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-2">
+                    <div class="credit-option" onclick="selectCredit(this, 'Poor')">
+                        <img src="/Assets/Poor.png" alt="Poor" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Poor</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                    onclick="goBackToPropertyUse()">Back</button>
+                <button id="continueCreditBtn" class="btn-red-pill disabled-link" disabled
+                    onclick="goToFoundHomeSection()">Continue</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 5: FOUND HOME -->
+    <section class="py-5 text-center bg-white d-none" id="found-home-section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold">Have You Already Found a Home?</h2>
+            </div>
+            <div class="row justify-content-center g-4">
+                <div class="col-6 col-sm-4 col-md-3">
+                    <div class="found-home-option" onclick="selectFoundHome(this, 'Yes')">
+                        <img src="/Assets/Home yes.png" alt="Yes" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Yes</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3">
+                    <div class="found-home-option" onclick="selectFoundHome(this, 'No')">
+                        <img src="/Assets/Home no.png" alt="No" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">No</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                <button class="btn btn-outline-dark rounded-pill px-4 py-2" onclick="goBackToCredit()">Back</button>
+                <button id="continueFoundHomeBtn" class="btn-red-pill disabled-link" disabled
+                    onclick="goToPurchasePriceSection()">Continue</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 6: PURCHASE PRICE -->
+    <section class="py-5 text-center bg-white d-none" id="purchase-price-section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold">Purchase Price</h2>
+            </div>
+            <div class="mx-auto p-5 rounded-5" style="background-color: #f8f8f8; max-width: 600px;">
+                <input type="range" class="form-range" id="purchasePriceRange" min="50000" max="1000000" step="5000"
+                    value="275000" oninput="updatePurchasePrice()">
+                <h4 class="mt-3 fw-semibold" id="purchasePriceValue">$275,000</h4>
+            </div>
+            <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                <button class="btn btn-outline-dark rounded-pill px-4 py-2" onclick="goBackToFoundHome()">Back</button>
+                <button id="continuePurchasePriceBtn" class="btn-red-pill"
+                    onclick="goToMilitarySection()">Continue</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 7: MILITARY SERVICE -->
+    <section class="py-5 text-center bg-white d-none" id="military-section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold">Military Service?</h2>
+            </div>
+            <div class="d-flex justify-content-center flex-wrap gap-4 mb-5">
+                <div class="military-option" onclick="selectMilitary(this, 'Yes')">
+                    <img src="/Assets/Miltary yes.png" alt="Military Yes" class="img-fluid rounded-circle option-img">
+                    <h5 class="mt-3">Yes</h5>
+                </div>
+                <div class="military-option" onclick="selectMilitary(this, 'No')">
+                    <img src="/Assets/Miltary No.png" alt="Military No"
+                        class="img-fluid rounded-circle option-img grayscale">
+                    <h5 class="mt-3">No</h5>
+                </div>
+            </div>
+            <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
+                <button class="btn btn-outline-dark rounded-pill px-4 py-2" onclick="goBackToPurchase()">Back</button>
+                <button id="continueMilitaryBtn" class="btn-red-pill disabled-link" disabled
+                    onclick="goToBuyTimeSection()">Continue</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 8: EXPECTED PURCHASE TIME -->
+    <section class="py-5 text-center bg-white d-none" id="buy-time-section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold">You Expect To Buy Within ?</h2>
+            </div>
+            <div class="row justify-content-center g-4">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="buy-time-option" onclick="selectBuyTime(this, 'Soon')">
+                        <img src="/Assets/Soon.png" alt="Soon" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Soon</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="buy-time-option" onclick="selectBuyTime(this, 'Next 60 Days')">
+                        <img src="/Assets/Next 60 Days.png" alt="Next 60 Days" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Next 60 Days</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="buy-time-option" onclick="selectBuyTime(this, 'Next 6 Months')">
+                        <img src="/Assets/Next 6 Months.png" alt="Next 6 Months" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Next 6 Months</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="buy-time-option" onclick="selectBuyTime(this, 'Not very soon')">
+                        <img src="/Assets/Not very soon.png" alt="Not very soon" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Not very soon</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
+                <button class="btn btn-outline-dark rounded-pill px-4 py-2" onclick="goBackToMilitary()">Back</button>
+                <button id="continueBuyTimeBtn" class="btn-red-pill disabled-link" disabled
+                    onclick="goToFirstTimeBuyerSection()">Continue</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 9: FIRST TIME HOME BUYER -->
+    <section class="py-5 text-center bg-white d-none" id="first-time-buyer-section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold">First Time Home Buyer?</h2>
+            </div>
+
+            <div class="row justify-content-center g-4">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="first-time-buyer-option option-card" onclick="selectFirstTimeBuyer(this, 'Yes')">
+                        <img src="/Assets/Home Buyer yes.png" alt="Yes" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Yes</h6>
+                    </div>
+                </div>
+
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="first-time-buyer-option option-card" onclick="selectFirstTimeBuyer(this, 'No')">
+                        <img src="/Assets/Home Buyer no.png" alt="No" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">No</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                <button class="btn btn-outline-dark rounded-pill px-4 py-2" onclick="goBackToBuyTime()">Back</button>
+                <button id="continueFirstTimeBtn" class="btn-red-pill disabled-link" disabled
+                    onclick="completeFirstTimeStep()">
+                    Continue
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- STEP 10: SECOND YES/NO QUESTION -->
+    <section class="py-5 text-center bg-white d-none" id="second-yes-no-section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold">Do you want to receive loan updates?</h2>
+            </div>
+
+            <div class="row justify-content-center g-4">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="second-yes-no-option option-card" onclick="selectSecondYesNo(this, 'Yes')">
+                        <img src="/Assets/Home Buyer yes.png" alt="Yes" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Yes</h6>
+                    </div>
+                </div>
+
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="second-yes-no-option option-card" onclick="selectSecondYesNo(this, 'No')">
+                        <img src="/Assets/Home Buyer no.png" alt="No" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">No</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                    onclick="goBackToFirstTimeBuyer()">Back</button>
+                <button id="continueSecondYesNoBtn" class="btn-red-pill disabled-link" disabled
+                    onclick="completeSecondYesNoStep()">Continue</button>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        // ================== Selected Values ==================
+        let selectedLoanType = "";
+        let selectedPropertyType = "";
+        let selectedPropertyUse = "";
+        let selectedCredit = "";
+        let selectedFoundHome = "";
+        let purchasePrice = 275000;
+        let selectedMilitary = "";
+        let selectedBuyTime = "";
+        let selectedFirstTimeBuyer = "";
+        let selectedSecondYesNo = ""; // Step 10
+
+        // ================== Helper Functions ==================
+        function toggleSection(hideId, showId) {
+            document.getElementById(hideId).classList.add('d-none');
+            document.getElementById(showId).classList.remove('d-none');
+        }
+
+        function enableButton(buttonId) {
+            const btn = document.getElementById(buttonId);
+            btn.disabled = false;
+            btn.classList.remove('disabled-link');
+        }
+
+        // ================== Step 1: Loan Type ==================
+        function selectLoanType(element, type) {
+            document.querySelectorAll('.loan-option').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            selectedLoanType = type;
+            enableButton('continueLoanBtn');
+        }
+
+        function goToPropertySection() { toggleSection('loan-section', 'property-section'); }
+
+        // ================== Step 2: Property Type ==================
+        function selectProperty(element, type) {
+            document.querySelectorAll('.property-option').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            selectedPropertyType = type;
+            enableButton('continuePropertyBtn');
+        }
+
+        function goBackToLoan() { toggleSection('property-section', 'loan-section'); }
+        function goToPropertyUseSection() { toggleSection('property-section', 'property-use-section'); }
+
+        // ================== Step 3: Property Use ==================
+        function selectPropertyUse(element, type) {
+            document.querySelectorAll('.property-use-option').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            selectedPropertyUse = type;
+            enableButton('continuePropertyUseBtn');
+        }
+
+        function goBackToProperty() { toggleSection('property-use-section', 'property-section'); }
+        function goToCreditSection() { toggleSection('property-use-section', 'credit-section'); }
+
+        // ================== Step 4: Credit ==================
+        function selectCredit(element, type) {
+            document.querySelectorAll('.credit-option').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            selectedCredit = type;
+            enableButton('continueCreditBtn');
+        }
+
+        function goBackToPropertyUse() { toggleSection('credit-section', 'property-use-section'); }
+        function goToFoundHomeSection() { toggleSection('credit-section', 'found-home-section'); }
+
+        // ================== Step 5: Found Home ==================
+        function selectFoundHome(element, choice) {
+            document.querySelectorAll('.found-home-option').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            selectedFoundHome = choice;
+            enableButton('continueFoundHomeBtn');
+        }
+
+        function goBackToCredit() { toggleSection('found-home-section', 'credit-section'); }
+        function goToPurchasePriceSection() { toggleSection('found-home-section', 'purchase-price-section'); }
+
+        // ================== Step 6: Purchase Price ==================
+        function updatePurchasePrice() {
+            const range = document.getElementById('purchasePriceRange');
+            purchasePrice = range.value;
+            document.getElementById('purchasePriceValue').innerText = `$${Number(purchasePrice).toLocaleString()}`;
+        }
+
+        function goBackToFoundHome() { toggleSection('purchase-price-section', 'found-home-section'); }
+        function goToMilitarySection() { toggleSection('purchase-price-section', 'military-section'); }
+
+        // ================== Step 7: Military Service ==================
+        function selectMilitary(element, choice) {
+            document.querySelectorAll('.military-option').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            selectedMilitary = choice;
+            enableButton('continueMilitaryBtn');
+        }
+
+        function goBackToPurchase() { toggleSection('military-section', 'purchase-price-section'); }
+        function goToBuyTimeSection() { toggleSection('military-section', 'buy-time-section'); }
+
+        // ================== Step 8: Buy Time ==================
+        function selectBuyTime(element, choice) {
+            document.querySelectorAll('.buy-time-option').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            selectedBuyTime = choice;
+            enableButton('continueBuyTimeBtn');
+        }
+
+        function goBackToMilitary() { toggleSection('buy-time-section', 'military-section'); }
+        function goToFirstTimeBuyerSection() { toggleSection('buy-time-section', 'first-time-buyer-section'); }
+
+        // ================== Step 9: First Time Home Buyer ==================
+        function selectFirstTimeBuyer(element, choice) {
+            document.querySelectorAll('.first-time-buyer-option').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            selectedFirstTimeBuyer = choice;
+            enableButton('continueFirstTimeBtn');
+        }
+
+        function goBackToBuyTime() { toggleSection('first-time-buyer-section', 'buy-time-section'); }
+        function completeFirstTimeStep() {
+            toggleSection('first-time-buyer-section', 'second-yes-no-section'); // Navigate to Step 10
+        }
+
+        // ================== Step 10: Second Yes/No Question ==================
+        function selectSecondYesNo(element, choice) {
+            document.querySelectorAll('.second-yes-no-option').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            selectedSecondYesNo = choice;
+            enableButton('continueSecondYesNoBtn');
+        }
+
+        function goBackToFirstTimeBuyer() { toggleSection('second-yes-no-section', 'first-time-buyer-section'); }
+
+        function completeSecondYesNoStep() {
+            // Final submission example via mailto
+            const email = "yourcompanyemail@example.com";
+            const subject = encodeURIComponent("Loan Inquiry: " + selectedLoanType);
+            const body = encodeURIComponent(
+                `Hello,\n\nI am interested in applying for a ${selectedLoanType} loan for a ${selectedPropertyType} property, used as a ${selectedPropertyUse}.
+My credit rating is ${selectedCredit}.
+Found Home: ${selectedFoundHome}
+Purchase Price: $${Number(purchasePrice).toLocaleString()}
+Military Service: ${selectedMilitary}
+Expected to buy within: ${selectedBuyTime}
+First Time Home Buyer: ${selectedFirstTimeBuyer}
+Receive Loan Updates: ${selectedSecondYesNo}\n\nPlease contact me with more details.\n\nThank you.`
+            );
+            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+        }
+
+    </script>
+
+
+
+
+
+    <style>
+        .second-yes-no-option {
+            cursor: pointer;
+            border-radius: 14px;
+            padding: 1.2rem;
+            background-color: #fff;
+            border: 2px solid transparent;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .second-yes-no-option:hover {
+            box-shadow: 0 0 0 3px rgba(237, 35, 13, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .second-yes-no-option.active {
+            border-color: #ED230D;
+            background-color: #fff3f2;
+            box-shadow: 0 0 10px rgba(237, 35, 13, 0.25);
+            transform: scale(1.03);
+        }
+
+        .second-yes-no-option img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 0.5rem;
+        }
+
+        @media (max-width: 576px) {
+            .second-yes-no-option img {
+                width: 90px;
+                height: 90px;
+            }
+        }
+
+        .lightfont {
+            font-weight: 300;
+            color: #555;
+        }
+
+        .loan-option,
+        .property-option,
+        .property-use-option,
+        .credit-option {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            padding: 1.5rem;
+            background-color: #fff;
+            border: 2px solid transparent;
+        }
+
+        .loan-option:hover,
+        .property-option:hover,
+        .property-use-option:hover,
+        .credit-option:hover {
+            box-shadow: 0 0 0 3px rgba(237, 35, 13, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .loan-option.active,
+        .property-option.active,
+        .property-use-option.active,
+        .credit-option.active {
+            border-color: #ED230D;
+            background-color: #fff3f2;
+            box-shadow: 0 0 10px rgba(237, 35, 13, 0.25);
+        }
+
+        .property-option img,
+        .property-use-option img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .credit-img {
+            width: 120px;
+            height: 120px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .btn-red-pill {
+            background-color: #ED230D;
+            color: white;
+            border: none;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            padding: 0.6rem 1.4rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: 0.3s ease;
+        }
+
+        .btn-red-pill:hover {
+            background-color: #c41c0a;
+        }
+
+        .disabled-link {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 576px) {
+
+            .property-option img,
+            .property-use-option img,
+            .credit-img {
+                width: 90px;
+                height: 90px;
+            }
+        }
+
+        .found-home-option {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            padding: 1.5rem;
+            background-color: #fff;
+            border: 2px solid transparent;
+        }
+
+        .found-home-option:hover {
+            box-shadow: 0 0 0 3px rgba(237, 35, 13, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .found-home-option.active {
+            border-color: #ED230D;
+            background-color: #fff3f2;
+            box-shadow: 0 0 10px rgba(237, 35, 13, 0.25);
+        }
+
+        .found-home-option img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .military-option {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            padding: 1.5rem;
+            background-color: #fff;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .military-option:hover {
+            box-shadow: 0 0 0 3px rgba(237, 35, 13, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .military-option.active {
+            border-color: #ED230D;
+            background-color: #fff3f2;
+            box-shadow: 0 0 10px rgba(237, 35, 13, 0.25);
+        }
+
+        .military-option .option-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 10px;
+            transition: all 0.3s ease;
+        }
+
+        .military-option.active .option-img {
+            transform: scale(1.05);
+        }
+
+        .grayscale {
+            filter: grayscale(100%);
+        }
+
+        .military-option.active .grayscale {
+            filter: none;
+        }
+
+        /* ---------- Universal option card style ---------- */
+        .loan-type-option,
+        .property-type-option,
+        .property-use-option,
+        .credit-option,
+        .found-home-option,
+        .military-option,
+        .buy-time-option {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 14px;
+            padding: 1.2rem;
+            background-color: #fff;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        /* Hover effect */
+        .loan-type-option:hover,
+        .property-type-option:hover,
+        .property-use-option:hover,
+        .credit-option:hover,
+        .found-home-option:hover,
+        .military-option:hover,
+        .buy-time-option:hover {
+            box-shadow: 0 0 0 3px rgba(237, 35, 13, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Active (selected) effect */
+        .loan-type-option.active,
+        .property-type-option.active,
+        .property-use-option.active,
+        .credit-option.active,
+        .found-home-option.active,
+        .military-option.active,
+        .buy-time-option.active {
+            border-color: #ED230D;
+            background-color: #ffe5e2;
+            /* light red tint */
+            box-shadow: 0 0 10px rgba(237, 35, 13, 0.25);
+            transform: scale(1.03);
+        }
+
+        /* For circular image cards */
+        .buy-time-option img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 0.5rem;
+        }
+
+        @media (max-width: 576px) {
+            .buy-time-option img {
+                width: 90px;
+                height: 90px;
+            }
+        }
+
+        .option-card {
+            cursor: pointer;
+            border-radius: 0.875rem;
+            /* 14px */
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        /* Hover effect: lift + shadow */
+        .option-card:hover {
+            box-shadow: 0 0 0 0.1875rem rgba(237, 35, 13, 0.1);
+            /* 3px */
+            transform: translateY(-0.1875rem);
+            /* 3px */
+        }
+
+        /* Active/selected effect */
+        .option-card.active {
+            border-color: #ED230D;
+            background-color: #fff3f2;
+            box-shadow: 0 0 0.625rem rgba(237, 35, 13, 0.25);
+            /* 10px */
+            transform: scale(1.03);
+        }
+
+        /* Image sizing */
+        .option-card img {
+            width: 7.5rem;
+            /* 120px */
+            height: 7.5rem;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 0 auto 0.5rem;
+        }
+
+        @media (max-width: 576px) {
+            .option-card img {
+                width: 5.625rem;
+                /* 90px */
+                height: 5.625rem;
+            }
+        }
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer Section -->
+    <footer class="text-white position-relative"
+        style="background:url('/Assets/Home-Footer.jpg') center/cover no-repeat;">
+
+        <div class="container d-flex flex-column justify-content-between" style="min-height:60vh;">
+
+            <!-- Top: Logo + Social Media -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center pt-3">
+                <!-- Logo -->
+                <div class="mb-2 mb-md-0">
+                    <img src="/Assets/Logo only.png" alt="Logo" class="img-fluid" style="max-height:60px;">
+                </div>
+
+                <!-- Social Media -->
+                <div class="d-flex gap-3 fs-4">
+                    <a href="https://www.instagram.com/dreammakersmortgage/#" class="text-white"><i
+                            class="bi bi-instagram"></i></a>
+                    <a href="https://www.facebook.com/DreamMakersMortgage" class="text-white"><i
+                            class="bi bi-facebook"></i></a>
+                    <a href="https://x.com/dreammakersmtg" class="text-white"><i class="bi bi-twitter-x"></i></a>
+                    <a href="https://www.linkedin.com/404/" class="text-white"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+
+            <!-- Middle: Main Heading -->
+            <div class="text-center my-auto px-2">
+                <h3 class="footer-heading fw-light fw-md-normal">
+                    <span>Your Home Journey</span><br>
+                    <b>Starts Here !</b>
+                </h3>
+            </div>
+
+            <!-- Bottom: Navigation + Text -->
+            <div class="text-center mt-auto pb-3 px-2">
+                <!-- Navigation -->
+                <nav class="mb-3">
+                    <ul class="nav justify-content-center flex-wrap gap-2">
+                        <li class="nav-item"><a href="/index.html"
+                                class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">Home</a>
+                        </li>
+                        <li class="nav-item"><a href="/Pages/about.html"
+                                class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">About</a>
+                        </li>
+                        <li class="nav-item"><a href="/Pages/contact.html"
+                                class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">Contact</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">Mortgage
+                                Calculator</a></li>
+                        <li class="nav-item"><a href="/Pages/blog.html"
+                                class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">Blog</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Description -->
+                <p class="small footertext mb-2">
+                    We are a trusted mortgage service provider dedicated to helping individuals and families achieve
+                    their homeownership dreams. <br>
+                    With cost-effective solutions, personalized guidance, and innovative approaches, we simplify the
+                    mortgage process and secure your financial future with confidence.
+                </p>
+
+                <!-- Copyright -->
+                <p class="small mb-0">&copy; Copyright Dream Makers Mortgage, LLC</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+
+
+    <!-- Footer Section -->
+    <footer class="bg-white text-dark pt-5 border-top footer-custom">
+        <div class="container">
+            <div class="row gy-4">
+
+                <!-- About Us -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">About Us</h6>
+                    <p class="small mb-2">
+                        We've been helping customers afford the home of their dreams for many years and we love what we
+                        do...
+                    </p>
+                    <p class="small mb-1">Company NMLS: 2244116</p>
+                    <p class="small mb-0">Personal NMLS: 1828636</p>
+                </div>
+
+                <!-- Contact Us -->
+                <div class="col-6 col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">Contact Us</h6>
+                    <p class="small mb-1">10707 Corporate Drive</p>
+                    <p class="small mb-1">Suite 100-A</p>
+                    <p class="small mb-1">Stafford, TX 77477</p>
+                    <p class="small mb-1">Phone: (832) 348-3711</p>
+                    <a href="mailto:info@dmmtg.com" class="small text-decoration-none">info@dmmtg.com</a>
+                </div>
+
+                <!-- Disclaimers -->
+                <div class="col-6 col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">Disclaimers</h6>
+                    <ul class="list-unstyled small mb-0">
+                        <li><a href="#" class="text-dark text-decoration-none">Legal</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Accessibility Statement</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Site Map</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">NMLS Consumer Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">Resources</h6>
+                    <ul class="list-unstyled small mb-0">
+                        <li><a href="#" class="text-dark text-decoration-none">Loan Programs</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Loan Process</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Mortgage Basics</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Online Forms</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full-Width Bottom Bar -->
+        <div class="border-top mt-4 pt-3 small w-100">
+            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p class="mb-2 mb-md-0">All Rights Reserved</p>
+                <p class="mb-0">Texas Consumer Compliant Recovery Fund Notice</p>
+            </div>
+        </div><br>
+    </footer>
+
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="/Assets/Logo only.png" alt="Loading...">
+    </div>
+
+    <style>
+        /* Fullscreen preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            /* you can change to dark (#000) or any color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* stay above everything */
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        /* Hide smoothly */
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Responsive image */
+        #preloader img {
+            max-width: 150px;
+            width: 30vw;
+            /* scales with screen */
+            height: auto;
+        }
+    </style>
+
+    <script>
+        // Hide loader when page fully loads
+        window.addEventListener("load", () => {
+            const preloader = document.getElementById("preloader");
+            preloader.classList.add("hidden");
+        });
+    </script>
+
+    <script>
+        // Scroll animation
+        document.addEventListener("scroll", function () {
+            document.querySelectorAll(".scroll-transition").forEach(el => {
+                let rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    el.classList.add("active");
+                }
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const navbar = document.querySelector('.navbar');
+        const scrollToggle = () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        };
+        scrollToggle();
+        window.addEventListener('scroll', scrollToggle);
+    </script>
+</body>
+
+</html>

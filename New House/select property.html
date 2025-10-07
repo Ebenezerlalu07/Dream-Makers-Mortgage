@@ -27,7 +27,7 @@
 
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav navbar-custom text-center text-lg-center">
-                    <li class="nav-item"><a class="nav-link " href="/index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active  " href="/index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Pages/Mortgage Calculator.html">Mortgage
                             Calculator</a></li>
                     <li class="nav-item dropdown">
@@ -46,7 +46,7 @@
                     <li class="nav-item"><a class="nav-link " href="/Pages/about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Pages/Loan orintation.html">Loan Origination
                             team</a></li>
-                    <li class="nav-item"><a class="nav-link active " href="/Pages/contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link " href="/Pages/contact.html">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Pages/blog.html">Blog</a></li>
                 </ul>
             </div>
@@ -58,7 +58,7 @@
 
     <!-- Navbar -->
     <section class="position-relative text-white"
-        style="background: url('/Assets/Contact\ cover.jpg') center/cover no-repeat; min-height: 60vh;">
+        style="background: url('/Assets/New\ Home.png') center/cover no-repeat; min-height: 60vh;">
         <!-- Overlay -->
         <div class="position-absolute top-0 start-0 w-100 h-100"></div>
 
@@ -66,12 +66,7 @@
         <div class="container position-absolute bottom-0 start-0 end-0 pb-4">
             <div class="row">
                 <div class="col-lg-6 col-md-8 col-12">
-                    <h2 class="fw-bold mb-3">Contact Us</h2>
-                    <p class="mb-0">
-                        <span class="lightfont">
-                            10707 Corporate Drive Suite 100-AStafford, TX 77477Phone: (832) 348-3711Email:
-                            info@dmmtg.com</span>
-                    </p>
+                    <h2 class="fw-bold mb-3">Select a loan type</h2>
                 </div>
             </div>
         </div>
@@ -79,99 +74,149 @@
 
 
 
+    <!-- Select Property Type Section -->
+    <section class="py-5 text-center bg-white" id="property-type-section">
+        <div class="container">
+            <!-- Heading -->
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Select Property Type</h2>
+            </div>
 
-    <section class="container my-5">
-        <!-- Heading -->
-        <div class="text-center mb-4">
-            <h2 class="fw-bold">
-                <span class="lightfont"> Have a question or </span><span class="text-dark">need assistance?</span>
-            </h2>
-            <p class="text-muted">
-                Questions, comments, or suggestions? Simply fill in the form and we’ll be in touch shortly.
-            </p>
-        </div>
+            <!-- Property Type Options -->
+            <div class="row justify-content-center g-4">
+                <!-- Single Family -->
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="property-option" onclick="selectProperty(this)">
+                        <img src="/Assets/Single Family.png" alt="Single Family" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Single Family</h6>
+                    </div>
+                </div>
 
-        <div class="row g-4 align-items-stretch">
-            <!-- Contact Form -->
-            <div class="col-lg-6">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body p-4">
-                        <form id="contactForm">
-                            <!-- Full Name -->
-                            <div class="mb-3">
-                                <label class="form-label">Full Name<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control bg-light border-0" name="fullName"
-                                    placeholder="Enter your full name" required>
-                            </div>
+                <!-- Multi Family -->
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="property-option" onclick="selectProperty(this)">
+                        <img src="/Assets/Multi Family.png" alt="Multi Family" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Multi Family</h6>
+                    </div>
+                </div>
 
-                            <!-- Email -->
-                            <div class="mb-3">
-                                <label class="form-label">Email<span class="text-danger">*</span></label>
-                                <input type="email" class="form-control bg-light border-0" name="email"
-                                    placeholder="samualjhone01@gmail.com" required>
-                            </div>
+                <!-- Condominium -->
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="property-option" onclick="selectProperty(this)">
+                        <img src="/Assets/Condominium.png" alt="Condominium" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Condominium</h6>
+                    </div>
+                </div>
 
-                            <!-- Home Phone -->
-                            <div class="mb-3">
-                                <label class="form-label">Home Phone<span class="text-danger">*</span></label>
-                                <input type="tel" class="form-control bg-light border-0" name="phone"
-                                    placeholder="+1 5482665587" required>
-                            </div>
+                <!-- Townhouse -->
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="property-option" onclick="selectProperty(this)">
+                        <img src="/Assets/Townhouse.png" alt="Townhouse" class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Townhouse</h6>
+                    </div>
+                </div>
 
-                            <!-- Comments -->
-                            <div class="mb-3">
-                                <label class="form-label">Comments<span class="text-danger">*</span></label>
-                                <textarea class="form-control bg-light border-0" name="comments" rows="4"
-                                    placeholder="Enter your comments" required></textarea>
-                            </div>
-
-                            <!-- Submit Button -->
-                            <button type="submit" class="btn rounded-pill px-3  py-2 text-white"
-                                style="background-color:#ED230D; border:none;">
-                                Submit Now
-                                <svg xmlns="http://www.w3.org/2000/svg" class="ms-2" width="18" height="18"
-                                    viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="7" y1="17" x2="17" y2="7" />
-                                    <polyline points="7 7 17 7 17 17" />
-                                </svg>
-                            </button>
-
-                        </form>
+                <!-- Manufactured Home -->
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="property-option" onclick="selectProperty(this)">
+                        <img src="/Assets/Manufactured Home.png" alt="Manufactured Home"
+                            class="img-fluid rounded-circle mb-3">
+                        <h6 class="fw-semibold">Manufactured Home</h6>
                     </div>
                 </div>
             </div>
 
-            <!-- Map Section -->
-            <div class="col-lg-6">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body p-0">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.624575565248!2d-95.5621613848907!3d29.627307881987076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c0c3d92d0a15%3A0x7aef4fa38cd3744b!2s10707%20Corporate%20Dr%2C%20Stafford%2C%20TX%2077477%2C%20USA!5e0!3m2!1sen!2sin!4v1698425034987!5m2!1sen!2sin"
-                            width="100%" height="100%" style="border:0; border-radius: .5rem;" allowfullscreen=""
-                            loading="lazy">
-                        </iframe>
-                    </div>
-                </div>
+            <!-- Navigation Buttons -->
+            <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                <a href="/New House/new house.html">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2">Back</button>
+                </a>
+                <button id="continueBtn" class="btn-red-pill disabled-link" disabled>
+                    Continue
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7" />
+                        <polyline points="7 7 17 7 17 17" />
+                    </svg>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Optional: Gmail redirect -->
-    <script>
-        document.getElementById("contactForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-            const data = new FormData(this);
-            let body = "";
-            data.forEach((value, key) => { body += `${key}: ${value}\n`; });
+    <!-- Styles -->
+    <style>
+        .property-option {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 1rem;
+            border-radius: 20px;
+            background-color: #fff;
+        }
 
-            const subject = encodeURIComponent("Contact Form Message");
-            const bodyEncoded = encodeURIComponent(body);
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=mail@gmail.com&su=${subject}&body=${bodyEncoded}`;
+        .property-option img {
+            width: 100%;
+            max-width: 180px;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
 
-            window.open(gmailUrl, "_blank");
-        });
-    </script>
+        .property-option:hover img {
+            transform: scale(1.05);
+        }
+
+        .property-option.active img {
+            border-color: #ED230D;
+            box-shadow: 0 0 15px rgba(237, 35, 13, 0.25);
+        }
+
+        .property-option.active {
+            background-color: #fff3f2;
+            box-shadow: 0 0 10px rgba(237, 35, 13, 0.2);
+        }
+
+        .property-option h6 {
+            font-size: 1rem;
+            color: #212529;
+        }
+
+        .btn-red-pill {
+            background-color: #ED230D;
+            color: white;
+            border: none;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            padding: 0.6rem 1.4rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: 0.3s ease;
+        }
+
+        .btn-red-pill:hover {
+            background-color: #c41c0a;
+        }
+
+        .disabled-link {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 576px) {
+            .property-option img {
+                max-width: 130px;
+            }
+
+            .btn-red-pill {
+                font-size: 0.85rem;
+                padding: 0.5rem 1.2rem;
+            }
+        }
+    </style>
+
+
+
 
 
 

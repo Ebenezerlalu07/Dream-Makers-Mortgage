@@ -76,6 +76,55 @@
 
 
 
+
+
+
+    
+
+
+    <style>
+        /* Custom responsive row */
+        .custom-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        /* Column styles */
+        .custom-col {
+            flex: 1 1 45%;
+            /* 2 per row on mobile */
+            max-width: 45%;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 576px) {
+            .custom-col {
+                flex: 1 1 30%;
+                /* 3 per row on small screens */
+                max-width: 30%;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .custom-col {
+                flex: 1 1 22%;
+                /* 4 per row on medium screens */
+                max-width: 22%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .custom-col {
+                flex: 1 1 20%;
+                /* 5 per row on large screens */
+                max-width: 20%;
+            }
+        }
+    </style>
+
     <!-- STEP 1: LOAN TYPE -->
     <section class="py-5 text-center bg-white" id="loan-section">
         <div class="container">
@@ -83,20 +132,20 @@
                 <h2 class="fw-bold"><span class="lightfont">Select </span><span class="text-dark">Loan Type</span></h2>
                 <p class="text-muted">Choose your preferred loan category to continue.</p>
             </div>
-            <div class="row justify-content-center g-4">
-                <div class="col-12 col-sm-6 col-md-4">
+            <div class="custom-row">
+                <div class="custom-col">
                     <div class="loan-option card border-0 h-100" onclick="selectLoanType(this, 'Purchase')">
                         <img src="/Assets/Purchase.png" alt="Purchase" class="img-fluid mb-3 mx-auto d-block">
                         <h5 class="fw-semibold">Purchase</h5>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4">
+                <div class="custom-col">
                     <div class="loan-option card border-0 h-100" onclick="selectLoanType(this, 'Refinance')">
                         <img src="/Assets/Refinance house.png" alt="Refinance" class="img-fluid mb-3 mx-auto d-block">
                         <h5 class="fw-semibold">Refinance</h5>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4">
+                <div class="custom-col">
                     <div class="loan-option card border-0 h-100" onclick="selectLoanType(this, 'Home Equity')">
                         <img src="/Assets/Home Equity.png" alt="Home Equity" class="img-fluid mb-3 mx-auto d-block">
                         <h5 class="fw-semibold">Home Equity</h5>
@@ -117,32 +166,32 @@
             <div class="text-center mb-4">
                 <h2 class="fw-bold">Select Property Type</h2>
             </div>
-            <div class="row justify-content-center g-4">
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="custom-row">
+                <div class="custom-col">
                     <div class="property-option" onclick="selectProperty(this, 'Single Family')">
                         <img src="/Assets/Single Family.png" alt="Single Family" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Single Family</h6>
                     </div>
                 </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="custom-col">
                     <div class="property-option" onclick="selectProperty(this, 'Multi Family')">
                         <img src="/Assets/Multi Family.png" alt="Multi Family" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Multi Family</h6>
                     </div>
                 </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="custom-col">
                     <div class="property-option" onclick="selectProperty(this, 'Condominium')">
                         <img src="/Assets/Condominium.png" alt="Condominium" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Condominium</h6>
                     </div>
                 </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="custom-col">
                     <div class="property-option" onclick="selectProperty(this, 'Townhouse')">
                         <img src="/Assets/Townhouse.png" alt="Townhouse" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Townhouse</h6>
                     </div>
                 </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="custom-col">
                     <div class="property-option" onclick="selectProperty(this, 'Manufactured Home')">
                         <img src="/Assets/Manufactured Home.png" alt="Manufactured Home"
                             class="img-fluid rounded-circle mb-3">
@@ -164,21 +213,21 @@
             <div class="text-center mb-4">
                 <h2 class="fw-bold">What is the Property Use?</h2>
             </div>
-            <div class="row justify-content-center g-4">
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="custom-row">
+                <div class="custom-col">
                     <div class="property-use-option" onclick="selectPropertyUse(this, 'Primary Residence')">
                         <img src="/Assets/Primary Residence.png" alt="Primary Residence"
                             class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Primary Residence</h6>
                     </div>
                 </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="custom-col">
                     <div class="property-use-option" onclick="selectPropertyUse(this, 'Vacation Home')">
                         <img src="/Assets/Vacation Home.png" alt="Vacation Home" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Vacation Home</h6>
                     </div>
                 </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="custom-col">
                     <div class="property-use-option" onclick="selectPropertyUse(this, 'Investment Property')">
                         <img src="/Assets/Investment Property.png" alt="Investment Property"
                             class="img-fluid rounded-circle mb-3">
@@ -200,32 +249,32 @@
             <div class="text-center mb-4">
                 <h2 class="fw-bold">How is Your Credit?</h2>
             </div>
-            <div class="row justify-content-center g-4">
-                <div class="col-6 col-sm-4 col-md-2">
+            <div class="custom-row">
+                <div class="custom-col">
                     <div class="credit-option" onclick="selectCredit(this, 'Excellent')">
                         <img src="/Assets/Excellent.png" alt="Excellent" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Excellent</h6>
                     </div>
                 </div>
-                <div class="col-6 col-sm-4 col-md-2">
+                <div class="custom-col">
                     <div class="credit-option" onclick="selectCredit(this, 'Very Good')">
                         <img src="/Assets/Very Good.png" alt="Very Good" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Very Good</h6>
                     </div>
                 </div>
-                <div class="col-6 col-sm-4 col-md-2">
+                <div class="custom-col">
                     <div class="credit-option" onclick="selectCredit(this, 'Good')">
                         <img src="/Assets/Good.png" alt="Good" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Good</h6>
                     </div>
                 </div>
-                <div class="col-6 col-sm-4 col-md-2">
+                <div class="custom-col">
                     <div class="credit-option" onclick="selectCredit(this, 'Fair')">
                         <img src="/Assets/Fair.png" alt="Fair" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Fair</h6>
                     </div>
                 </div>
-                <div class="col-6 col-sm-4 col-md-2">
+                <div class="custom-col">
                     <div class="credit-option" onclick="selectCredit(this, 'Poor')">
                         <img src="/Assets/Poor.png" alt="Poor" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Poor</h6>
@@ -247,14 +296,14 @@
             <div class="text-center mb-4">
                 <h2 class="fw-bold">Have You Already Found a Home?</h2>
             </div>
-            <div class="row justify-content-center g-4">
-                <div class="col-6 col-sm-4 col-md-3">
+            <div class="custom-row">
+                <div class="custom-col">
                     <div class="found-home-option" onclick="selectFoundHome(this, 'Yes')">
                         <img src="/Assets/Home yes.png" alt="Yes" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Yes</h6>
                     </div>
                 </div>
-                <div class="col-6 col-sm-4 col-md-3">
+                <div class="custom-col">
                     <div class="found-home-option" onclick="selectFoundHome(this, 'No')">
                         <img src="/Assets/Home no.png" alt="No" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">No</h6>
@@ -294,15 +343,20 @@
             <div class="text-center mb-4">
                 <h2 class="fw-bold">Military Service?</h2>
             </div>
-            <div class="d-flex justify-content-center flex-wrap gap-4 mb-5">
-                <div class="military-option" onclick="selectMilitary(this, 'Yes')">
-                    <img src="/Assets/Miltary yes.png" alt="Military Yes" class="img-fluid rounded-circle option-img">
-                    <h5 class="mt-3">Yes</h5>
+            <div class="custom-row">
+                <div class="custom-col">
+                    <div class="military-option" onclick="selectMilitary(this, 'Yes')">
+                        <img src="/Assets/Miltary yes.png" alt="Military Yes"
+                            class="img-fluid rounded-circle option-img">
+                        <h5 class="mt-3">Yes</h5>
+                    </div>
                 </div>
-                <div class="military-option" onclick="selectMilitary(this, 'No')">
-                    <img src="/Assets/Miltary No.png" alt="Military No"
-                        class="img-fluid rounded-circle option-img grayscale">
-                    <h5 class="mt-3">No</h5>
+                <div class="custom-col">
+                    <div class="military-option" onclick="selectMilitary(this, 'No')">
+                        <img src="/Assets/Miltary No.png" alt="Military No"
+                            class="img-fluid rounded-circle option-img grayscale">
+                        <h5 class="mt-3">No</h5>
+                    </div>
                 </div>
             </div>
             <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
@@ -319,26 +373,26 @@
             <div class="text-center mb-4">
                 <h2 class="fw-bold">You Expect To Buy Within ?</h2>
             </div>
-            <div class="row justify-content-center g-4">
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="custom-row">
+                <div class="custom-col">
                     <div class="buy-time-option" onclick="selectBuyTime(this, 'Soon')">
                         <img src="/Assets/Soon.png" alt="Soon" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Soon</h6>
                     </div>
                 </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="custom-col">
                     <div class="buy-time-option" onclick="selectBuyTime(this, 'Next 60 Days')">
                         <img src="/Assets/Next 60 Days.png" alt="Next 60 Days" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Next 60 Days</h6>
                     </div>
                 </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="custom-col">
                     <div class="buy-time-option" onclick="selectBuyTime(this, 'Next 6 Months')">
                         <img src="/Assets/Next 6 Months.png" alt="Next 6 Months" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Next 6 Months</h6>
                     </div>
                 </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="custom-col">
                     <div class="buy-time-option" onclick="selectBuyTime(this, 'Not very soon')">
                         <img src="/Assets/Not very soon.png" alt="Not very soon" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Not very soon</h6>
@@ -359,31 +413,25 @@
             <div class="text-center mb-4">
                 <h2 class="fw-bold">First Time Home Buyer?</h2>
             </div>
-
-            <div class="row justify-content-center g-4">
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="custom-row">
+                <div class="custom-col">
                     <div class="first-time-buyer-option option-card" onclick="selectFirstTimeBuyer(this, 'Yes')">
                         <img src="/Assets/Home Buyer yes.png" alt="Yes" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Yes</h6>
                     </div>
                 </div>
-
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="custom-col">
                     <div class="first-time-buyer-option option-card" onclick="selectFirstTimeBuyer(this, 'No')">
                         <img src="/Assets/Home Buyer no.png" alt="No" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">No</h6>
                     </div>
                 </div>
             </div>
-
             <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
                 <button class="btn btn-outline-dark rounded-pill px-4 py-2" onclick="goBackToBuyTime()">Back</button>
                 <button id="continueFirstTimeBtn" class="btn-red-pill disabled-link" disabled
-                    onclick="completeFirstTimeStep()">
-                    Continue
-                </button>
+                    onclick="completeFirstTimeStep()">Continue</button>
             </div>
-
         </div>
     </section>
 
@@ -393,23 +441,20 @@
             <div class="text-center mb-4">
                 <h2 class="fw-bold">Do you want to receive loan updates?</h2>
             </div>
-
-            <div class="row justify-content-center g-4">
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="custom-row">
+                <div class="custom-col">
                     <div class="second-yes-no-option option-card" onclick="selectSecondYesNo(this, 'Yes')">
                         <img src="/Assets/Home Buyer yes.png" alt="Yes" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">Yes</h6>
                     </div>
                 </div>
-
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="custom-col">
                     <div class="second-yes-no-option option-card" onclick="selectSecondYesNo(this, 'No')">
                         <img src="/Assets/Home Buyer no.png" alt="No" class="img-fluid rounded-circle mb-3">
                         <h6 class="fw-semibold">No</h6>
                     </div>
                 </div>
             </div>
-
             <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
                 <button class="btn btn-outline-dark rounded-pill px-4 py-2"
                     onclick="goBackToFirstTimeBuyer()">Back</button>
@@ -418,6 +463,7 @@
             </div>
         </div>
     </section>
+
 
 
 
@@ -448,7 +494,6 @@
             btn.classList.remove('disabled-link');
         }
 
-        // ================== Step Navigation ==================
         function nextStep(currentId, nextId) {
             toggleSection(currentId, nextId);
         }
@@ -459,8 +504,12 @@
             element.classList.add('active');
             selectedLoanType = type;
             enableButton('continueLoanBtn');
-            nextStep('loan-section', 'property-section'); // auto move to next
+            // do not auto-advance when coming back
+            if (!document.getElementById('property-section').classList.contains('d-none')) return;
+            nextStep('loan-section', 'property-section');
         }
+        function goToPropertySection() { nextStep('loan-section', 'property-section'); }
+        function goBackToLoan() { nextStep('property-section', 'loan-section'); }
 
         // ================== Step 2: Property Type ==================
         function selectProperty(element, type) {
@@ -468,8 +517,11 @@
             element.classList.add('active');
             selectedPropertyType = type;
             enableButton('continuePropertyBtn');
-            nextStep('property-section', 'property-use-section'); // auto move
+            if (!document.getElementById('property-use-section').classList.contains('d-none')) return;
+            nextStep('property-section', 'property-use-section');
         }
+        function goToPropertyUseSection() { nextStep('property-section', 'property-use-section'); }
+        function goBackToProperty() { nextStep('property-use-section', 'property-section'); }
 
         // ================== Step 3: Property Use ==================
         function selectPropertyUse(element, type) {
@@ -477,8 +529,10 @@
             element.classList.add('active');
             selectedPropertyUse = type;
             enableButton('continuePropertyUseBtn');
-            nextStep('property-use-section', 'credit-section'); // auto move
+            if (!document.getElementById('credit-section').classList.contains('d-none')) return;
+            nextStep('property-use-section', 'credit-section');
         }
+        function goToCreditSection() { nextStep('property-use-section', 'credit-section'); }
 
         // ================== Step 4: Credit ==================
         function selectCredit(element, type) {
@@ -486,8 +540,11 @@
             element.classList.add('active');
             selectedCredit = type;
             enableButton('continueCreditBtn');
-            nextStep('credit-section', 'found-home-section'); // auto move
+            if (!document.getElementById('found-home-section').classList.contains('d-none')) return;
+            nextStep('credit-section', 'found-home-section');
         }
+        function goBackToPropertyUse() { nextStep('credit-section', 'property-use-section'); }
+        function goToFoundHomeSection() { nextStep('credit-section', 'found-home-section'); }
 
         // ================== Step 5: Found Home ==================
         function selectFoundHome(element, choice) {
@@ -495,8 +552,11 @@
             element.classList.add('active');
             selectedFoundHome = choice;
             enableButton('continueFoundHomeBtn');
-            nextStep('found-home-section', 'purchase-price-section'); // auto move
+            if (!document.getElementById('purchase-price-section').classList.contains('d-none')) return;
+            nextStep('found-home-section', 'purchase-price-section');
         }
+        function goBackToCredit() { nextStep('found-home-section', 'credit-section'); }
+        function goToPurchasePriceSection() { nextStep('found-home-section', 'purchase-price-section'); }
 
         // ================== Step 6: Purchase Price ==================
         function updatePurchasePrice() {
@@ -504,7 +564,8 @@
             purchasePrice = range.value;
             document.getElementById('purchasePriceValue').innerText = `$${Number(purchasePrice).toLocaleString()}`;
         }
-        function goToMilitarySection() { toggleSection('purchase-price-section', 'military-section'); }
+        function goBackToFoundHome() { nextStep('purchase-price-section', 'found-home-section'); }
+        function goToMilitarySection() { nextStep('purchase-price-section', 'military-section'); }
 
         // ================== Step 7: Military Service ==================
         function selectMilitary(element, choice) {
@@ -512,8 +573,11 @@
             element.classList.add('active');
             selectedMilitary = choice;
             enableButton('continueMilitaryBtn');
-            nextStep('military-section', 'buy-time-section'); // auto move
+            if (!document.getElementById('buy-time-section').classList.contains('d-none')) return;
+            nextStep('military-section', 'buy-time-section');
         }
+        function goBackToPurchase() { nextStep('military-section', 'purchase-price-section'); }
+        function goToBuyTimeSection() { nextStep('military-section', 'buy-time-section'); }
 
         // ================== Step 8: Buy Time ==================
         function selectBuyTime(element, choice) {
@@ -521,8 +585,11 @@
             element.classList.add('active');
             selectedBuyTime = choice;
             enableButton('continueBuyTimeBtn');
-            nextStep('buy-time-section', 'first-time-buyer-section'); // auto move
+            if (!document.getElementById('first-time-buyer-section').classList.contains('d-none')) return;
+            nextStep('buy-time-section', 'first-time-buyer-section');
         }
+        function goBackToMilitary() { nextStep('buy-time-section', 'military-section'); }
+        function goToFirstTimeBuyerSection() { nextStep('buy-time-section', 'first-time-buyer-section'); }
 
         // ================== Step 9: First Time Home Buyer ==================
         function selectFirstTimeBuyer(element, choice) {
@@ -530,16 +597,19 @@
             element.classList.add('active');
             selectedFirstTimeBuyer = choice;
             enableButton('continueFirstTimeBtn');
-            nextStep('first-time-buyer-section', 'second-yes-no-section'); // auto move
+            if (!document.getElementById('second-yes-no-section').classList.contains('d-none')) return;
+            nextStep('first-time-buyer-section', 'second-yes-no-section');
         }
+        function goBackToBuyTime() { nextStep('first-time-buyer-section', 'buy-time-section'); }
 
-        // ================== Step 10: Second Yes/No Question ==================
+        // ================== Step 10: Second Yes/No ==================
         function selectSecondYesNo(element, choice) {
             document.querySelectorAll('.second-yes-no-option').forEach(el => el.classList.remove('active'));
             element.classList.add('active');
             selectedSecondYesNo = choice;
             enableButton('continueSecondYesNoBtn');
         }
+        function goBackToFirstTimeBuyer() { nextStep('second-yes-no-section', 'first-time-buyer-section'); }
 
         // ================== Final Submission ==================
         function completeSecondYesNoStep() {
@@ -558,6 +628,7 @@ Receive Loan Updates: ${selectedSecondYesNo}\n\nPlease contact me with more deta
             window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
         }
     </script>
+
 
 
 
@@ -617,6 +688,7 @@ Receive Loan Updates: ${selectedSecondYesNo}\n\nPlease contact me with more deta
         }
 
         /* ---------- Universal Image Sizing ---------- */
+        /* ---------- Universal Image Sizing with Slightly Rounded Corners ---------- */
         .option-card img,
         .loan-option img,
         .property-option img,
@@ -627,11 +699,11 @@ Receive Loan Updates: ${selectedSecondYesNo}\n\nPlease contact me with more deta
         .buy-time-option img,
         .first-time-buyer-option img,
         .second-yes-no-option img {
-            width: 160px;
-            height: 160px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 50%;
-            margin: 0 auto 0.5rem;
+            border-radius: 10px;
+            /* small curve for square shape */
             display: block;
             transition: all 0.3s ease;
         }
@@ -649,10 +721,13 @@ Receive Loan Updates: ${selectedSecondYesNo}\n\nPlease contact me with more deta
             .buy-time-option img,
             .first-time-buyer-option img,
             .second-yes-no-option img {
-                width: 140px;
-                height: 140px;
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+                /* keep edges slightly rounded on mobile */
             }
         }
+
 
         /* ---------- Special Styles for Red Pill Button ---------- */
         .btn-red-pill {

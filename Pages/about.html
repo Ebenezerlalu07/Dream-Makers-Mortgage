@@ -326,7 +326,6 @@
 
 
 
-
     <!-- Footer Section -->
     <footer class="bg-white text-dark pt-5 border-top footer-custom">
         <div class="container">
@@ -357,11 +356,14 @@
                 <div class="col-6 col-md-6 col-lg-3">
                     <h6 class="fw-bold mb-3">Disclaimers</h6>
                     <ul class="list-unstyled small mb-0">
-                        <li><a href="#" class="text-dark text-decoration-none">Legal</a></li>
-                        <li><a href="#" class="text-dark text-decoration-none">Privacy Policy</a></li>
-                        <li><a href="#" class="text-dark text-decoration-none">Accessibility Statement</a></li>
-                        <li><a href="#" class="text-dark text-decoration-none">Site Map</a></li>
-                        <li><a href="#" class="text-dark text-decoration-none">NMLS Consumer Access</a></li>
+                        <li><a href="/Pages/legal.html" class="text-dark text-decoration-none">Legal</a></li>
+                        <li><a href="/Pages/privacy policy.html" class="text-dark text-decoration-none">Privacy
+                                Policy</a></li>
+                        <li><a href="/Pages/Accessibility.html" class="text-dark text-decoration-none">Accessibility
+                                Statement</a></li>
+                        <li><a href="/Pages/Site map.html" class="text-dark text-decoration-none">Site Map</a></li>
+                        <li><a href="https://www.nmlsconsumeraccess.org/" class="text-dark text-decoration-none">NMLS
+                                Consumer Access</a></li>
                     </ul>
                 </div>
 
@@ -369,11 +371,15 @@
                 <div class="col-12 col-md-6 col-lg-3">
                     <h6 class="fw-bold mb-3">Resources</h6>
                     <ul class="list-unstyled small mb-0">
-                        <li><a href="#" class="text-dark text-decoration-none">Loan Programs</a></li>
-                        <li><a href="#" class="text-dark text-decoration-none">Loan Process</a></li>
-                        <li><a href="#" class="text-dark text-decoration-none">Mortgage Basics</a></li>
-                        <li><a href="#" class="text-dark text-decoration-none">Online Forms</a></li>
-                        <li><a href="#" class="text-dark text-decoration-none">FAQ</a></li>
+                        <li><a href="/Resource/loanprograms.html" class="text-dark text-decoration-none">Loan
+                                Programs</a></li>
+                        <li><a href="/Resource/loan process.html" class="text-dark text-decoration-none">Loan
+                                Process</a></li>
+                        <li><a href="/Resource/Mortgage Basics.html" class="text-dark text-decoration-none">Mortgage
+                                Basics</a></li>
+                        <li><a href="/Resource/Online Forms.html" class="text-dark text-decoration-none">Online
+                                Forms</a></li>
+                        <li><a href="/Resource/faq.html" class="text-dark text-decoration-none">FAQ</a></li>
                     </ul>
                 </div>
             </div>
@@ -383,91 +389,94 @@
         <div class="border-top mt-4 pt-3 small w-100">
             <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
                 <p class="mb-2 mb-md-0">All Rights Reserved</p>
-                <p class="mb-0">Texas Consumer Compliant Recovery Fund Notice</p>
+                <a class="Paragraph text-dark text-decoration-none" href="/Pages/Texas Consumer.html">
+                    <p class="mb-0">Texas Consumer Compliant Recovery Fund Notice</p>
+                </a>
             </div>
-        </div><br </footer>
+        </div><br>
+    </footer>
 
 
 
-        <!-- Preloader -->
-        <div id="preloader">
-            <img src="/Assets/Logo only.png" alt="Loading...">
-        </div>
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="/Assets/Logo only.png" alt="Loading...">
+    </div>
 
-        <style>
-            /* Fullscreen preloader */
-            #preloader {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: #fff;
-                /* you can change to dark (#000) or any color */
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 9999;
-                /* stay above everything */
-                transition: opacity 0.5s ease, visibility 0.5s ease;
-            }
+    <style>
+        /* Fullscreen preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            /* you can change to dark (#000) or any color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* stay above everything */
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
 
-            /* Hide smoothly */
-            #preloader.hidden {
-                opacity: 0;
-                visibility: hidden;
-            }
+        /* Hide smoothly */
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
 
-            /* Responsive image */
-            #preloader img {
-                max-width: 150px;
-                width: 30vw;
-                /* scales with screen */
-                height: auto;
-            }
-        </style>
+        /* Responsive image */
+        #preloader img {
+            max-width: 150px;
+            width: 30vw;
+            /* scales with screen */
+            height: auto;
+        }
+    </style>
 
-        <script>
-            // Hide loader when page fully loads
-            window.addEventListener("load", () => {
-                const preloader = document.getElementById("preloader");
-                preloader.classList.add("hidden");
+    <script>
+        // Hide loader when page fully loads
+        window.addEventListener("load", () => {
+            const preloader = document.getElementById("preloader");
+            preloader.classList.add("hidden");
+        });
+    </script>
+
+
+    <script>
+        // Scroll animation
+        document.addEventListener("scroll", function () {
+            document.querySelectorAll(".scroll-transition").forEach(el => {
+                let rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    el.classList.add("active");
+                }
             });
-        </script>
+        });
+    </script>
 
-
-        <script>
-            // Scroll animation
-            document.addEventListener("scroll", function () {
-                document.querySelectorAll(".scroll-transition").forEach(el => {
-                    let rect = el.getBoundingClientRect();
-                    if (rect.top < window.innerHeight - 100) {
-                        el.classList.add("active");
-                    }
-                });
+    <script>
+        document.addEventListener("scroll", function () {
+            document.querySelectorAll(".scroll-transition").forEach(el => {
+                let rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    el.classList.add("active");
+                }
             });
-        </script>
+        });
 
-        <script>
-            document.addEventListener("scroll", function () {
-                document.querySelectorAll(".scroll-transition").forEach(el => {
-                    let rect = el.getBoundingClientRect();
-                    if (rect.top < window.innerHeight - 100) {
-                        el.classList.add("active");
-                    }
-                });
-            });
-
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
-            const navbar = document.querySelector('.navbar');
-            const scrollToggle = () => {
-                navbar.classList.toggle('scrolled', window.scrollY > 50);
-            };
-            scrollToggle();
-            window.addEventListener('scroll', scrollToggle);
-        </script>
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const navbar = document.querySelector('.navbar');
+        const scrollToggle = () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        };
+        scrollToggle();
+        window.addEventListener('scroll', scrollToggle);
+    </script>
 </body>
 
 </html>

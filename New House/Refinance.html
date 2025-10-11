@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream Makers Mortgage</title>
+    <link rel="icon" type="image/x-icon" href="/Assets/Logo only.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/index.html">
+                <img src="/Assets/Logo only.png" alt="Logo" class="rounded-circle">
+            </a>
+
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav navbar-custom text-center text-lg-center">
+                    <li class="nav-item"><a class="nav-link active  " href="/index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Pages/Mortgage Calculator.html">Mortgage
+                            Calculator</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Resources <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu text-start" aria-labelledby="resourcesDropdown">
+                            <li><a class="dropdown-item" href="/Resource/loanprograms.html">Loan Programs</a></li>
+                            <li><a class="dropdown-item" href="/Resource/loan process.html">Loan Process</a></li>
+                            <li><a class="dropdown-item" href="/Resource/Mortgage Basics.html">Mortgage Basics</a></li>
+                            <li><a class="dropdown-item" href="/Resource/Online Forms.html">Online Forms</a></li>
+                            <li><a class="dropdown-item" href="/Resource/faq.html">FAQ</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link " href="/Pages/about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Pages/Loan orintation.html">Loan Origination
+                            team</a></li>
+                    <li class="nav-item"><a class="nav-link " href="/Pages/contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Pages/blog.html">Blog</a></li>
+                </ul>
+            </div>
+
+            <a href="#" class="btn btn-apply d-none d-lg-block ms-3">Apply Now</a>
+        </div>
+    </nav>
+
+
+    <!-- Navbar -->
+    <section class="position-relative text-white"
+        style="background: url('/Assets/New\ Home.png') center/cover no-repeat; min-height: 40vh;">
+        <!-- Overlay -->
+        <div class="position-absolute top-0 start-0 w-100 h-100"></div>
+
+        <!-- Text aligned at bottom -->
+        <div class="container position-absolute bottom-0 start-0 end-0 pb-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-12">
+                    <h2 class="fw-bold mb-3">Select Loan Type</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <style>
+        /* Custom responsive row */
+        .custom-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        /* Column styles */
+        .custom-col {
+            flex: 1 1 45%;
+            /* 2 per row on mobile */
+            max-width: 45%;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 576px) {
+            .custom-col {
+                flex: 1 1 30%;
+                /* 3 per row on small screens */
+                max-width: 30%;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .custom-col {
+                flex: 1 1 22%;
+                /* 4 per row on medium screens */
+                max-width: 22%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .custom-col {
+                flex: 1 1 20%;
+                /* 5 per row on large screens */
+                max-width: 20%;
+            }
+        }
+
+        .btn-red-pill {
+            background-color: #dc3545;
+            color: #fff;
+            border-radius: 50px;
+            padding: 10px 30px;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .btn-red-pill:hover {
+            background-color: #b02a37;
+        }
+    </style>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Step sequence (all step IDs in order)
+            const steps = [
+                'loan-section',
+                'property-section',
+                'property-use-section',
+                'credit-section',
+                'purchase-price-section',
+                'military-section',
+                'second-yes-no-section',
+                'income-section',
+                'debt-section',
+                'employment-section',
+                'loan-purpose-section',
+                'property-value-section',
+                'mortgage-balance-section',
+                'mortgage-interest-section',
+                'second-mortgage-section',
+                'second-mortgage-balance-section'
+            ];
+
+            // ============ HELPER FUNCTIONS ============
+            function hideAll() {
+                steps.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.classList.add('d-none');
+                });
+            }
+
+            function show(id) {
+                hideAll();
+                const el = document.getElementById(id);
+                if (el) el.classList.remove('d-none');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function goToNext(currentEl) {
+                const currentSection = currentEl.closest('section');
+                if (!currentSection) return;
+                const currentIndex = steps.indexOf(currentSection.id);
+                if (currentIndex === -1) return;
+                const nextSectionId = steps[currentIndex + 1];
+                if (nextSectionId) show(nextSectionId);
+            }
+
+            function enableContinueBtn(sectionId) {
+                const section = document.getElementById(sectionId);
+                if (!section) return;
+                const btn = section.querySelector('button[id^="continue"]');
+                if (btn) {
+                    btn.disabled = false;
+                    btn.classList.remove('disabled-link');
+                }
+            }
+
+            // ============ ROW STEPS (auto move) ============
+            function activateRowStep(selector, globalVarName) {
+                document.querySelectorAll(selector).forEach(el => {
+                    el.addEventListener('click', function () {
+                        const section = el.closest('section');
+                        section.querySelectorAll(selector).forEach(opt => opt.classList.remove('active'));
+                        el.classList.add('active');
+
+                        const val = el.getAttribute('data-value') || el.textContent.trim();
+                        if (globalVarName) window[globalVarName] = val;
+
+                        enableContinueBtn(section.id); // just in case
+                        setTimeout(() => goToNext(el), 150); // auto next
+                    });
+                });
+            }
+
+            // Attach auto-next handlers for row-style steps
+            activateRowStep('.loan-option', 'selectedLoanType');
+            activateRowStep('.property-option', 'selectedPropertyType');
+            activateRowStep('.property-use-option', 'selectedPropertyUse');
+            activateRowStep('.credit-option', 'selectedCredit');
+            activateRowStep('.military-option', 'selectedMilitary');
+            activateRowStep('.second-yes-no-option', 'selectedSecondYesNo');
+            activateRowStep('.second-mortgage-option', 'selectedSecondMortgage');
+
+            // ============ SLIDER & DROPDOWN STEPS (manual continue only) ============
+            // Enable Continue button when user changes something, but don't move automatically
+            const allInputs = document.querySelectorAll('input[type="range"], select');
+            allInputs.forEach(el => {
+                el.addEventListener('input', function () {
+                    const section = el.closest('section');
+                    if (section) enableContinueBtn(section.id);
+                });
+                el.addEventListener('change', function () {
+                    const section = el.closest('section');
+                    if (section) enableContinueBtn(section.id);
+                });
+            });
+
+            // ============ CONTINUE BUTTONS ============
+            // Move to next step when user clicks Continue
+            document.querySelectorAll('button[id^="continue"]').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const section = btn.closest('section');
+                    if (section) goToNext(btn);
+                });
+            });
+
+            // Show first step
+            if (document.getElementById('loan-section')) show('loan-section');
+        });
+    </script>
+
+
+
+
+
+
+
+
+    <div class="Steps">
+
+        <!-- STEP 1: LOAN TYPE -->
+        <section class="py-5 text-center bg-white" id="loan-section">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold"><span class="lightfont">Select </span><span class="text-dark">Loan Type</span>
+                    </h2>
+                    <p class="text-muted">Choose your preferred loan category to continue.</p>
+                </div>
+                <div class="custom-row">
+                    <div class="custom-col">
+                        <div class="loan-option card border-0 h-100" onclick="selectLoanType(this, 'Purchase')">
+                            <img src="/Assets/Purchase.png" alt="Purchase" class="img-fluid mb-3 mx-auto d-block">
+                            <h5 class="fw-semibold">Purchase</h5>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="loan-option card border-0 h-100" onclick="selectLoanType(this, 'Refinance')">
+                            <img src="/Assets/Refinance house.png" alt="Refinance"
+                                class="img-fluid mb-3 mx-auto d-block">
+                            <h5 class="fw-semibold">Refinance</h5>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="loan-option card border-0 h-100" onclick="selectLoanType(this, 'Home Equity')">
+                            <img src="/Assets/Home Equity.png" alt="Home Equity" class="img-fluid mb-3 mx-auto d-block">
+                            <h5 class="fw-semibold">Home Equity</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="/index.html"><button class="btn btn-outline-dark rounded-pill px-4 py-2">Back</button></a>
+                    <button id="continueLoanBtn" class="btn-red-pill disabled-link" disabled
+                        onclick="goToPropertySection()">Continue</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 2: PROPERTY TYPE -->
+        <section class="py-5 text-center bg-white d-none" id="property-section">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold"><span class="lightfont">Select</span> Property Type</h2>
+                </div>
+                <div class="custom-row">
+                    <div class="custom-col">
+                        <div class="property-option" onclick="selectProperty(this, 'Single Family')">
+                            <img src="/Assets/Single Family.png" alt="Single Family"
+                                class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Single Family</h6>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="property-option" onclick="selectProperty(this, 'Multi Family')">
+                            <img src="/Assets/Multi Family.png" alt="Multi Family"
+                                class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Multi Family</h6>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="property-option" onclick="selectProperty(this, 'Condominium')">
+                            <img src="/Assets/Condominium.png" alt="Condominium" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Condominium</h6>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="property-option" onclick="selectProperty(this, 'Townhouse')">
+                            <img src="/Assets/Townhouse.png" alt="Townhouse" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Townhouse</h6>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="property-option" onclick="selectProperty(this, 'Manufactured Home')">
+                            <img src="/Assets/Manufactured Home.png" alt="Manufactured Home"
+                                class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Manufactured Home</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2" onclick="goBackToLoan()">Back</button>
+                    <button id="continuePropertyBtn" class="btn-red-pill disabled-link" disabled
+                        onclick="goToPropertyUseSection()">Continue</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 3: PROPERTY USE -->
+        <section class="py-5 text-center bg-white d-none" id="property-use-section">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold"><span class="lightfont">What is the</span> Property Use?</h2>
+                </div>
+                <div class="custom-row">
+                    <div class="custom-col">
+                        <div class="property-use-option" onclick="selectPropertyUse(this, 'Primary Residence')">
+                            <img src="/Assets/Primary Residence.png" alt="Primary Residence"
+                                class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Primary Residence</h6>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="property-use-option" onclick="selectPropertyUse(this, 'Vacation Home')">
+                            <img src="/Assets/Vacation Home.png" alt="Vacation Home"
+                                class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Vacation Home</h6>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="property-use-option" onclick="selectPropertyUse(this, 'Investment Property')">
+                            <img src="/Assets/Investment Property.png" alt="Investment Property"
+                                class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Investment Property</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                        onclick="goBackToProperty()">Back</button>
+                    <button id="continuePropertyUseBtn" class="btn-red-pill disabled-link" disabled
+                        onclick="goToCreditSection()">Continue</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 4: CREDIT -->
+        <section class="py-5 text-center bg-white d-none" id="credit-section">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold"><span class="lightfont">How</span> is Your Credit?</h2>
+                </div>
+                <div class="custom-row">
+                    <div class="custom-col">
+                        <div class="credit-option" onclick="selectCredit(this, 'Excellent')">
+                            <img src="/Assets/Excellent.png" alt="Excellent" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Excellent</h6>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="credit-option" onclick="selectCredit(this, 'Very Good')">
+                            <img src="/Assets/Very Good.png" alt="Very Good" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Very Good</h6>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="credit-option" onclick="selectCredit(this, 'Good')">
+                            <img src="/Assets/Good.png" alt="Good" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Good</h6>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="credit-option" onclick="selectCredit(this, 'Fair')">
+                            <img src="/Assets/Fair.png" alt="Fair" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Fair</h6>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="credit-option" onclick="selectCredit(this, 'Poor')">
+                            <img src="/Assets/Poor.png" alt="Poor" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Poor</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                        onclick="goBackToPropertyUse()">Back</button>
+                    <button id="continueCreditBtn" class="btn-red-pill disabled-link" disabled
+                        onclick="goToFoundHomeSection()">Continue</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 5: PURCHASE PRICE -->
+        <section class="py-5 text-center bg-white d-none" id="purchase-price-section">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold"><span class="lightfont">Purchase</span> Price</h2>
+                </div>
+                <div class="mx-auto p-5 rounded-5" style="background-color: #f8f8f8; max-width: 600px;">
+                    <input type="range" class="form-range" id="purchasePriceRange" min="50000" max="1000000" step="5000"
+                        value="275000" oninput="updatePurchasePrice()">
+                    <h4 class="mt-3 fw-semibold" id="purchasePriceValue">$275,000</h4>
+                </div>
+                <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                        onclick="goBackToFoundHome()">Back</button>
+                    <button id="continuePurchasePriceBtn" class="btn-red-pill"
+                        onclick="goToMilitarySection()">Continue</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 6: MILITARY SERVICE -->
+        <section class="py-5 text-center bg-white d-none" id="military-section">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold"><span class="lightfont">Military</span> Service?</h2>
+                </div>
+                <div class="custom-row">
+                    <div class="custom-col">
+                        <div class="military-option" onclick="selectMilitary(this, 'Yes')">
+                            <img src="/Assets/Miltary yes.png" alt="Military Yes"
+                                class="img-fluid rounded-circle option-img">
+                            <h5 class="mt-3">Yes</h5>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="military-option" onclick="selectMilitary(this, 'No')">
+                            <img src="/Assets/Miltary No.png" alt="Military No"
+                                class="img-fluid rounded-circle option-img grayscale">
+                            <h5 class="mt-3">No</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                        onclick="goBackToPurchase()">Back</button>
+                    <button id="continueMilitaryBtn" class="btn-red-pill disabled-link" disabled
+                        onclick="goToSecondYesNoSection()">Continue</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 7: SECOND YES/NO QUESTION -->
+        <section class="py-5 text-center bg-white d-none" id="second-yes-no-section">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold"><span class="lightfont">Bankruptcy</span> in last 7 years?</h2>
+                </div>
+                <div class="custom-row">
+                    <div class="custom-col">
+                        <div class="second-yes-no-option option-card" onclick="selectSecondYesNo(this, 'Yes')">
+                            <img src="/Assets/Home Buyer yes.png" alt="Yes" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Yes</h6>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="second-yes-no-option option-card" onclick="selectSecondYesNo(this, 'No')">
+                            <img src="/Assets/Home Buyer no.png" alt="No" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">No</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                        onclick="goBackToFirstTimeBuyer()">Back</button>
+                    <button id="continueSecondYesNoBtn" class="btn-red-pill disabled-link" disabled
+                        onclick="goToIncomeSection()">Continue</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 8: ANNUAL HOUSEHOLD INCOME -->
+        <section class="py-5 text-center bg-white d-none" id="income-section">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold"><span class="lightfont">Annual</span> Household Income?</h2>
+                </div>
+                <div class="mx-auto p-5 rounded-5 shadow-sm" style="background-color: #f9f9ff; max-width: 700px;">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <input type="range" class="form-range flex-grow-1 me-3 slider-custom" id="incomeRange"
+                            min="20000" max="300000" step="250" value="85250" oninput="updateIncomeValue()">
+                        <h5 id="incomeValue" class="fw-semibold text-dark mb-0">$85,250</h5>
+                    </div>
+                </div>
+                <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                        onclick="goBackToSecondYesNo()">Back</button>
+                    <button id="continueIncomeBtn" class="btn-red-pill" onclick="goToDebtSection()">Continue</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 9: MONTHLY DEBT PAYMENTS -->
+        <section class="py-5 text-center bg-white d-none" id="debt-section">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold"><span class="lightfont">Monthly</span> Debt Payments</h2>
+                </div>
+                <div class="mx-auto p-5 rounded-5 shadow-sm" style="background-color: #f9f9ff; max-width: 700px;">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <input type="range" class="form-range flex-grow-1 me-3 slider-custom" id="debtRange" min="0"
+                            max="20000" step="100" value="7150" oninput="updateDebtValue()">
+                        <h5 id="debtValue" class="fw-semibold text-dark mb-0">$7,150</h5>
+                    </div>
+                </div>
+                <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2" onclick="goBackToIncome()">Back</button>
+                    <button id="continueDebtBtn" class="btn-red-pill"
+                        onclick="goToEmploymentSection()">Continue</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 10: EMPLOYMENT STATUS -->
+        <section class="py-5 text-center bg-white d-none" id="employment-section">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold"><span class="lightfont">Employment</span> Status</h2>
+                </div>
+                <div class="mx-auto p-5 rounded-5 shadow-sm" style="background-color:#f9f9ff; max-width:700px;">
+                    <select id="employmentStatusSelect" class="form-select form-select-lg text-center"
+                        style="border-radius:10px; padding:14px 16px; font-size:1.1rem;">
+                        <option selected disabled value="">Select your status</option>
+                        <option>Employed</option>
+                        <option>Self-Employed</option>
+                        <option>Unemployed</option>
+                        <option>Student</option>
+                        <option>Retired</option>
+                    </select>
+                </div>
+                <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2" onclick="goBackToDebt()">Back</button>
+                    <button id="continueEmploymentBtn" class="btn-red-pill"
+                        onclick="goToLoanPurposeSection()">Continue</button>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 11: LOAN PURPOSE -->
+        <section class="py-5 text-center bg-white d-none" id="loan-purpose-section">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold"><span class="lightfont">Loan</span> Purpose</h2>
+                </div>
+                <div class="mx-auto p-5 rounded-5 shadow-sm" style="background-color:#f9f9ff; max-width:700px;">
+                    <select id="loanPurposeSelect" class="form-select form-select-lg text-center"
+                        style="border-radius:10px; padding:14px 16px; font-size:1.1rem;">
+                        <option selected disabled value="">Select loan purpose</option>
+                        <option>Lower Interest Rate</option>
+                        <option>Lower Monthly Payment</option>
+                        <option>Debt Consolidation</option>
+                        <option>Change Rate / Term</option>
+                        <option>Home Improvement</option>
+                        <option>Take Cash Out</option>
+                    </select>
+                </div>
+                <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                        onclick="showSection('employment-section','loan-purpose-section')">Back</button>
+                    <button id="continueLoanPurposeBtn" class="btn-red-pill"
+                        onclick="goToPropertyValueSection()">Continue</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 12: PROPERTY VALUE -->
+        <section class="py-5 text-center bg-white d-none" id="property-value-section">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold"><span class="lightfont">Property </span>Value</h2>
+                </div>
+                <div class="mx-auto p-5 rounded-5 shadow-sm" style="background-color:#f9f9ff; max-width:700px;">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <input type="range" class="form-range flex-grow-1 me-3 slider-custom" id="propertyValueRange"
+                            min="50000" max="2000000" step="5000" value="350000" oninput="updatePropertyValue()">
+                        <h5 id="propertyValueDisplay" class="fw-semibold text-dark mb-0">$350,000</h5>
+                    </div>
+                </div>
+                <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                        onclick="showSection('loan-purpose-section','property-value-section')">Back</button>
+                    <button id="continuePropertyValueBtn" class="btn-red-pill"
+                        onclick="goToMortgageBalance()">Continue</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- STEP 13: 1st MORTGAGE BALANCE -->
+        <section class="py-5 text-center bg-white d-none" id="mortgage-balance-section">
+            <div class="container">
+                <h2 class="fw-bold mb-4">
+                    <span class="lightfont">1st Mortgage </span>Balance
+                </h2>
+
+                <div class="p-4 bg-light rounded-4 mx-auto" style="max-width:700px;">
+                    <select class="form-select text-center py-2" id="mortgageBalanceSelect"
+                        onchange="enableContinueFromStep13()">
+                        <option selected disabled value value="">Select an option</option>
+                        <option value="Less than $100,000">Less than $100,000</option>
+                        <option value="$100,000 - $200,000">$100,000 - $200,000</option>
+                        <option value="$200,000 - $300,000">$200,000 - $300,000</option>
+                        <option value="$300,000 - $400,000">$300,000 - $400,000</option>
+                        <option value="$400,000 - $500,000">$400,000 - $500,000</option>
+                        <option value="Above $500,000">Above $500,000</option>
+                    </select>
+                </div>
+
+                <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+                    <button class="btn btn-outline-dark px-4 py-2 rounded-pill"
+                        onclick="showSection('property-value-section','mortgage-balance-section')">
+                        Back
+                    </button>
+                    <button class="btn btn-danger px-4 py-2 rounded-pill text-white disabled-link"
+                        id="continueFromStep13" disabled onclick="goToMortgageInterestSection()">
+                        Continue
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- STEP 14: 1st Mortgage Interest Rate -->
+        <section class="py-5 text-center bg-white d-none" id="first-mortgage-interest-section">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold"><span class="lightfont">1st Mortgage </span>Interest Rate</h2>
+                </div>
+                <div class="mx-auto p-5 rounded-5 shadow-sm" style="background-color:#f9f9ff; max-width:700px;">
+                    <select id="firstMortgageInterestSelect" class="form-select form-select-lg text-center"
+                        style="border-radius:10px; padding:14px 16px; font-size:1.1rem;"
+                        onchange="enableContinueAndSave()">
+                        <option selected disabled value="">Select an option</option>
+                        <option value="13%">13%</option>
+                        <option value="12.875%">12.875%</option>
+                        <option value="12.75%">12.75%</option>
+                        <option value="12.625%">12.625%</option>
+                        <option value="12.5%">12.5%</option>
+                        <option value="12.375%">12.375%</option>
+                        <option value="12.25%">12.25%</option>
+                        <option value="12.125%">12.125%</option>
+                        <option value="12%">12%</option>
+                        <option value="11.875%">11.875%</option>
+                        <option value="11.75%">11.75%</option>
+                        <option value="11.625%">11.625%</option>
+                        <option value="11.5%">11.5%</option>
+                        <option value="11.375%">11.375%</option>
+                        <option value="11.25%">11.25%</option>
+                        <option value="11.125%">11.125%</option>
+                        <option value="11%">11%</option>
+                        <option value="10.875%">10.875%</option>
+                        <option value="10.75%">10.75%</option>
+                        <option value="10.625%">10.625%</option>
+                        <option value="10.5%">10.5%</option>
+                        <option value="10.375%">10.375%</option>
+                        <option value="10.25%">10.25%</option>
+                        <option value="10.125%">10.125%</option>
+                        <option value="10%">10%</option>
+                        <option value="9.875%">9.875%</option>
+                        <option value="9.75%">9.75%</option>
+                        <option value="9.625%">9.625%</option>
+                        <option value="9.5%">9.5%</option>
+                        <option value="9.375%">9.375%</option>
+                        <option value="9.25%">9.25%</option>
+                        <option value="9.125%">9.125%</option>
+                        <option value="9%">9%</option>
+                        <option value="8.875%">8.875%</option>
+                        <option value="8.75%">8.75%</option>
+                        <option value="8.625%">8.625%</option>
+                        <option value="8.5%">8.5%</option>
+                        <option value="8.375%">8.375%</option>
+                        <option value="8.25%">8.25%</option>
+                        <option value="8.125%">8.125%</option>
+                        <option value="8%">8%</option>
+                        <option value="7.875%">7.875%</option>
+                        <option value="7.75%">7.75%</option>
+                        <option value="7.625%">7.625%</option>
+                        <option value="7.5%">7.5%</option>
+                        <option value="7.375%">7.375%</option>
+                        <option value="7.25%">7.25%</option>
+                        <option value="7.125%">7.125%</option>
+                        <option value="7%">7%</option>
+                        <option value="6.875%">6.875%</option>
+                        <option value="6.75%">6.75%</option>
+                        <option value="6.625%">6.625%</option>
+                        <option value="6.5%">6.5%</option>
+                        <option value="6.375%">6.375%</option>
+                        <option value="6.25%">6.25%</option>
+                        <option value="6.125%">6.125%</option>
+                        <option value="6%">6%</option>
+                        <option value="5.875%">5.875%</option>
+                        <option value="5.75%">5.75%</option>
+                        <option value="5.625%">5.625%</option>
+                        <option value="5.5%">5.5%</option>
+                        <option value="5.375%">5.375%</option>
+                        <option value="5.25%">5.25%</option>
+                        <option value="5.125%">5.125%</option>
+                        <option value="5%">5%</option>
+                        <option value="4.875%">4.875%</option>
+                        <option value="4.75%">4.75%</option>
+                        <option value="4.625%">4.625%</option>
+                        <option value="4.5%">4.5%</option>
+                        <option value="4.375%">4.375%</option>
+                        <option value="4.25%">4.25%</option>
+                        <option value="4.125%">4.125%</option>
+                        <option value="4%">4%</option>
+                        <option value="3.875%">3.875%</option>
+                        <option value="3.75%">3.75%</option>
+                        <option value="3.625%">3.625%</option>
+                        <option value="3.5%">3.5%</option>
+                        <option value="3.375%">3.375%</option>
+                        <option value="3.25%">3.25%</option>
+                        <option value="3.125%">3.125%</option>
+                        <option value="3%">3%</option>
+                    </select>
+                </div>
+
+                <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                        onclick="showSection('mortgage-balance-section','first-mortgage-interest-section')">
+                        Back
+                    </button>
+
+                    <button class="btn btn-danger rounded-pill px-4 py-2 text-white" id="continueFromFirstInterest"
+                        disabled onclick="showSection('second-mortgage-section','first-mortgage-interest-section')">
+                        Continue
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            function showSection(nextId, currentId) {
+                document.getElementById(currentId).classList.add("d-none");
+                document.getElementById(nextId).classList.remove("d-none");
+            }
+
+            function enableContinueAndSave() {
+                const select = document.getElementById("firstMortgageInterestSelect");
+                const continueBtn = document.getElementById("continueFromFirstInterest");
+
+                if (select.value) {
+                    continueBtn.disabled = false;
+                    // Save the selected value for mailto data collection
+                    if (typeof saveValue === "function") {
+                        saveValue("1st Mortgage Interest Rate", select.value);
+                    }
+                }
+            }
+        </script>
+
+
+        <!-- STEP 15: Do you have 2nd mortgage? -->
+        <section class="py-5 text-center bg-white d-none" id="second-mortgage-section">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold"><span class="lightfont">Do you have a</span> 2nd mortgage?</h2>
+                </div>
+                <div class="custom-row">
+                    <div class="custom-col">
+                        <div class="option-card" onclick="selectSecondMortgage('Yes', this)">
+                            <img src="/Assets/Home Buyer yes.png" alt="Yes" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Yes</h6>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="option-card" onclick="selectSecondMortgage('No', this)">
+                            <img src="/Assets/Home Buyer no.png" alt="No" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">No</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                        onclick="showSection('first-mortgage-interest-section','second-mortgage-section')">Back</button>
+
+                    <!-- Continue button -->
+                    <button class="btn btn-danger rounded-pill px-4 py-2 text-white disabled-link"
+                        id="continueSecondMortgageBtn" disabled onclick="continueSecondMortgage()">
+                        Continue
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            // --- STEP 15: Second Mortgage Functions ---
+            function selectSecondMortgage(choice, element) {
+                console.log("Second mortgage selected:", choice);
+
+                // Store in formData
+                formData.secondMortgage = choice;
+
+                // Remove selected class from all options
+                document.querySelectorAll('#second-mortgage-section .option-card').forEach(card => {
+                    card.classList.remove('selected');
+                    card.classList.remove('active');
+                });
+
+                // Add selected class to clicked option
+                element.classList.add('selected');
+                element.classList.add('active');
+
+                // Enable continue button
+                const continueBtn = document.getElementById('continueSecondMortgageBtn');
+                continueBtn.disabled = false;
+                continueBtn.classList.remove('disabled-link');
+            }
+
+            function continueSecondMortgage() {
+                console.log("Continue clicked, second mortgage value:", formData.secondMortgage);
+
+                if (!formData.secondMortgage) {
+                    alert('Please select an option');
+                    return;
+                }
+
+                if (formData.secondMortgage === 'Yes') {
+                    showSection('second-mortgage-interest-section', 'second-mortgage-section');
+                } else {
+                    showSection('co-applicant-step17', 'second-mortgage-section');
+                }
+            }
+        </script>
+
+
+        <!-- STEP 16: 2nd Mortgage Interest Rate -->
+        <section class="py-5 text-center bg-white d-none" id="second-mortgage-interest-section"
+            data-next="co-applicant-step17">
+            <div class="container">
+                <h2 class="mb-4"><span class="lightfont">2nd Mortgage</span> Interest Rate</h2>
+
+                <div class="p-4 bg-light rounded-4">
+                    <select class="form-select text-center py-2" id="secondMortgageInterestSelect"
+                        onchange="handleSecondMortgageInterestChange()">
+                        <option value="" selected disabled>Select an option</option>
+                        <option value="13%">13%</option>
+                        <option value="12.875%">12.875%</option>
+                        <option value="12.75%">12.75%</option>
+                        <option value="12.625%">12.625%</option>
+                        <option value="12.5%">12.5%</option>
+                        <option value="12.375%">12.375%</option>
+                        <option value="12.25%">12.25%</option>
+                        <option value="12.125%">12.125%</option>
+                        <option value="12%">12%</option>
+                        <option value="11.875%">11.875%</option>
+                        <option value="11.75%">11.75%</option>
+                        <option value="11.625%">11.625%</option>
+                        <option value="11.5%">11.5%</option>
+                        <option value="11.375%">11.375%</option>
+                        <option value="11.25%">11.25%</option>
+                        <option value="11.125%">11.125%</option>
+                        <option value="11%">11%</option>
+                        <option value="10.875%">10.875%</option>
+                        <option value="10.75%">10.75%</option>
+                        <option value="10.625%">10.625%</option>
+                        <option value="10.5%">10.5%</option>
+                        <option value="10.375%">10.375%</option>
+                        <option value="10.25%">10.25%</option>
+                        <option value="10.125%">10.125%</option>
+                        <option value="10%">10%</option>
+                        <option value="9.875%">9.875%</option>
+                        <option value="9.75%">9.75%</option>
+                        <option value="9.625%">9.625%</option>
+                        <option value="9.5%">9.5%</option>
+                        <option value="9.375%">9.375%</option>
+                        <option value="9.25%">9.25%</option>
+                        <option value="9.125%">9.125%</option>
+                        <option value="9%">9%</option>
+                        <option value="8.875%">8.875%</option>
+                        <option value="8.75%">8.75%</option>
+                        <option value="8.625%">8.625%</option>
+                        <option value="8.5%">8.5%</option>
+                        <option value="8.375%">8.375%</option>
+                        <option value="8.25%">8.25%</option>
+                        <option value="8.125%">8.125%</option>
+                        <option value="8%">8%</option>
+                        <option value="7.875%">7.875%</option>
+                        <option value="7.75%">7.75%</option>
+                        <option value="7.625%">7.625%</option>
+                        <option value="7.5%">7.5%</option>
+                        <option value="7.375%">7.375%</option>
+                        <option value="7.25%">7.25%</option>
+                        <option value="7.125%">7.125%</option>
+                        <option value="7%">7%</option>
+                        <option value="6.875%">6.875%</option>
+                        <option value="6.75%">6.75%</option>
+                        <option value="6.625%">6.625%</option>
+                        <option value="6.5%">6.5%</option>
+                        <option value="6.375%">6.375%</option>
+                        <option value="6.25%">6.25%</option>
+                        <option value="6.125%">6.125%</option>
+                        <option value="6%">6%</option>
+                        <option value="5.875%">5.875%</option>
+                        <option value="5.75%">5.75%</option>
+                        <option value="5.625%">5.625%</option>
+                        <option value="5.5%">5.5%</option>
+                        <option value="5.375%">5.375%</option>
+                        <option value="5.25%">5.25%</option>
+                        <option value="5.125%">5.125%</option>
+                        <option value="5%">5%</option>
+                        <option value="4.875%">4.875%</option>
+                        <option value="4.75%">4.75%</option>
+                        <option value="4.625%">4.625%</option>
+                        <option value="4.5%">4.5%</option>
+                        <option value="4.375%">4.375%</option>
+                        <option value="4.25%">4.25%</option>
+                        <option value="4.125%">4.125%</option>
+                        <option value="4%">4%</option>
+                        <option value="3.875%">3.875%</option>
+                        <option value="3.75%">3.75%</option>
+                        <option value="3.625%">3.625%</option>
+                        <option value="3.5%">3.5%</option>
+                        <option value="3.375%">3.375%</option>
+                        <option value="3.25%">3.25%</option>
+                        <option value="3.125%">3.125%</option>
+                        <option value="3%">3%</option>
+                    </select>
+                </div>
+
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                    <!--  FIXED BACK BUTTON -->
+                    <button class="btn btn-outline-dark px-4 py-2 rounded-pill"
+                        onclick="showSection('second-mortgage-section','second-mortgage-interest-section')">
+                        Back
+                    </button>
+
+                    <button class="btn btn-danger px-4 py-2 rounded-pill text-white disabled-link"
+                        id="continueStep16Btn" disabled onclick="goToLateMortgagePayments()">
+                        Continue
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- STEP 17: Any Late Mortgage Payments? -->
+        <section class="py-5 text-center bg-white d-none" id="co-applicant-step17">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold">
+                        <span class="lightfont">Any Late </span>Mortgage Payments?
+                    </h2>
+                </div>
+
+                <div class="custom-row">
+                    <div class="custom-col">
+                        <div class="option-card" onclick="selectLateMortgageOption('Yes', this)">
+                            <img src="/Assets/Home Buyer yes.png" alt="Yes" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Yes</h6>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="option-card" onclick="selectLateMortgageOption('No', this)">
+                            <img src="/Assets/Home Buyer no.png" alt="No" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">No</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                        onclick="showSection('second-mortgage-interest-section','co-applicant-step17')">
+                        Back
+                    </button>
+
+                    <button class="btn btn-danger rounded-pill px-4 py-2 text-white disabled-link"
+                        id="continueStep17Btn" disabled
+                        onclick="nextStep('co-applicant-section','co-applicant-step17')">
+                        Continue
+                    </button>
+                </div>
+            </div>
+        </section>
+        <script>
+            // When user selects Yes/No
+            function selectLateMortgageOption(value, element) {
+                console.log("Late Mortgage:", value);
+
+                // Deselect all cards
+                document.querySelectorAll('#co-applicant-step17 .option-card').forEach(card => {
+                    card.classList.remove('selected');
+                });
+
+                // Highlight selected
+                element.classList.add('selected');
+
+                // Enable Continue button
+                const continueBtn = document.getElementById('continueStep17Btn');
+                continueBtn.disabled = false;
+                continueBtn.classList.remove('disabled-link');
+
+                // Automatically go to next step
+                setTimeout(() => {
+                    nextStep('co-applicant-section', 'co-applicant-step17');
+                }, 400); // short delay for smooth transition
+            }
+
+            // Generic section navigation
+            function showSection(showId, hideId) {
+                document.getElementById(hideId).classList.add('d-none');
+                document.getElementById(showId).classList.remove('d-none');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Generic next step
+            function nextStep(nextId, currentId) {
+                document.getElementById(currentId).classList.add('d-none');
+                document.getElementById(nextId).classList.remove('d-none');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        </script>
+
+
+        <!-- STEP 18: Any foreclosure in last 7 years? -->
+        <section class="py-5 text-center bg-white d-none" id="co-applicant-section" data-next="late-mortgage-section">
+            <div class="container">
+                <h2 class="fw-bold mb-4"><span class="lightfont">Any foreclosure </span>in last 7 years?</h2>
+
+                <div class="custom-row">
+                    <div class="custom-col">
+                        <div class="option-card" onclick="selectForeclosureOption('Yes', this)">
+                            <img src="/Assets/Home Buyer yes.png" alt="Yes" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Yes</h6>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="option-card" onclick="selectForeclosureOption('No', this)">
+                            <img src="/Assets/Home Buyer no.png" alt="No" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">No</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                        onclick="showSection('co-applicant-step17','co-applicant-section')">Back</button>
+
+                    <button class="btn btn-danger rounded-pill px-4 py-2 text-white disabled-link"
+                        id="continueStep18Btn" disabled
+                        onclick="nextStep('late-mortgage-section','co-applicant-section')">
+                        Continue
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            // Handle foreclosure Yes/No selection
+            function selectForeclosureOption(value, element) {
+                console.log("Foreclosure option selected:", value);
+
+                // Remove selection from all
+                document.querySelectorAll('#co-applicant-section .option-card').forEach(card => {
+                    card.classList.remove('selected');
+                });
+
+                // Highlight selected
+                element.classList.add('selected');
+
+                // Enable Continue button
+                const continueBtn = document.getElementById('continueStep18Btn');
+                continueBtn.disabled = false;
+                continueBtn.classList.remove('disabled-link');
+
+                // Auto move to next step (after short delay)
+                setTimeout(() => {
+                    nextStep('late-mortgage-section', 'co-applicant-section');
+                }, 400);
+            }
+
+            // Show previous section
+            function showSection(showId, hideId) {
+                document.getElementById(hideId).classList.add('d-none');
+                document.getElementById(showId).classList.remove('d-none');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Generic next step
+            function nextStep(nextId, currentId) {
+                document.getElementById(currentId).classList.add('d-none');
+                document.getElementById(nextId).classList.remove('d-none');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        </script>
+
+
+
+        <!-- STEP 19: FHA Loan -->
+        <section class="py-5 text-center bg-white d-none" id="late-mortgage-section" data-next="property-zip-step20">
+            <div class="container">
+                <h2 class="fw-bold mb-4"><span class="lightfont">Do you currently </span>have an FHA loan?</h2>
+
+                <div class="custom-row">
+                    <div class="custom-col">
+                        <div class="option-card" onclick="autoSelectOption('fhaLoan', 'Yes', this)">
+                            <img src="/Assets/Home Buyer yes.png" alt="Yes" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">Yes</h6>
+                        </div>
+                    </div>
+                    <div class="custom-col">
+                        <div class="option-card" onclick="autoSelectOption('fhaLoan', 'No', this)">
+                            <img src="/Assets/Home Buyer no.png" alt="No" class="img-fluid rounded-circle mb-3">
+                            <h6 class="fw-semibold">No</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                    <!-- Using showSection for consistency -->
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                        onclick="showSection('co-applicant-section','late-mortgage-section')">Back</button>
+
+                    <button class="btn btn-danger rounded-pill px-4 py-2 text-white disabled-link"
+                        id="continueStep19Btn" disabled
+                        onclick="nextStep('property-zip-step20','late-mortgage-section')">
+                        Continue
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 20: PROPERTY ZIP -->
+        <section class="py-5 text-center bg-white d-none" id="property-zip-step20">
+            <div class="container border-2">
+                <div class="text-center mb-4">
+                    <h2 class=""><span class="lightfont">Property Zip</span> <span class="">(optional)</span></h2>
+                </div>
+
+                <div class="mb-4">
+                    <input type="text" id="propertyZipStep20" class="form-control text-center mx-auto"
+                        style="max-width: 350px; border-radius: 10px; padding: 12px;" placeholder="Enter your Zip">
+                </div>
+
+                <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                        onclick="showSection('late-mortgage-section','property-zip-step20')">Back</button>
+
+                    <!-- FIXED: Changed to goToAboutYourself() -->
+                    <button class="btn btn-danger rounded-pill px-4 py-2 text-white"
+                        onclick="goToAboutYourself()">Continue</button>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            // --- STEP 20: Property Zip ---
+            function goToAboutYourself() {
+                // Capture the zip code value
+                const zipInput = document.getElementById('propertyZipStep20');
+                formData.propertyZip = zipInput ? zipInput.value.trim() : "";
+
+                // Navigate to the next section
+                showSection('about-yourself-section', 'property-zip-step20');
+            }
+
+            // Generic show/hide function
+            function showSection(showId, hideId) {
+                try {
+                    const showEl = document.getElementById(showId);
+                    const hideEl = document.getElementById(hideId);
+
+                    if (!showEl) {
+                        console.error('showSection: could not find element to show:', showId);
+                        return;
+                    }
+
+                    // Hide the current section if provided
+                    if (hideEl) {
+                        hideEl.classList.add('d-none');
+                    }
+
+                    // Show target section
+                    showEl.classList.remove('d-none');
+
+                    // Smooth scroll to the shown section
+                    showEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } catch (err) {
+                    console.error('showSection error:', err);
+                }
+            }
+
+            // Make sure STEP 19 properly advances to STEP 20
+            function autoSelectOption(stepKey, value, element) {
+                try {
+                    // Find all option cards within the same row (robust)
+                    const row = element.closest('.custom-row');
+                    if (row) {
+                        const options = row.querySelectorAll('.option-card');
+                        options.forEach(opt => opt.classList.remove('selected'));
+                    }
+
+                    // Mark clicked card selected
+                    element.classList.add('selected');
+
+                    // Map stepKey -> continue button ID
+                    let continueBtnId = '';
+                    if (stepKey === 'lateMortgage') continueBtnId = 'continueStep17Btn';
+                    else if (stepKey === 'coApplicant') continueBtnId = 'continueStep18Btn';
+                    else if (stepKey === 'fhaLoan') continueBtnId = 'continueStep19Btn';
+                    else if (stepKey === 'secondMortgage') continueBtnId = 'continueSecondMortgageBtn';
+                    else if (stepKey === 'secondMortgageInterest') continueBtnId = 'continueStep16Btn';
+
+                    const continueBtn = document.getElementById(continueBtnId);
+                    if (continueBtn) {
+                        continueBtn.disabled = false;
+                        continueBtn.classList.remove('disabled-link');
+                    }
+
+                    // For FHA question, auto-advance to the next step
+                    if (stepKey === 'fhaLoan') {
+                        formData.fhaLoan = value; // Store the FHA loan value
+                        setTimeout(() => {
+                            showSection('property-zip-step20', 'late-mortgage-section');
+                        }, 400);
+                    }
+                } catch (err) {
+                    console.error('autoSelectOption error:', err);
+                }
+            }
+        </script>
+
+        <script>
+            function handleSecondMortgage(choice) {
+                const continueBtn = document.getElementById('continueSecondMortgageBtn');
+                continueBtn.disabled = false;
+                continueBtn.classList.remove('disabled-link');
+                continueBtn.dataset.choice = choice;
+            }
+
+            function goToSecondMortgageInterest() {
+                const choice = document.getElementById('continueSecondMortgageBtn').dataset.choice;
+                if (choice === 'Yes') {
+                    showSection('second-mortgage-interest-section', 'second-mortgage-section');
+                } else {
+                    nextStep('co-applicant-step17', 'second-mortgage-section');
+                }
+            }
+
+        </script>
+
+
+        <!-- STEP 21: ABOUT YOURSELF / SUBMIT -->
+        <section class="py-5 text-center bg-white d-none" id="about-yourself-section">
+            <style>
+                /* Custom wider layout */
+                #about-yourself-section .container {
+                    max-width: 1100px;
+                    /* wider outer container */
+                }
+
+                #about-yourself-section .form-container {
+                    background-color: #f9f9ff;
+                    max-width: 900px;
+                    /* increased width of form box */
+                    margin: 0 auto;
+                    padding: 3rem;
+                    border-radius: 1.5rem;
+                    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+                }
+
+                #about-yourself-section .form-label {
+                    font-weight: 600;
+                }
+
+                #about-yourself-section input.form-control {
+                    font-size: 1rem;
+                    padding: 0.8rem 1rem;
+                    border-radius: 0.75rem;
+                }
+
+                #about-yourself-section .btn {
+                    border-radius: 50rem;
+                }
+
+                #about-yourself-section .btn-danger {
+                    background-color: #dc3545;
+                    border: none;
+                    font-weight: 600;
+                }
+
+                #about-yourself-section .btn-danger:hover {
+                    background-color: #c82333;
+                }
+
+                #about-yourself-section .toggle-orange:checked {
+                    background-color: #c82333;
+                    border-color: #c82333;
+                }
+
+                @media (max-width: 768px) {
+                    #about-yourself-section .form-container {
+                        max-width: 100%;
+                        padding: 2rem;
+                    }
+                }
+            </style>
+
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold">
+                        <span class="lightfont"> Tell Us </span>
+                        <span class="text-dark">About Yourself</span>
+                    </h2>
+                </div>
+
+                <div class="form-container">
+                    <!-- First Name -->
+                    <div class="text-start mb-3">
+                        <label for="firstName" class="form-label fw-semibold">First Name *</label>
+                        <input type="text" class="form-control form-control-lg rounded-3" id="firstName"
+                            placeholder="First Name" required />
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="text-start mb-3">
+                        <label for="lastName" class="form-label fw-semibold">Last Name *</label>
+                        <input type="text" class="form-control form-control-lg rounded-3" id="lastName"
+                            placeholder="Last Name" required />
+                    </div>
+
+                    <!-- Email -->
+                    <div class="text-start mb-3">
+                        <label for="email" class="form-label fw-semibold">Email *</label>
+                        <input type="email" class="form-control form-control-lg rounded-3" id="email"
+                            placeholder="email@example.com" required />
+                    </div>
+
+                    <!-- Home Phone -->
+                    <div class="text-start mb-4">
+                        <label for="homePhone" class="form-label fw-semibold">Home Phone *</label>
+                        <input type="tel" class="form-control form-control-lg rounded-3" id="homePhone"
+                            placeholder="+1 234 567 8900" required />
+                    </div>
+
+                    <!-- Consent -->
+                    <div class="d-flex align-items-start justify-content-between mt-4">
+                        <label for="consentSwitch" class="mb-0 small text-muted text-start"
+                            style="line-height: 1.5; flex: 1;">
+                            By providing your phone number and/or email and clicking "Submit" you agree to our
+                            <a href="#" class="text-decoration-none text-dark fw-semibold">Terms of Service</a> and
+                            <a href="#" class="text-decoration-none text-dark fw-semibold">Privacy Policy</a> and
+                            consent to
+                            receive marketing communications via text, call, or email.
+                        </label>
+
+                        <div class="form-check form-switch ms-3">
+                            <input class="form-check-input toggle-orange" type="checkbox" id="consentSwitch" />
+                        </div>
+                    </div>
+
+
+                    <!-- Buttons -->
+                    <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                        <button class="btn btn-outline-dark px-4 py-2"
+                            onclick="showSection('property-zip-step20','about-yourself-section')">
+                            Back
+                        </button>
+                        <button class="btn btn-danger px-5 py-2" onclick="submitApplication()">
+                            Submit
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+
+
+
+    <script>
+        // --- GLOBAL FORM DATA ---
+        const formData = {
+            loanType: "",
+            propertyType: "",
+            propertyUse: "",
+            credit: "",
+            purchasePrice: "",
+            militaryService: "",
+            bankruptcy: "",
+            income: "",
+            debt: "",
+            employment: "",
+            loanPurpose: "",
+            propertyValue: "",
+            mortgageBalance: "",
+            firstMortgageInterest: "",
+            secondMortgage: "", // Make sure this exists
+            secondMortgageInterest: "",
+            latePayments: "",
+            foreclosure: "",
+            fhaLoan: "",
+            propertyZip: "",
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone: ""
+        };
+
+        // --- GENERIC SHOW/HIDE FUNCTION ---
+        function showSection(showId, hideId) {
+            if (hideId) document.getElementById(hideId).classList.add('d-none');
+            if (showId) document.getElementById(showId).classList.remove('d-none');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- STEP 1: Loan Type ---
+        function selectLoanType(el, value) {
+            formData.loanType = value;
+            document.querySelectorAll(".loan-option").forEach(opt => opt.classList.remove("active"));
+            el.classList.add("active");
+            enableContinue("continueLoanBtn");
+        }
+        function goToPropertySection() { showSection('property-section', 'loan-section'); }
+
+        // --- STEP 2: Property Type ---
+        function selectProperty(el, value) {
+            formData.propertyType = value;
+            document.querySelectorAll(".property-option").forEach(opt => opt.classList.remove("active"));
+            el.classList.add("active");
+            enableContinue("continuePropertyBtn");
+        }
+        function goBackToLoan() { showSection('loan-section', 'property-section'); }
+        function goToPropertyUseSection() { showSection('property-use-section', 'property-section'); }
+
+        // --- STEP 3: Property Use ---
+        function selectPropertyUse(el, value) {
+            formData.propertyUse = value;
+            document.querySelectorAll(".property-use-option").forEach(opt => opt.classList.remove("active"));
+            el.classList.add("active");
+            enableContinue("continuePropertyUseBtn");
+        }
+        function goBackToProperty() { showSection('property-section', 'property-use-section'); }
+        function goToCreditSection() { showSection('credit-section', 'property-use-section'); }
+
+        // --- STEP 4: Credit ---
+        function selectCredit(el, value) {
+            formData.credit = value;
+            document.querySelectorAll(".credit-option").forEach(opt => opt.classList.remove("active"));
+            el.classList.add("active");
+            enableContinue("continueCreditBtn");
+        }
+        function goBackToPropertyUse() { showSection('property-use-section', 'credit-section'); }
+        function goToFoundHomeSection() { showSection('purchase-price-section', 'credit-section'); }
+
+        // --- STEP 5: Purchase Price ---
+        function updatePurchasePrice() {
+            const slider = document.getElementById('purchasePriceRange');
+            const display = document.getElementById('purchasePriceValue');
+            display.textContent = `$${parseInt(slider.value).toLocaleString()}`;
+            formData.purchasePrice = `$${parseInt(slider.value).toLocaleString()}`;
+        }
+        function goBackToFoundHome() { showSection('credit-section', 'purchase-price-section'); }
+        function goToMilitarySection() { showSection('military-section', 'purchase-price-section'); }
+
+        // --- STEP 6: Military Service ---
+        function selectMilitary(el, value) {
+            formData.militaryService = value;
+            document.querySelectorAll(".military-option").forEach(opt => opt.classList.remove("active"));
+            el.classList.add("active");
+            enableContinue("continueMilitaryBtn");
+        }
+        function goBackToPurchase() { showSection('purchase-price-section', 'military-section'); }
+        function goToSecondYesNoSection() { showSection('second-yes-no-section', 'military-section'); }
+
+        // --- STEP 7: Bankruptcy ---
+        function selectSecondYesNo(el, value) {
+            formData.bankruptcy = value;
+            document.querySelectorAll(".second-yes-no-option").forEach(opt => opt.classList.remove("active"));
+            el.classList.add("active");
+            enableContinue("continueSecondYesNoBtn");
+        }
+        function goBackToFirstTimeBuyer() { showSection('military-section', 'second-yes-no-section'); }
+        function goToIncomeSection() { showSection('income-section', 'second-yes-no-section'); }
+
+        // --- STEP 8: Income ---
+        function updateIncomeValue() {
+            const slider = document.getElementById('incomeRange');
+            const display = document.getElementById('incomeValue');
+            display.textContent = `$${parseInt(slider.value).toLocaleString()}`;
+            formData.income = `$${parseInt(slider.value).toLocaleString()}`;
+        }
+        function goBackToSecondYesNo() { showSection('second-yes-no-section', 'income-section'); }
+        function goToDebtSection() { showSection('debt-section', 'income-section'); }
+
+        // --- STEP 9: Debt ---
+        function updateDebtValue() {
+            const slider = document.getElementById('debtRange');
+            const display = document.getElementById('debtValue');
+            display.textContent = `$${parseInt(slider.value).toLocaleString()}`;
+            formData.debt = `$${parseInt(slider.value).toLocaleString()}`;
+        }
+        function goBackToIncome() { showSection('income-section', 'debt-section'); }
+        function goToEmploymentSection() { showSection('employment-section', 'debt-section'); }
+
+        // --- STEP 10: Employment ---
+        function goToLoanPurposeSection() {
+            formData.employment = document.getElementById('employmentStatusSelect').value;
+            showSection('loan-purpose-section', 'employment-section');
+        }
+        function goBackToDebt() { showSection('debt-section', 'employment-section'); }
+
+        // --- STEP 11: Loan Purpose ---
+        function goToPropertyValueSection() {
+            formData.loanPurpose = document.getElementById('loanPurposeSelect').value;
+            showSection('property-value-section', 'loan-purpose-section');
+        }
+
+        // --- STEP 12: Property Value ---
+        function updatePropertyValue() {
+            const slider = document.getElementById('propertyValueRange');
+            const display = document.getElementById('propertyValueDisplay');
+            display.textContent = `$${parseInt(slider.value).toLocaleString()}`;
+            formData.propertyValue = `$${parseInt(slider.value).toLocaleString()}`;
+        }
+        function goToMortgageBalance() { showSection('mortgage-balance-section', 'property-value-section'); }
+
+        // --- STEP 13: Mortgage Balance ---
+        function enableContinueFromStep13() {
+            const select = document.getElementById("mortgageBalanceSelect");
+            if (select.value !== "") formData.mortgageBalance = select.value;
+            enableContinue("continueFromStep13");
+        }
+        function goToMortgageInterestSection() { showSection('first-mortgage-interest-section', 'mortgage-balance-section'); }
+
+        // --- STEP 14: First Mortgage Interest ---
+        function enableContinueAndSave() {
+            const select = document.getElementById("firstMortgageInterestSelect");
+            const continueBtn = document.getElementById("continueFromFirstInterest");
+            if (select.value) {
+                formData.firstMortgageInterest = select.value;
+                continueBtn.disabled = false;
+            }
+        }
+        function goToSecondMortgageSection() { showSection('second-mortgage-section', 'first-mortgage-interest-section'); }
+
+        // --- STEP 15: Second Mortgage ---
+        function handleSecondMortgage(choice) {
+            formData.secondMortgage = choice;
+            const continueBtn = document.getElementById('continueSecondMortgageBtn');
+            continueBtn.disabled = false;
+            continueBtn.classList.remove('disabled-link');
+            continueBtn.dataset.choice = choice;
+        }
+        function goToSecondMortgageInterest() {
+            const choice = document.getElementById('continueSecondMortgageBtn').dataset.choice;
+            if (choice === 'Yes') {
+                showSection('second-mortgage-interest-section', 'second-mortgage-section');
+            } else {
+                showSection('co-applicant-step17', 'second-mortgage-section');
+            }
+        }
+
+        // --- STEP 16: Second Mortgage Interest ---
+        function handleSecondMortgageInterestChange() {
+            const select = document.getElementById('secondMortgageInterestSelect');
+            const continueBtn = document.getElementById('continueStep16Btn');
+            if (select.value !== "") {
+                formData.secondMortgageInterest = select.value;
+                continueBtn.disabled = false;
+                continueBtn.classList.remove('disabled-link');
+            }
+        }
+        function goToLateMortgagePayments() {
+            showSection('co-applicant-step17', 'second-mortgage-interest-section');
+        }
+
+        // --- STEP 17: Late Mortgage Payments ---
+        function selectLateMortgageOption(value, element) {
+            formData.latePayments = value;
+            document.querySelectorAll('#co-applicant-step17 .option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            const continueBtn = document.getElementById('continueStep17Btn');
+            continueBtn.disabled = false;
+            continueBtn.classList.remove('disabled-link');
+            setTimeout(() => {
+                showSection('co-applicant-section', 'co-applicant-step17');
+            }, 400);
+        }
+
+        // --- STEP 18: Foreclosure ---
+        function selectForeclosureOption(value, element) {
+            formData.foreclosure = value;
+            document.querySelectorAll('#co-applicant-section .option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            const continueBtn = document.getElementById('continueStep18Btn');
+            continueBtn.disabled = false;
+            continueBtn.classList.remove('disabled-link');
+            setTimeout(() => {
+                showSection('late-mortgage-section', 'co-applicant-section');
+            }, 400);
+        }
+
+        // --- STEP 19: FHA Loan ---
+        function autoSelectOption(stepKey, value, element) {
+            // Find all option cards within the same row
+            const row = element.closest('.custom-row');
+            if (row) {
+                const options = row.querySelectorAll('.option-card');
+                options.forEach(opt => opt.classList.remove('selected'));
+            }
+            element.classList.add('selected');
+
+            // Map stepKey to form data
+            if (stepKey === 'fhaLoan') {
+                formData.fhaLoan = value;
+                const continueBtn = document.getElementById('continueStep19Btn');
+                continueBtn.disabled = false;
+                continueBtn.classList.remove('disabled-link');
+                setTimeout(() => {
+                    showSection('property-zip-step20', 'late-mortgage-section');
+                }, 400);
+            }
+        }
+
+        // --- STEP 20: Property Zip ---
+        function goToAboutYourself() {
+            const zipInput = document.getElementById('propertyZipStep20');
+            if (zipInput && zipInput.value.trim()) {
+                formData.propertyZip = zipInput.value.trim();
+            }
+            showSection('about-yourself-section', 'property-zip-step20');
+        }
+
+        // --- STEP 21: About Yourself / Submit ---
+        function submitApplication() {
+            // Get form values
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const homePhone = document.getElementById('homePhone').value.trim();
+            const consentSwitch = document.getElementById('consentSwitch').checked;
+
+            // Basic validation
+            if (!firstName || !lastName || !email || !homePhone) {
+                alert('Please fill in all required fields (First Name, Last Name, Email, Home Phone).');
+                return;
+            }
+
+            if (!consentSwitch) {
+                alert('Please agree to the Terms of Service and Privacy Policy by toggling the consent switch.');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Update formData with contact info
+            formData.firstName = firstName;
+            formData.lastName = lastName;
+            formData.email = email;
+            formData.phone = homePhone;
+
+            // Prepare email content
+            const recipientEmail = "youremail@gmail.com"; // CHANGE THIS TO YOUR ACTUAL EMAIL
+            const subject = "New Loan Application Form Submission";
+
+            let body = "NEW LOAN APPLICATION SUBMISSION\n\n";
+            body += "=== PERSONAL INFORMATION ===\n";
+            body += `First Name: ${formData.firstName}\n`;
+            body += `Last Name: ${formData.lastName}\n`;
+            body += `Email: ${formData.email}\n`;
+            body += `Phone: ${formData.phone}\n\n`;
+
+            body += "=== LOAN DETAILS ===\n";
+            body += `Loan Type: ${formData.loanType || "Not provided"}\n`;
+            body += `Property Type: ${formData.propertyType || "Not provided"}\n`;
+            body += `Property Use: ${formData.propertyUse || "Not provided"}\n`;
+            body += `Credit Score: ${formData.credit || "Not provided"}\n`;
+            body += `Purchase Price: ${formData.purchasePrice || "Not provided"}\n`;
+            body += `Military Service: ${formData.militaryService || "Not provided"}\n`;
+            body += `Bankruptcy in Last 7 Years: ${formData.bankruptcy || "Not provided"}\n`;
+            body += `Annual Household Income: ${formData.income || "Not provided"}\n`;
+            body += `Monthly Debt Payments: ${formData.debt || "Not provided"}\n`;
+            body += `Employment Status: ${formData.employment || "Not provided"}\n`;
+            body += `Loan Purpose: ${formData.loanPurpose || "Not provided"}\n`;
+            body += `Property Value: ${formData.propertyValue || "Not provided"}\n`;
+            body += `1st Mortgage Balance: ${formData.mortgageBalance || "Not provided"}\n`;
+            body += `1st Mortgage Interest Rate: ${formData.firstMortgageInterest || "Not provided"}\n`;
+            body += `Has 2nd Mortgage: ${formData.secondMortgage || "Not provided"}\n`;
+            body += `2nd Mortgage Interest Rate: ${formData.secondMortgageInterest || "Not provided"}\n`;
+            body += `Late Mortgage Payments: ${formData.latePayments || "Not provided"}\n`;
+            body += `Foreclosure in Last 7 Years: ${formData.foreclosure || "Not provided"}\n`;
+            body += `Has FHA Loan: ${formData.fhaLoan || "Not provided"}\n`;
+            body += `Property Zip Code: ${formData.propertyZip || "Not provided"}\n`;
+
+            body += `\n=== SUBMISSION DETAILS ===\n`;
+            body += `Submission Date: ${new Date().toLocaleString()}\n`;
+            body += `Consent Given: ${consentSwitch ? 'Yes' : 'No'}\n`;
+
+            // Create Gmail compose URL - FIXED VERSION
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipientEmail)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            // Open Gmail composer in a new tab
+            window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+
+            // Show confirmation message
+            setTimeout(() => {
+                alert('Your application is ready to be sent! A Gmail compose window has opened with your information. Please review and send the email to complete your submission.');
+            }, 1000);
+        }
+        // --- UTILITIES ---
+        function enableContinue(id) {
+            const btn = document.getElementById(id);
+            if (!btn) return;
+            btn.disabled = false;
+            btn.classList.remove("disabled-link");
+        }
+
+        function setActive(el, selector, btnId) {
+            document.querySelectorAll(selector).forEach(opt => opt.classList.remove("active"));
+            el.classList.add("active");
+            enableContinue(btnId);
+        }
+
+        // Initialize first step
+        document.addEventListener('DOMContentLoaded', function () {
+            showSection('loan-section', null);
+        });
+    </script>
+
+
+
+
+
+    <!-- Optional Custom Styles -->
+    <style>
+        .option-card.selected {
+            border: 2px solid #dc3545;
+            background-color: #f8f9fa;
+        }
+
+        .option-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .option-card:hover {
+            background-color: #f8f9fa;
+        }
+
+        .form-control {
+            border: 1px solid #ddd;
+            box-shadow: none;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus {
+            border-color: #ff3b2e;
+            box-shadow: 0 0 0 0.15rem rgba(255, 59, 46, 0.25);
+        }
+
+        .toggle-orange {
+            accent-color: #ff3b2e;
+        }
+
+        .btn-danger {
+            background-color: #ff3b2e;
+            border-color: #ff3b2e;
+        }
+
+        .btn-danger:hover {
+            background-color: #e22a1d;
+            border-color: #e22a1d;
+        }
+    </style>
+
+
+
+    <style>
+        /* Orange Bootstrap switch */
+        .toggle-orange:checked {
+            background-color: #e02917;
+            border-color: #e02917;
+        }
+
+        .toggle-orange:focus {
+            box-shadow: 0 0 0 0.25rem rgba(255, 165, 0, .25);
+            /* optional glow */
+        }
+
+
+        .toggle-orange:focus {
+            box-shadow: 0 0 0 0.25rem rgba(255, 106, 0, 0.25);
+        }
+
+
+        /* Range thumb customization (Chrome, Edge, Safari) */
+        .slider-custom::-webkit-slider-thumb {
+            background-color: #e02917;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .slider-custom::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 6px rgba(224, 41, 23, 0.2);
+        }
+
+        /* Range thumb customization (Firefox) */
+        .slider-custom::-moz-range-thumb {
+            background-color: #e02917;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: none;
+            transition: 0.3s ease;
+        }
+
+        .slider-custom::-moz-range-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 6px rgba(224, 41, 23, 0.2);
+        }
+
+        /* Button: Red Pill Style */
+        .btn-red-pill {
+            background-color: #e02917;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 28px;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .btn-red-pill:hover {
+            background-color: #c61f11;
+            color: #fff;
+        }
+
+        /* ---------- Universal Option Card Styles ---------- */
+        .option-card,
+        .loan-option,
+        .property-option,
+        .property-use-option,
+        .credit-option,
+        .found-home-option,
+        .military-option,
+        .buy-time-option,
+        .first-time-buyer-option,
+        .second-yes-no-option {
+            cursor: pointer;
+            border-radius: 14px;
+            padding: 1.2rem;
+            background-color: #fff;
+            border: 2px solid transparent;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover effect */
+        .option-card:hover,
+        .loan-option:hover,
+        .property-option:hover,
+        .property-use-option:hover,
+        .credit-option:hover,
+        .found-home-option:hover,
+        .military-option:hover,
+        .buy-time-option:hover,
+        .first-time-buyer-option:hover,
+        .second-yes-no-option:hover {
+            box-shadow: 0 0 0 3px rgba(237, 35, 13, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Active (selected) effect */
+        .option-card.active,
+        .loan-option.active,
+        .property-option.active,
+        .property-use-option.active,
+        .credit-option.active,
+        .found-home-option.active,
+        .military-option.active,
+        .buy-time-option.active,
+        .first-time-buyer-option.active,
+        .second-yes-no-option.active {
+            border-color: #ED230D;
+            background-color: #fff3f2;
+            box-shadow: 0 0 10px rgba(237, 35, 13, 0.25);
+            transform: scale(1.03);
+        }
+
+        /* ---------- Universal Image Sizing ---------- */
+        /* ---------- Universal Image Sizing with Slightly Rounded Corners ---------- */
+        .option-card img,
+        .loan-option img,
+        .property-option img,
+        .property-use-option img,
+        .credit-option img,
+        .found-home-option img,
+        .military-option img,
+        .buy-time-option img,
+        .first-time-buyer-option img,
+        .second-yes-no-option img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            /* small curve for square shape */
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 576px) {
+
+            .option-card img,
+            .loan-option img,
+            .property-option img,
+            .property-use-option img,
+            .credit-option img,
+            .found-home-option img,
+            .military-option img,
+            .buy-time-option img,
+            .first-time-buyer-option img,
+            .second-yes-no-option img {
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+                /* keep edges slightly rounded on mobile */
+            }
+        }
+
+
+        /* ---------- Special Styles for Red Pill Button ---------- */
+        .btn-red-pill {
+            background-color: #ED230D;
+            color: white;
+            border: none;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            padding: 0.6rem 1.4rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: 0.3s ease;
+        }
+
+        .btn-red-pill:hover {
+            background-color: #c41c0a;
+        }
+
+        .disabled-link {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* ---------- Misc ---------- */
+        .lightfont {
+            font-weight: 300;
+            color: #555;
+        }
+    </style>
+
+
+
+
+
+
+
+    <!-- /* ---------- transition ---------- */ -->
+
+    <style>
+        .option-card.selected {
+            border: 3px solid #dc3545;
+            box-shadow: 0 0 10px rgba(220, 53, 69, 0.3);
+            transition: all 0.1s ease;
+        }
+
+        .disabled-link {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    </style>
+
+
+
+
+
+
+
+    <!-- Footer Section -->
+    <footer class="text-white position-relative"
+        style="background:url('/Assets/Home-Footer.jpg') center/cover no-repeat;">
+
+        <div class="container d-flex flex-column justify-content-between" style="min-height:60vh;">
+
+            <!-- Top: Logo + Social Media -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center pt-3">
+                <!-- Logo -->
+                <div class="mb-2 mb-md-0">
+                    <img src="/Assets/Logo only.png" alt="Logo" class="img-fluid" style="max-height:60px;">
+                </div>
+
+                <!-- Social Media -->
+                <div class="d-flex gap-3 fs-4">
+                    <a href="https://www.instagram.com/dreammakersmortgage/#" class="text-white"><i
+                            class="bi bi-instagram"></i></a>
+                    <a href="https://www.facebook.com/DreamMakersMortgage" class="text-white"><i
+                            class="bi bi-facebook"></i></a>
+                    <a href="https://x.com/dreammakersmtg" class="text-white"><i class="bi bi-twitter-x"></i></a>
+                    <a href="https://www.linkedin.com/404/" class="text-white"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+
+            <!-- Middle: Main Heading -->
+            <div class="text-center my-auto px-2">
+                <h3 class="footer-heading fw-light fw-md-normal">
+                    <span>Your Home Journey</span><br>
+                    <b>Starts Here !</b>
+                </h3>
+            </div>
+
+            <!-- Bottom: Navigation + Text -->
+            <div class="text-center mt-auto pb-3 px-2">
+                <!-- Navigation -->
+                <nav class="mb-3">
+                    <ul class="nav justify-content-center flex-wrap gap-2">
+                        <li class="nav-item"><a href="/index.html"
+                                class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">Home</a>
+                        </li>
+                        <li class="nav-item"><a href="/Pages/about.html"
+                                class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">About</a>
+                        </li>
+                        <li class="nav-item"><a href="/Pages/contact.html"
+                                class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">Contact</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">Mortgage
+                                Calculator</a></li>
+                        <li class="nav-item"><a href="/Pages/blog.html"
+                                class="nav-link text-white px-2 fs-6 fs-sm-6 fs-md-5">Blog</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Description -->
+                <p class="small footertext mb-2">
+                    We are a trusted mortgage service provider dedicated to helping individuals and families achieve
+                    their homeownership dreams. <br>
+                    With cost-effective solutions, personalized guidance, and innovative approaches, we simplify the
+                    mortgage process and secure your financial future with confidence.
+                </p>
+
+                <!-- Copyright -->
+                <p class="small mb-0">&copy; Copyright Dream Makers Mortgage, LLC</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+
+
+    <!-- Footer Section -->
+    <footer class="bg-white text-dark pt-5 border-top footer-custom">
+        <div class="container">
+            <div class="row gy-4">
+
+                <!-- About Us -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">About Us</h6>
+                    <p class="small mb-2">
+                        We've been helping customers afford the home of their dreams for many years and we love what we
+                        do...
+                    </p>
+                    <p class="small mb-1">Company NMLS: 2244116</p>
+                    <p class="small mb-0">Personal NMLS: 1828636</p>
+                </div>
+
+                <!-- Contact Us -->
+                <div class="col-6 col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">Contact Us</h6>
+                    <p class="small mb-1">10707 Corporate Drive</p>
+                    <p class="small mb-1">Suite 100-A</p>
+                    <p class="small mb-1">Stafford, TX 77477</p>
+                    <p class="small mb-1">Phone: (832) 348-3711</p>
+                    <a href="mailto:info@dmmtg.com" class="small text-decoration-none">info@dmmtg.com</a>
+                </div>
+
+                <!-- Disclaimers -->
+                <div class="col-6 col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">Disclaimers</h6>
+                    <ul class="list-unstyled small mb-0">
+                        <li><a href="/Pages/legal.html" class="text-dark text-decoration-none">Legal</a></li>
+                        <li><a href="/Pages/privacy policy.html" class="text-dark text-decoration-none">Privacy
+                                Policy</a></li>
+                        <li><a href="/Pages/Accessibility.html" class="text-dark text-decoration-none">Accessibility
+                                Statement</a></li>
+                        <li><a href="/Pages/Site map.html" class="text-dark text-decoration-none">Site Map</a></li>
+                        <li><a href="https://www.nmlsconsumeraccess.org/" class="text-dark text-decoration-none">NMLS
+                                Consumer Access</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">Resources</h6>
+                    <ul class="list-unstyled small mb-0">
+                        <li><a href="/Resource/loanprograms.html" class="text-dark text-decoration-none">Loan
+                                Programs</a></li>
+                        <li><a href="/Resource/loan process.html" class="text-dark text-decoration-none">Loan
+                                Process</a></li>
+                        <li><a href="/Resource/Mortgage Basics.html" class="text-dark text-decoration-none">Mortgage
+                                Basics</a></li>
+                        <li><a href="/Resource/Online Forms.html" class="text-dark text-decoration-none">Online
+                                Forms</a></li>
+                        <li><a href="/Resource/faq.html" class="text-dark text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full-Width Bottom Bar -->
+        <div class="border-top mt-4 pt-3 small w-100">
+            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p class="mb-2 mb-md-0">All Rights Reserved</p>
+                <a class="Paragraph text-dark text-decoration-none" href="/Pages/Texas Consumer.html">
+                    <p class="mb-0">Texas Consumer Compliant Recovery Fund Notice</p>
+                </a>
+            </div>
+        </div><br>
+    </footer>
+
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="/Assets/Logo only.png" alt="Loading...">
+    </div>
+
+    <style>
+        /* Fullscreen preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            /* you can change to dark (#000) or any color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* stay above everything */
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        /* Hide smoothly */
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Responsive image */
+        #preloader img {
+            max-width: 150px;
+            width: 30vw;
+            /* scales with screen */
+            height: auto;
+        }
+    </style>
+
+    <script>
+        // Hide loader when page fully loads
+        window.addEventListener("load", () => {
+            const preloader = document.getElementById("preloader");
+            preloader.classList.add("hidden");
+        });
+    </script>
+
+    <script>
+        // Scroll animation
+        document.addEventListener("scroll", function () {
+            document.querySelectorAll(".scroll-transition").forEach(el => {
+                let rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    el.classList.add("active");
+                }
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const navbar = document.querySelector('.navbar');
+        const scrollToggle = () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        };
+        scrollToggle();
+        window.addEventListener('scroll', scrollToggle);
+    </script>
+</body>
+
+</html>

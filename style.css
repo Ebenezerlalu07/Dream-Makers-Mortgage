@@ -758,28 +758,7 @@ div,
   }
 }
 
-/* Preloader Styles */
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  /* full white background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
-}
 
-/* Logo inside loader */
-#preloader img {
-  width: 120px;
-  /* adjust size */
-  animation: spin 2s linear infinite, pulse 1.5s ease-in-out infinite;
-}
 
 /* Spin Animation */
 @keyframes spin {
@@ -805,37 +784,37 @@ div,
   }
 }
 
-/* Hide preloader after load */
-#preloader.hidden {
-  opacity: 0;
-  visibility: hidden;
-}
-
-/* Preloader full screen */
+/* Fullscreen preloader */
 #preloader {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  /* Change background color if needed */
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   z-index: 9999;
-  /* stays on top */
   transition: opacity 0.5s ease, visibility 0.5s ease;
+  overflow: hidden;
 }
 
-#preloader img {
-  max-width: 150px;
-  width: 40%;
-  height: auto;
+/* Ensure it stays above all content */
+body.loading {
+  overflow: hidden;
+  height: 100vh;
 }
 
-/* Hidden state */
+/* Smooth hide animation */
 #preloader.hidden {
   opacity: 0;
   visibility: hidden;
+}
+
+/* Responsive image */
+#preloader img {
+  max-width: 150px;
+  width: 30vw;
+  height: auto;
 }

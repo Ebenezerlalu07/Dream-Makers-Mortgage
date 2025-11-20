@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
+
+
+
 </head>
 
 <body>
@@ -633,8 +636,9 @@
                             and Privacy Policy and consent to receive marketing communications via text, call, or email.
                         </label>
                         <div class="form-check form-switch ms-3">
-                            <input class="form-check-input toggle-orange" type="checkbox" id="consentSwitch" checked>
+                            <input class="form-check-input toggle-orange" type="checkbox" id="consentSwitch">
                         </div>
+
                     </div>
 
 
@@ -690,6 +694,20 @@
         // Similarly, add other slider update or option select functions as needed
     </script>
 
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // initialize EmailJS after the script is parsed and DOM is ready
+        document.addEventListener('DOMContentLoaded', function () {
+            try {
+                // <-- REPLACE with your real public key from EmailJS dashboard
+                emailjs.init('ZCwpLgmqeh70qlx7K');
+                console.log('✅ EmailJS loaded and initialized:', typeof emailjs);
+            } catch (err) {
+                console.error('EmailJS init error', err);
+            }
+        });
+    </script>
 
 
     <script>
@@ -879,6 +897,12 @@
                 return;
             }
 
+            if (typeof emailjs === 'undefined') {
+                alert('Email service not ready yet. Please wait a moment and try again.');
+                console.error('emailjs is undefined — SDK not loaded.');
+                return;
+            }
+
             const data = {
                 "Personal Info": {
                     "First Name": firstName,
@@ -887,58 +911,88 @@
                     "Phone": phone
                 },
                 "Loan Details": {
-                    "Loan Type": selectedLoanType,
-                    "Property Type": selectedPropertyType,
-                    "Property Use": selectedPropertyUse,
-                    "Credit Score": selectedCredit,
-                    "Found Home": selectedFoundHome,
+                    "Loan Type": selectedLoanType || "Not Provided",
+                    "Property Type": selectedPropertyType || "Not Provided",
+                    "Property Use": selectedPropertyUse || "Not Provided",
+                    "Credit Score": selectedCredit || "Not Provided",
+                    "Found Home": selectedFoundHome || "Not Provided",
                     "Purchase Price": `$${Number(purchasePrice).toLocaleString()}`,
-                    "Military Service": selectedMilitary,
-                    "Expected Purchase Time": selectedBuyTime,
-                    "First Time Buyer": selectedFirstTimeBuyer,
-                    "Bankruptcy (Last 7 yrs)": selectedSecondYesNo
+                    "Military Service": selectedMilitary || "Not Provided",
+                    "Expected Purchase Time": selectedBuyTime || "Not Provided",
+                    "First Time Buyer": selectedFirstTimeBuyer || "Not Provided",
+                    "Bankruptcy (Last 7 yrs)": selectedSecondYesNo || "Not Provided"
                 },
                 "Financial Info": {
                     "Annual Income": `$${annualIncome.toLocaleString()}`,
                     "Monthly Debt": `$${monthlyDebt.toLocaleString()}`,
-                    "Employment": selectedEmployment,
+                    "Employment": selectedEmployment || "Not Provided",
                     "Property Zip": window.propertyZip || "Not Provided"
                 }
             };
 
-            // Start with a greeting/message
-            let message = `Hello,%0D%0A%0D%0AI would like to submit my loan application. Here are my details:%0D%0A%0D%0A`;
-
-            // Add structured data
-            for (let section in data) {
-                message += `=== ${section} ===%0D%0A`;
-                for (let key in data[section]) {
-                    message += `${key}: ${data[section][key]}%0D%0A`;
+            // build readable body
+            let textBody = `New loan application submitted by ${firstName} ${lastName}\n\n`;
+            for (const section in data) {
+                textBody += `=== ${section} ===\n`;
+                for (const key in data[section]) {
+                    textBody += `${key}: ${data[section][key]}\n`;
                 }
-                message += `%0D%0A`;
+                textBody += `\n`;
             }
 
-            // Optional closing
-            message += "Thank you!%0D%0A%0D%0ABest regards,%0D%0A" + firstName + " " + lastName;
-
-            const to = "mail@gmail.com";
             const subject = `New Loan Application - ${firstName} ${lastName}`;
 
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${message}`;
-            window.open(gmailUrl, "_blank");
+            // UI: disable submit button while sending
+            const submitBtn = document.querySelector('.btn-red-pill[onclick="submitApplication()"]') ||
+                document.querySelector('.btn-red-pill');
+            const oldBtnHtml = submitBtn ? submitBtn.innerHTML : null;
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerText = 'Sending...';
+            }
+
+            // EmailJS template params (must match your template variables)
+            const templateParams = {
+                from_name: `${firstName} ${lastName} <${email}>`,
+                reply_to: email,
+                subject: subject,
+                message: textBody,
+                payload: JSON.stringify(data, null, 2)
+            };
+
+            // Replace these placeholders with values from your EmailJS account
+            const SERVICE_ID = 'Dream Makers Demo';    // copy 'service_id' here 
+            const TEMPLATE_ID = 'Dream Makers Template';   // copy 'template_id' here
+
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+                .then((response) => {
+                    console.log('EmailJS success', response);
+                    showPopup('Application submitted - Thank You!', 'success');
+                    // reset key fields (optional)
+                    document.getElementById("firstName").value = '';
+                    document.getElementById("lastName").value = '';
+                    document.getElementById("email").value = '';
+                    document.getElementById("homePhone").value = '';
+                    // optionally reset or navigate away
+                })
+                .catch((err) => {
+                    console.error('EmailJS error', err);
+                    showPopup('Sending failed — please try again or contact info@dmmtg.com', 'error');
+                })
+                .finally(() => {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = oldBtnHtml;
+                    }
+                });
         }
-
-
-
     </script>
 
 
 
 
-
-
-
     <style>
+        
         /* Orange Bootstrap switch */
         .toggle-orange:checked {
             background-color: #e02917;
@@ -1341,6 +1395,54 @@
                 }
             });
         });
+    </script>
+
+    <!-- Centered Success/Error Popup -->
+    <div id="nhPopup" style="
+  position: fixed;
+  bottom: 40px; /* use top:40px; instead if you prefer top-center */
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  background: #28a745;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  opacity: 0;
+  transition: transform 360ms cubic-bezier(.2,.9,.2,1), opacity 360ms ease;
+  z-index: 99999;
+  text-align: center;
+  pointer-events: none;
+">
+        Application submitted — thank you!
+    </div>
+
+    <script>
+        // Minimal show/hide toast used in submitApplication()
+        function showPopup(message = "Done", type = "success") {
+            const popup = document.getElementById('nhPopup');
+            popup.textContent = message || popup.textContent;
+
+            // color by type
+            if (type === 'error') {
+                popup.style.background = '#dc3545';
+            } else {
+                popup.style.background = '#28a745';
+            }
+
+            // animate in
+            popup.style.opacity = '1';
+            popup.style.transform = 'translateX(-50%) translateY(0)';
+
+            // auto hide after 3s
+            clearTimeout(popup._hideTimer);
+            popup._hideTimer = setTimeout(() => {
+                popup.style.opacity = '0';
+                popup.style.transform = 'translateX(-50%) translateY(30px)';
+            }, 3000);
+        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

@@ -1387,12 +1387,22 @@
 
 
                     <!-- Buttons -->
-                    <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
-                        <button class="btn btn-outline-dark px-4 py-2"
+                    <!-- <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                        <button class="btn btn-outline-dark rounded-pill px-4 py-2"
                             onclick="showSection('property-zip-step20','about-yourself-section')">
                             Back
                         </button>
                         <button class="btn btn-danger px-5 py-2" onclick="submitApplication()">
+                            Submit
+                        </button>
+                    </div> -->
+
+                    <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                        <button class="btn btn-outline-dark rounded-pill px-4 py-2"
+                            onclick="showSection('property-zip-step20','about-yourself-section')">
+                            Back
+                        </button>
+                        <button class="btn btn-red-pill rounded-pill px-5 py-2" onclick="submitApplication()">
                             Submit
                         </button>
                     </div>
@@ -1404,7 +1414,18 @@
     </div>
 
 
-
+    <!-- EmailJS SDK (browser build) -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            try {
+                emailjs.init('ZCwpLgmqeh70qlx7K');
+                console.log('EmailJS initialized:', typeof emailjs);
+            } catch (err) {
+                console.error('EmailJS init error:', err);
+            }
+        });
+    </script>
 
     <script>
         // --- GLOBAL FORM DATA ---
@@ -1673,96 +1694,82 @@
             const homePhone = document.getElementById('homePhone').value.trim();
             const consentSwitch = document.getElementById('consentSwitch').checked;
 
-            // Basic validation
+            // Validation
             if (!firstName || !lastName || !email || !homePhone) {
                 alert('Please fill in all required fields (First Name, Last Name, Email, Home Phone).');
                 return;
             }
-
             if (!consentSwitch) {
-                alert('Please agree to the Terms of Service and Privacy Policy by toggling the consent switch.');
+                alert('Please agree to the Terms of Service and Privacy Policy.');
+                return;
+            }
+            if (typeof emailjs === 'undefined') {
+                alert('Email service not ready yet. Please wait a moment and try again.');
+                console.error('emailjs is undefined — SDK not loaded.');
                 return;
             }
 
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-
-            // Update formData with contact info
+            // Update formData
             formData.firstName = firstName;
             formData.lastName = lastName;
             formData.email = email;
             formData.phone = homePhone;
 
-            // Prepare email content
-            const recipientEmail = "youremail@gmail.com"; // CHANGE THIS TO YOUR ACTUAL EMAIL
-            const subject = "New Loan Application Form Submission";
+            const subject = `New Refinance Application — ${firstName} ${lastName}`;
+            const data = { ...formData };
 
-            let body = "NEW LOAN APPLICATION SUBMISSION\n\n";
-            body += "=== PERSONAL INFORMATION ===\n";
-            body += `First Name: ${formData.firstName}\n`;
-            body += `Last Name: ${formData.lastName}\n`;
-            body += `Email: ${formData.email}\n`;
-            body += `Phone: ${formData.phone}\n\n`;
+            // Build a formatted message body
+            let textBody = "New Refinance Application Submission\n\n";
+            textBody += "=== PERSONAL INFORMATION ===\n";
+            textBody += `First Name: ${formData.firstName}\n`;
+            textBody += `Last Name: ${formData.lastName}\n`;
+            textBody += `Email: ${formData.email}\n`;
+            textBody += `Phone: ${formData.phone}\n\n`;
 
-            body += "=== LOAN DETAILS ===\n";
-            body += `Loan Type: ${formData.loanType || "Not provided"}\n`;
-            body += `Property Type: ${formData.propertyType || "Not provided"}\n`;
-            body += `Property Use: ${formData.propertyUse || "Not provided"}\n`;
-            body += `Credit Score: ${formData.credit || "Not provided"}\n`;
-            body += `Purchase Price: ${formData.purchasePrice || "Not provided"}\n`;
-            body += `Military Service: ${formData.militaryService || "Not provided"}\n`;
-            body += `Bankruptcy in Last 7 Years: ${formData.bankruptcy || "Not provided"}\n`;
-            body += `Annual Household Income: ${formData.income || "Not provided"}\n`;
-            body += `Monthly Debt Payments: ${formData.debt || "Not provided"}\n`;
-            body += `Employment Status: ${formData.employment || "Not provided"}\n`;
-            body += `Loan Purpose: ${formData.loanPurpose || "Not provided"}\n`;
-            body += `Property Value: ${formData.propertyValue || "Not provided"}\n`;
-            body += `1st Mortgage Balance: ${formData.mortgageBalance || "Not provided"}\n`;
-            body += `1st Mortgage Interest Rate: ${formData.firstMortgageInterest || "Not provided"}\n`;
-            body += `Has 2nd Mortgage: ${formData.secondMortgage || "Not provided"}\n`;
-            body += `2nd Mortgage Interest Rate: ${formData.secondMortgageInterest || "Not provided"}\n`;
-            body += `Late Mortgage Payments: ${formData.latePayments || "Not provided"}\n`;
-            body += `Foreclosure in Last 7 Years: ${formData.foreclosure || "Not provided"}\n`;
-            body += `Has FHA Loan: ${formData.fhaLoan || "Not provided"}\n`;
-            body += `Property Zip Code: ${formData.propertyZip || "Not provided"}\n`;
+            textBody += "=== LOAN DETAILS ===\n";
+            for (const [key, value] of Object.entries(formData)) {
+                if (!['firstName', 'lastName', 'email', 'phone'].includes(key)) {
+                    textBody += `${key.replace(/([A-Z])/g, ' $1')}: ${value || "Not provided"}\n`;
+                }
+            }
 
-            body += `\n=== SUBMISSION DETAILS ===\n`;
-            body += `Submission Date: ${new Date().toLocaleString()}\n`;
-            body += `Consent Given: ${consentSwitch ? 'Yes' : 'No'}\n`;
+            textBody += `\n=== SUBMISSION DETAILS ===\n`;
+            textBody += `Submitted On: ${new Date().toLocaleString()}\n`;
 
-            // Create Gmail compose URL - FIXED VERSION
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipientEmail)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            // EmailJS params — must match your template fields
+            const templateParams = {
+                from_name: `${firstName} ${lastName} <${email}>`,
+                reply_to: email,
+                subject: subject,
+                message: textBody,
+                payload: JSON.stringify(data, null, 2)
+            };
 
-            // Open Gmail composer in a new tab
-            window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+            const SERVICE_ID = 'Dream Makers Demo';    // copy 'service_id' here 
+            const TEMPLATE_ID = 'Dream Makers Template';   // copy 'template_id' here
 
-            // Show confirmation message
-            setTimeout(() => {
-                alert('Your application is ready to be sent! A Gmail compose window has opened with your information. Please review and send the email to complete your submission.');
-            }, 1000);
+            const submitBtn = document.querySelector('.btn.btn-danger');
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Sending...";
+
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+                .then(response => {
+                    console.log("Email sent:", response.status, response.text);
+                    showPopup("Your refinance application was submitted successfully!", "success");
+                    document.getElementById("firstName").value = "";
+                    document.getElementById("lastName").value = "";
+                    document.getElementById("email").value = "";
+                    document.getElementById("homePhone").value = "";
+                })
+                .catch(err => {
+                    console.error(" EmailJS send error:", err);
+                    showPopup("There was an issue sending your application. Please try again later.", "error");
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Submit";
+                });
         }
-        // --- UTILITIES ---
-        function enableContinue(id) {
-            const btn = document.getElementById(id);
-            if (!btn) return;
-            btn.disabled = false;
-            btn.classList.remove("disabled-link");
-        }
-
-        function setActive(el, selector, btnId) {
-            document.querySelectorAll(selector).forEach(opt => opt.classList.remove("active"));
-            el.classList.add("active");
-            enableContinue(btnId);
-        }
-
-        // Initialize first step
-        document.addEventListener('DOMContentLoaded', function () {
-            showSection('loan-section', null);
-        });
     </script>
 
 
@@ -2229,6 +2236,48 @@
                 }
             });
         });
+
+    </script>
+    <!-- Centered Success Popup -->
+    <div id="popupMessage" style="
+  position: fixed;
+  bottom: 40px; /* change to 'top: 40px;' if you want it on top */
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  background: #28a745;
+  color: white;
+  padding: 14px 26px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 99999;
+  text-align: center;
+  pointer-events: none;
+">
+        ✅ Application submitted successfully!
+    </div>
+
+    <script>
+        function showPopup(message = "✅ Application submitted successfully!", type = "success") {
+            const popup = document.getElementById("popupMessage");
+
+            // Reset styles
+            popup.style.background = type === "error" ? "#dc3545" : "#28a745";
+            popup.textContent = message;
+
+            // Show animation
+            popup.style.opacity = "1";
+            popup.style.transform = "translateX(-50%) translateY(0)";
+
+            // Auto-hide
+            setTimeout(() => {
+                popup.style.opacity = "0";
+                popup.style.transform = "translateX(-50%) translateY(30px)";
+            }, 3000);
+        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

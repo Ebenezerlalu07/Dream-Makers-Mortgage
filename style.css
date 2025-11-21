@@ -131,7 +131,7 @@ span,
 
 /* Dropdown */
 .navbar-nav .dropdown-menu {
-  background: rgba(255, 255, 255, 0.18);
+  background: white;
   border-radius: 12px;
   border: none;
   padding: 10px 0;
@@ -140,15 +140,15 @@ span,
 }
 
 .navbar-nav .dropdown-item {
-  color: #fff;
+  color: #1E1E1E;
   font-weight: 400;
   padding: 8px 16px;
   transition: background-color 0.18s ease, color 0.18s ease;
 }
 
 .navbar-nav .dropdown-item:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
+  background:whitesmoke;
+ color: #1E1E1E;
   border-radius: 8px;
 }
 

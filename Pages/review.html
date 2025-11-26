@@ -86,116 +86,66 @@
 
 
 
-    <!-- REVIEW FORM SECTION -->
-    <section class="">
+
+
+    <!-- ============================
+     REVIEW FORM SECTION
+=============================== -->
+
+    <section class="py-4">
         <div class="container">
-            <form id="reviewForm" class="p-4 rounded-4 shadow-sm">
+
+            <form id="reviewForm" class="p-4 rounded-4 shadow-sm border">
+
                 <div class="row g-3">
+
+                    <!-- First Name -->
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">First Name<span class="text-danger">*</span></label>
-                        <input type="text" id="firstName" class="form-control" placeholder="Enter your first name">
+                        <input type="text" id="firstName" class="form-control" required>
                     </div>
+
+                    <!-- Last Name -->
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">Last Name<span class="text-danger">*</span></label>
-                        <input type="text" id="lastName" class="form-control" placeholder="Enter last first name">
+                        <input type="text" id="lastName" class="form-control" required>
                     </div>
 
+                    <!-- Email -->
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">Email<span class="text-danger">*</span></label>
-                        <input type="email" id="email" class="form-control" placeholder="Enter your e-mail">
+                        <input type="email" id="email" class="form-control" required>
                     </div>
+
+                    <!-- City -->
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">Your City, State<span class="text-danger">*</span></label>
-                        <input type="text" id="city" class="form-control" placeholder="Enter your city">
+                        <input type="text" id="city" class="form-control" required>
                     </div>
 
+                    <!-- Review -->
                     <div class="col-12">
                         <label class="form-label fw-semibold">Review<span class="text-danger">*</span></label>
-                        <textarea id="reviewText" rows="4" class="form-control"
-                            placeholder="Enter your comments"></textarea>
+                        <textarea id="reviewText" class="form-control" rows="4" required></textarea>
                     </div>
 
+                    <!-- File Upload -->
                     <div class="col-12">
-                        <label class="form-label fw-semibold">Upload your image</label>
-
-                        <div id="fileDrop" class="file-drop text-center p-4 border border-2 border-dashed rounded-3"
+                        <label class="form-label fw-semibold">Upload File</label>
+                        <div id="fileDrop" class="text-center p-4 border border-2 border-dashed rounded-3"
                             style="cursor:pointer;">
-
                             <i class="bi bi-cloud-arrow-up fs-4 text-secondary"></i>
-                            <p class="mb-0 mt-2 text-muted" id="fileText">
-                                Drop files here or
-                                <span class="text-primary text-decoration-none" id="browseBtn">browse</span>
+                            <p id="fileText" class="mt-2 text-muted">
+                                Drop files here or <span id="browseBtn" class="text-primary"
+                                    style="cursor:pointer;">Browse</span>
                             </p>
-
-                            <input type="file" id="fileInput" accept="image/*" hidden>
+                            <input type="file" id="fileInput" hidden accept="image/*">
                         </div>
                     </div>
-                    <script>
-                        document.addEventListener("DOMContentLoaded", function () {
 
-                            const fileInput = document.getElementById("fileInput");
-                            const fileDrop = document.getElementById("fileDrop");
-                            const fileText = document.getElementById("fileText");
-                            const browseBtn = document.getElementById("browseBtn");
-
-                            /* ---------------------------------
-                               1. CLICK → OPEN FILE BROWSER
-                            ---------------------------------- */
-                            browseBtn.addEventListener("click", function (e) {
-                                e.stopPropagation();
-                                fileInput.click();
-                            });
-
-                            fileDrop.addEventListener("click", function () {
-                                fileInput.click();
-                            });
-
-                            /* ---------------------------------
-                               2. WHEN FILE SELECTED (BROWSE)
-                            ---------------------------------- */
-                            fileInput.addEventListener("change", function () {
-                                if (fileInput.files.length > 0) {
-                                    fileText.innerHTML = "Selected: <b>" + fileInput.files[0].name + "</b>";
-                                }
-                            });
-
-                            /* ---------------------------------
-                               3. DRAG OVER
-                            ---------------------------------- */
-                            fileDrop.addEventListener("dragover", function (e) {
-                                e.preventDefault();
-                                fileDrop.style.borderColor = "#e62719";
-                            });
-
-                            /* ---------------------------------
-                               4. DRAG LEAVE
-                            ---------------------------------- */
-                            fileDrop.addEventListener("dragleave", function () {
-                                fileDrop.style.borderColor = "#ccc";
-                            });
-
-                            /* ---------------------------------
-                               5. DROP FILE
-                            ---------------------------------- */
-                            fileDrop.addEventListener("drop", function (e) {
-                                e.preventDefault();
-                                fileDrop.style.borderColor = "#ccc";
-
-                                const files = e.dataTransfer.files;
-                                if (files.length > 0) {
-                                    fileInput.files = files;
-
-                                    fileText.innerHTML = "Selected: <b>" + files[0].name + "</b>";
-                                }
-                            });
-
-                        });
-                    </script>
-
-
+                    <!-- Rating -->
                     <div class="col-12">
-                        <label class="form-label fw-semibold">How would you rate our service?<span
-                                class="text-danger">*</span></label>
+                        <label class="form-label fw-semibold">Rating</label>
                         <div class="rating mt-2">
                             <i class="bi bi-star" data-value="1"></i>
                             <i class="bi bi-star" data-value="2"></i>
@@ -205,107 +155,228 @@
                         </div>
                     </div>
 
-                    <div class="col-12 mt-3">
-                        <p class="small text-muted">
-                            By providing your phone number and/or email and clicking "Submit" you agree to our Terms of
-                            Service and Privacy Policy and consent to receive marketing communications from Dream Makers
-                            Mortgage, LLC via text, call, or email, including automated messages. To opt out, reply
-                            'STOP'
-                            to any text. Message and data rates may apply.
-                        </p>
-                        <input type="checkbox" class="toggle-switch" checked>
-                    </div>
-
+                    <!-- Submit -->
                     <div class="col-12 text-start mt-4">
-                        <!-- Submit Button -->
-                        <button type="submit" class="btn rounded-pill px-3 py-2 text-white"
-                            style="background-color:#ED230D; border:none;">
+                        <button type="submit" class="btn px-4 py-2 text-white rounded-pill" style="background:#ED230D;">
                             Submit Now
-                            <svg xmlns="http://www.w3.org/2000/svg" class="ms-2" width="18" height="18"
-                                viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <line x1="7" y1="17" x2="17" y2="7" />
-                                <polyline points="7 7 17 7 17 17" />
-                            </svg>
                         </button>
                     </div>
+
                 </div>
             </form>
+
         </div>
     </section>
 
-    <script>
-        /* --------------------------
-           STAR RATING
-        --------------------------- */
-        let selectedRating = 0;
-        document.querySelectorAll(".rating i").forEach(star => {
-            star.addEventListener("click", function () {
-                selectedRating = this.dataset.value;
 
-                document.querySelectorAll(".rating i").forEach(s => {
-                    if (s.dataset.value <= selectedRating) {
-                        s.classList.add("bi-star-fill");
-                        s.classList.remove("bi-star");
-                    } else {
-                        s.classList.add("bi-star");
-                        s.classList.remove("bi-star-fill");
-                    }
+    <!-- ============================
+     MODERN CONFIRM POPUP
+=============================== -->
+
+    <!-- ============================
+     MODERN CONFIRM POPUP
+=============================== -->
+
+    <div id="confirmPopup" style="
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.65);
+    backdrop-filter:blur(6px);
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+">
+
+        <div id="popupBox" style="
+        background:white;
+        width:90%;
+        max-width:450px;
+        padding:35px 40px;
+        border-radius:22px;
+        text-align:center;
+        box-shadow:0 15px 50px rgba(0,0,0,0.30);
+        transform:scale(0.75);
+        opacity:0;
+        transition:0.25s ease;
+    ">
+
+            <h3 class="fw-bold mb-3" style="font-size:26px;">Confirm Submission</h3>
+
+            <p class="text-muted" style="font-size:16px;">
+                Please confirm your review before submitting.
+            </p>
+
+            <div class="d-flex justify-content-center gap-4 mt-4">
+
+                <!-- YES BUTTON -->
+                <button id="confirmYes" style="
+                width:160px;                   /* Increased Width */
+                padding:14px 0;
+                background:#28A745;
+                color:white;
+                border:none;
+                border-radius:50px;            /* FULL ROUNDED */
+                font-size:17px;
+                font-weight:600;
+                cursor:pointer;
+            ">
+                    Yes
+                </button>
+
+                <!-- CANCEL BUTTON -->
+                <button id="confirmNo" style="
+                width:160px;                   /* Increased Width */
+                padding:14px 0;
+                background:#ED230D;
+                color:white;
+                border:none;
+                border-radius:50px;            /* FULL ROUNDED */
+                font-size:17px;
+                font-weight:600;
+                cursor:pointer;
+            ">
+                    Cancel
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            let selectedRating = 0;
+
+            /* ⭐ Rating Logic */
+            document.querySelectorAll(".rating i").forEach(star => {
+                star.addEventListener("click", function () {
+                    selectedRating = this.dataset.value;
+
+                    document.querySelectorAll(".rating i").forEach(s => {
+                        s.classList.toggle("bi-star-fill", s.dataset.value <= selectedRating);
+                        s.classList.toggle("bi-star", s.dataset.value > selectedRating);
+                    });
                 });
             });
-        });
 
-        /* --------------------------
-           FORM SUBMIT
-        --------------------------- */
-        document.getElementById("reviewForm").addEventListener("submit", function (e) {
-            e.preventDefault();
 
-            const firstName = document.getElementById("firstName").value.trim();
-            const lastName = document.getElementById("lastName").value.trim();
-            const city = document.getElementById("city").value.trim();
-            const reviewText = document.getElementById("reviewText").value.trim();
+            /* ⭐ File Upload Logic */
             const fileInput = document.getElementById("fileInput");
+            const fileDrop = document.getElementById("fileDrop");
+            const fileText = document.getElementById("fileText");
 
-            if (!firstName || !lastName || !city || !reviewText || !selectedRating) {
-                alert("Please fill all required fields and select rating.");
-                return;
+            document.getElementById("browseBtn").onclick = (e) => {
+                e.stopPropagation();
+                fileInput.click();
+            };
+
+            fileDrop.onclick = () => fileInput.click();
+
+            fileDrop.ondragover = e => {
+                e.preventDefault();
+                fileDrop.style.borderColor = "#ED230D";
+            };
+
+            fileDrop.ondragleave = () => fileDrop.style.borderColor = "#ccc";
+
+            fileDrop.ondrop = e => {
+                e.preventDefault();
+                fileDrop.style.borderColor = "#ccc";
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                    fileText.innerHTML = "Selected: <b>" + e.dataTransfer.files[0].name + "</b>";
+                }
+            };
+
+            fileInput.onchange = () => {
+                if (fileInput.files.length) {
+                    fileText.innerHTML = "Selected: <b>" + fileInput.files[0].name + "</b>";
+                }
+            };
+
+
+            /* ⭐ Show Popup Before Submit */
+            document.getElementById("reviewForm").onsubmit = e => {
+                e.preventDefault();
+                showPopup();
+            };
+
+            function showPopup() {
+                const popup = document.getElementById("confirmPopup");
+                const box = document.getElementById("popupBox");
+                popup.style.display = "flex";
+
+                setTimeout(() => {
+                    box.style.opacity = "1";
+                    box.style.transform = "scale(1)";
+                }, 20);
             }
 
-            let file = fileInput.files[0];
+            document.getElementById("confirmNo").onclick = hidePopup;
 
-            if (file) {
-                // Convert uploaded image → BASE64
-                const reader = new FileReader();
-                reader.onload = function (event) {
-                    saveTestimonial(event.target.result);
-                };
-                reader.readAsDataURL(file);
-            } else {
-                // If no image uploaded → use default image
-                saveTestimonial("/Assets/Person.png");
+            function hidePopup() {
+                const popup = document.getElementById("confirmPopup");
+                const box = document.getElementById("popupBox");
+
+                box.style.opacity = "0";
+                box.style.transform = "scale(0.75)";
+
+                setTimeout(() => popup.style.display = "none", 200);
             }
 
-            function saveTestimonial(imageBase64) {
-                const testimonial = {
-                    name: `${firstName} ${lastName}`,
-                    city: city,
-                    review: reviewText,
-                    rating: selectedRating,
-                    img: imageBase64
-                };
 
-                const existing = JSON.parse(localStorage.getItem("dynamicTestimonials") || "[]");
-                existing.push(testimonial);
+            /* ⭐ Confirm Yes → Submit Review */
+            document.getElementById("confirmYes").onclick = () => {
+                hidePopup();
+                setTimeout(() => submitReview(), 200);
+            };
 
-                localStorage.setItem("dynamicTestimonials", JSON.stringify(existing));
-                sessionStorage.setItem("testimonialAdded", "1");
 
-                // Redirect back to homepage
-                window.location.href = "/index.html"; // Change path if needed
+            function submitReview() {
+
+                const first = document.getElementById("firstName").value.trim();
+                const last = document.getElementById("lastName").value.trim();
+                const city = document.getElementById("city").value.trim();
+                const review = document.getElementById("reviewText").value.trim();
+                const file = fileInput.files[0];
+
+                function save(imgPath) {
+
+                    let list = JSON.parse(localStorage.getItem("dynamicTestimonials") || "[]");
+
+                    list.push({
+                        name: first + " " + last,
+                        city: city,
+                        review: review,
+                        rating: selectedRating,
+                        img: imgPath
+                    });
+
+                    localStorage.setItem("dynamicTestimonials", JSON.stringify(list));
+
+                    // 🔹 Tell index page to show notification
+                    localStorage.setItem("showTestimonialToast", "1");
+
+                    // redirect to home/index page
+                    window.location.href = "/index.html"; // change path if needed
+                }
+
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = e => save(e.target.result);
+                    reader.readAsDataURL(file);
+                } else {
+                    save("/Assets/Person.png");
+                }
             }
+
         });
     </script>
+
 
 
 

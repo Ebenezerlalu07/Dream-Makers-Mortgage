@@ -494,10 +494,14 @@
         </div>
     </section>
 
+
+
+
     <!-- ============================
-     TESTIMONIAL CAROUSEL
+     TESTIMONIALS SECTION
 =============================== -->
-    <section class="scroll-transition py-4">
+
+    <section class="py-4">
         <div class="container">
 
             <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000"
@@ -505,54 +509,46 @@
 
                 <div class="carousel-inner">
 
-                    <!-- YOUR STATIC SLIDE -->
+                    <!-- STATIC FIRST SLIDE -->
                     <div class="carousel-item active">
                         <div class="row g-4">
 
-                            <!-- Testimonial 1 -->
                             <div class="col-md-6">
-                                <div class="p-4 bg-light rounded-4 h-100">
+                                <div class="p-4 bg-light rounded-4">
                                     <div class="d-flex align-items-center mb-3">
                                         <img src="/Assets/Person.png" width="60" height="60"
                                             class="rounded-circle me-3">
                                         <div>
-                                            <h5 class="mb-0 fw-bold">Dr. Jenil Jake</h5>
-                                            <small class="text-muted">Dubai, UAE</small>
+                                            <h5 class="fw-bold mb-0">Dr. Jenil Jake</h5>
+                                            <small class="text-muted">Secretary General Exinos Global</small>
                                         </div>
                                     </div>
-                                    <p class="mb-2">
-                                        “Lorem Ipsum is simply dummy text of the printing and typesetting industry...”
-                                    </p>
-                                    <p class="mb-0 small text-warning">★★★★★</p>
+                                    <p>“Lorem Ipsum is simply dummy text...”</p>
+                                    <p class="text-warning small">★★★★★</p>
                                 </div>
                             </div>
 
-                            <!-- Testimonial 2 -->
                             <div class="col-md-6 d-none d-md-block">
-                                <div class="p-4 bg-light rounded-4 h-100">
+                                <div class="p-4 bg-light rounded-4">
                                     <div class="d-flex align-items-center mb-3">
                                         <img src="/Assets/Person.png" width="60" height="60"
                                             class="rounded-circle me-3">
                                         <div>
-                                            <h5 class="mb-0 fw-bold">Sam Jude</h5>
-                                            <small class="text-muted">United States of America</small>
+                                            <h5 class="fw-bold mb-0">Sam Jude</h5>
+                                            <small class="text-muted">USA</small>
                                         </div>
                                     </div>
-                                    <p class="mb-2">
-                                        “Lorem Ipsum is simply dummy text of the printing and typesetting industry...”
-                                    </p>
-                                    <p class="mb-0 small text-warning">★★★★☆</p>
+                                    <p>“Lorem Ipsum is simply dummy text...”</p>
+                                    <p class="text-warning small">★★★★☆</p>
                                 </div>
                             </div>
 
                         </div>
                     </div>
 
-                    <!-- DYNAMIC SLIDES WILL BE INSERTED HERE BY JS -->
-
                 </div>
 
-                <!-- Manual controls -->
+                <!-- Controls -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
                     data-bs-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
@@ -569,27 +565,15 @@
     </section>
 
 
-    <!-- ============================
-     BOOTSTRAP JS BUNDLE
-=============================== -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-
-
-    <!-- ============================
-     DYNAMIC TESTIMONIAL JS
-=============================== -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
 
             const inner = document.querySelector("#testimonialCarousel .carousel-inner");
-
             let stored = JSON.parse(localStorage.getItem("dynamicTestimonials") || "[]");
 
-            /* -----------------------------
-               BUILD SLIDES (2 per slide)
-            ----------------------------- */
+            /* ============================
+               BUILD DYNAMIC SLIDES (2 per slide)
+            ============================ */
             function buildSlides() {
 
                 // Remove old dynamic slides
@@ -600,23 +584,25 @@
                     const t1 = stored[i];
                     const t2 = stored[i + 1];
 
-                    let slide = document.createElement("div");
+                    if (!t1) continue;
+
+                    const slide = document.createElement("div");
                     slide.classList.add("carousel-item", "dynamic-slide");
 
                     let stars1 = "★".repeat(t1.rating) + "☆".repeat(5 - t1.rating);
 
                     let card1 = `
                 <div class="col-md-6">
-                    <div class="p-4 bg-light rounded-4 h-100">
+                    <div class="p-4 bg-light rounded-4">
                         <div class="d-flex align-items-center mb-3">
                             <img src="${t1.img}" width="60" height="60" class="rounded-circle me-3">
                             <div>
-                                <h5 class="mb-0 fw-bold">${t1.name}</h5>
+                                <h5 class="fw-bold mb-0">${t1.name}</h5>
                                 <small class="text-muted">${t1.city}</small>
                             </div>
                         </div>
-                        <p class="mb-2">“${t1.review}”</p>
-                        <p class="mb-0 small text-warning">${stars1}</p>
+                        <p>“${t1.review}”</p>
+                        <p class="text-warning small">${stars1}</p>
                     </div>
                 </div>
             `;
@@ -624,18 +610,19 @@
                     let card2 = "";
                     if (t2) {
                         let stars2 = "★".repeat(t2.rating) + "☆".repeat(5 - t2.rating);
+
                         card2 = `
                     <div class="col-md-6 d-none d-md-block">
-                        <div class="p-4 bg-light rounded-4 h-100">
+                        <div class="p-4 bg-light rounded-4">
                             <div class="d-flex align-items-center mb-3">
                                 <img src="${t2.img}" width="60" height="60" class="rounded-circle me-3">
                                 <div>
-                                    <h5 class="mb-0 fw-bold">${t2.name}</h5>
+                                    <h5 class="fw-bold mb-0">${t2.name}</h5>
                                     <small class="text-muted">${t2.city}</small>
                                 </div>
                             </div>
-                            <p class="mb-2">“${t2.review}”</p>
-                            <p class="mb-0 small text-warning">${stars2}</p>
+                            <p>“${t2.review}”</p>
+                            <p class="text-warning small">${stars2}</p>
                         </div>
                     </div>
                 `;
@@ -644,56 +631,163 @@
                     slide.innerHTML = `<div class="row g-4">${card1}${card2}</div>`;
                     inner.appendChild(slide);
                 }
-
-                // Activate first slide ONLY if static is not active
-                if (!inner.querySelector(".carousel-item.active")) {
-                    inner.querySelector(".carousel-item")?.classList.add("active");
-                }
             }
 
-            buildSlides();
+            buildSlides(); // build on load
 
 
-            /* -----------------------------
-               SHOW UNDO AFTER SUBMIT
-            ----------------------------- */
-            if (sessionStorage.getItem("testimonialAdded") === "1") {
+            /* ============================
+               GREEN NOTIFICATION (using localStorage flag)
+            ============================ */
+            if (localStorage.getItem("showTestimonialToast") === "1" && stored.length > 0) {
 
-                sessionStorage.removeItem("testimonialAdded");
-                let latest = sessionStorage.getItem("latestIndex");
-                let t = stored[latest];
+                // clear flag so it doesn't repeat
+                localStorage.removeItem("showTestimonialToast");
 
-                let box = document.createElement("div");
-                box.style = `
-            position:fixed; bottom:20px; right:20px;
-            background:#0d6efd; color:white;
-            padding:14px 20px; border-radius:12px;
-            z-index:999999; display:flex;
-            flex-direction:column; gap:10px;
+                const latestIndex = stored.length - 1;
+                const t = stored[latestIndex];
+                if (!t) return;
+
+                const toast = document.createElement("div");
+                toast.style = `
+            position:fixed;
+            bottom:20px;
+            right:20px;
+            background:rgba(40,167,69,0.90); /* green */
+            color:white;
+            padding:22px 28px;
+            border-radius:18px;
+            font-size:16px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.25);
+            z-index:999999;
+            width:380px;
+            max-width:380px;
+            animation:fadeInUp 0.35s ease-out;
         `;
-                box.innerHTML = `
-            <strong>Submitted Successfully</strong>
-            <span>${t.name} - ${t.city}</span>
-            <button id="undo" style="
-                background:white; color:#0d6efd;
-                padding:6px 12px; border-radius:6px; border:none;
-            ">Remove Submission</button>
+
+                toast.innerHTML = `
+            <strong style="font-size:18px;">Submitted Successfully</strong>
+            <div style="margin-top:8px;">${t.name} – ${t.city}</div>
+
+            <button id="undoBtn"
+                style="
+                    background:white;
+                    color:#28A745;
+                    border:none;
+                    padding:10px 20px;
+                    margin-top:14px;
+                    border-radius:50px;
+                    font-weight:600;
+                    cursor:pointer;
+                ">
+                Undo
+            </button>
         `;
 
-                document.body.appendChild(box);
+                document.body.appendChild(toast);
 
-                document.getElementById("undo").onclick = () => {
-                    stored.splice(latest, 1);
+                // Undo click
+                document.getElementById("undoBtn").onclick = () => {
+                    stored.splice(latestIndex, 1);
                     localStorage.setItem("dynamicTestimonials", JSON.stringify(stored));
-                    box.remove();
+                    toast.remove();
                     buildSlides();
                 };
 
-                setTimeout(() => box.remove(), 6000);
+                // auto hide
+                setTimeout(() => toast.remove(), 6000);
             }
 
         });
     </script>
+
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 
 
 

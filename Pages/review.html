@@ -51,7 +51,8 @@
                 </ul>
             </div>
 
-            <a href="https://dreammakersmortgage.loanzify.io/register" class="btn btn-apply d-none d-lg-block ms-3">Apply Now</a>
+            <a href="https://dreammakersmortgage.loanzify.io/register"
+                class="btn btn-apply d-none d-lg-block ms-3">Apply Now</a>
         </div>
     </nav>
 
@@ -85,79 +86,109 @@
 
 
     <!-- REVIEW FORM SECTION -->
+    <!-- REVIEW FORM SECTION -->
     <section class="">
         <div class="container">
-            <form class="p-4 rounded-4 shadow-sm">
+            <form id="reviewForm" class="p-4 rounded-4 shadow-sm">
                 <div class="row g-3">
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">First Name<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" placeholder="Enter your first name">
+                        <input type="text" id="firstName" class="form-control" placeholder="Enter your first name">
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">Last Name<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" placeholder="Enter last first name">
+                        <input type="text" id="lastName" class="form-control" placeholder="Enter last first name">
                     </div>
 
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">Email<span class="text-danger">*</span></label>
-                        <input type="email" class="form-control" placeholder="Enter your e-mail">
+                        <input type="email" id="email" class="form-control" placeholder="Enter your e-mail">
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">Your City, State<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" placeholder="Enter your city">
+                        <input type="text" id="city" class="form-control" placeholder="Enter your city">
                     </div>
 
                     <div class="col-12">
                         <label class="form-label fw-semibold">Review<span class="text-danger">*</span></label>
-                        <textarea rows="4" class="form-control" placeholder="Enter your comments"></textarea>
+                        <textarea id="reviewText" rows="4" class="form-control"
+                            placeholder="Enter your comments"></textarea>
                     </div>
 
                     <div class="col-12">
-                        <label class="form-label fw-semibold">Upload File</label>
-                        <div class="file-drop text-center p-4 border border-2 border-dashed rounded-3">
+                        <label class="form-label fw-semibold">Upload your image</label>
+
+                        <div id="fileDrop" class="file-drop text-center p-4 border border-2 border-dashed rounded-3"
+                            style="cursor:pointer;">
+
                             <i class="bi bi-cloud-arrow-up fs-4 text-secondary"></i>
-                            <p class="mb-0 mt-2 text-muted">
+                            <p class="mb-0 mt-2 text-muted" id="fileText">
                                 Drop files here or
-                                <span class="text-primary text-decoration-none" id="browseBtn"
-                                    style="cursor:pointer;">browse</span>
+                                <span class="text-primary text-decoration-none" id="browseBtn">browse</span>
                             </p>
-                            <input type="file" id="fileInput" style="display:none;">
+
+                            <input type="file" id="fileInput" accept="image/*" hidden>
                         </div>
                     </div>
-
                     <script>
-                        const fileInput = document.getElementById('fileInput');
-                        const browseBtn = document.getElementById('browseBtn');
-                        const fileDrop = document.querySelector('.file-drop');
+                        document.addEventListener("DOMContentLoaded", function () {
 
-                        // Trigger file input when clicking "browse"
-                        browseBtn.addEventListener('click', () => fileInput.click());
+                            const fileInput = document.getElementById("fileInput");
+                            const fileDrop = document.getElementById("fileDrop");
+                            const fileText = document.getElementById("fileText");
+                            const browseBtn = document.getElementById("browseBtn");
 
-                        // Optional: show filename when selected
-                        fileInput.addEventListener('change', () => {
-                            if (fileInput.files.length) {
-                                fileDrop.querySelector('p').textContent = `Selected file: ${fileInput.files[0].name}`;
-                            }
-                        });
+                            /* ---------------------------------
+                               1. CLICK → OPEN FILE BROWSER
+                            ---------------------------------- */
+                            browseBtn.addEventListener("click", function (e) {
+                                e.stopPropagation();
+                                fileInput.click();
+                            });
 
-                        // Optional: drag & drop support
-                        fileDrop.addEventListener('dragover', (e) => {
-                            e.preventDefault();
-                            fileDrop.style.borderColor = '#e62719';
-                        });
+                            fileDrop.addEventListener("click", function () {
+                                fileInput.click();
+                            });
 
-                        fileDrop.addEventListener('dragleave', () => {
-                            fileDrop.style.borderColor = '#ccc';
-                        });
+                            /* ---------------------------------
+                               2. WHEN FILE SELECTED (BROWSE)
+                            ---------------------------------- */
+                            fileInput.addEventListener("change", function () {
+                                if (fileInput.files.length > 0) {
+                                    fileText.innerHTML = "Selected: <b>" + fileInput.files[0].name + "</b>";
+                                }
+                            });
 
-                        fileDrop.addEventListener('drop', (e) => {
-                            e.preventDefault();
-                            fileDrop.style.borderColor = '#ccc';
-                            const files = e.dataTransfer.files;
-                            if (files.length) {
-                                fileInput.files = files; // set files to input
-                                fileDrop.querySelector('p').textContent = `Selected file: ${files[0].name}`;
-                            }
+                            /* ---------------------------------
+                               3. DRAG OVER
+                            ---------------------------------- */
+                            fileDrop.addEventListener("dragover", function (e) {
+                                e.preventDefault();
+                                fileDrop.style.borderColor = "#e62719";
+                            });
+
+                            /* ---------------------------------
+                               4. DRAG LEAVE
+                            ---------------------------------- */
+                            fileDrop.addEventListener("dragleave", function () {
+                                fileDrop.style.borderColor = "#ccc";
+                            });
+
+                            /* ---------------------------------
+                               5. DROP FILE
+                            ---------------------------------- */
+                            fileDrop.addEventListener("drop", function (e) {
+                                e.preventDefault();
+                                fileDrop.style.borderColor = "#ccc";
+
+                                const files = e.dataTransfer.files;
+                                if (files.length > 0) {
+                                    fileInput.files = files;
+
+                                    fileText.innerHTML = "Selected: <b>" + files[0].name + "</b>";
+                                }
+                            });
+
                         });
                     </script>
 
@@ -186,9 +217,8 @@
                     </div>
 
                     <div class="col-12 text-start mt-4">
-
                         <!-- Submit Button -->
-                        <button type="submit" class="btn rounded-pill px-3  py-2 text-white"
+                        <button type="submit" class="btn rounded-pill px-3 py-2 text-white"
                             style="background-color:#ED230D; border:none;">
                             Submit Now
                             <svg xmlns="http://www.w3.org/2000/svg" class="ms-2" width="18" height="18"
@@ -203,6 +233,83 @@
             </form>
         </div>
     </section>
+
+    <script>
+        /* --------------------------
+           STAR RATING
+        --------------------------- */
+        let selectedRating = 0;
+        document.querySelectorAll(".rating i").forEach(star => {
+            star.addEventListener("click", function () {
+                selectedRating = this.dataset.value;
+
+                document.querySelectorAll(".rating i").forEach(s => {
+                    if (s.dataset.value <= selectedRating) {
+                        s.classList.add("bi-star-fill");
+                        s.classList.remove("bi-star");
+                    } else {
+                        s.classList.add("bi-star");
+                        s.classList.remove("bi-star-fill");
+                    }
+                });
+            });
+        });
+
+        /* --------------------------
+           FORM SUBMIT
+        --------------------------- */
+        document.getElementById("reviewForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const firstName = document.getElementById("firstName").value.trim();
+            const lastName = document.getElementById("lastName").value.trim();
+            const city = document.getElementById("city").value.trim();
+            const reviewText = document.getElementById("reviewText").value.trim();
+            const fileInput = document.getElementById("fileInput");
+
+            if (!firstName || !lastName || !city || !reviewText || !selectedRating) {
+                alert("Please fill all required fields and select rating.");
+                return;
+            }
+
+            let file = fileInput.files[0];
+
+            if (file) {
+                // Convert uploaded image → BASE64
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    saveTestimonial(event.target.result);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                // If no image uploaded → use default image
+                saveTestimonial("/Assets/Person.png");
+            }
+
+            function saveTestimonial(imageBase64) {
+                const testimonial = {
+                    name: `${firstName} ${lastName}`,
+                    city: city,
+                    review: reviewText,
+                    rating: selectedRating,
+                    img: imageBase64
+                };
+
+                const existing = JSON.parse(localStorage.getItem("dynamicTestimonials") || "[]");
+                existing.push(testimonial);
+
+                localStorage.setItem("dynamicTestimonials", JSON.stringify(existing));
+                sessionStorage.setItem("testimonialAdded", "1");
+
+                // Redirect back to homepage
+                window.location.href = "/index.html"; // Change path if needed
+            }
+        });
+    </script>
+
+
+
+
 
     <style>
         .form-control,

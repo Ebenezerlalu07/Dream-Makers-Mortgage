@@ -493,15 +493,17 @@
             </div>
         </div>
     </section>
-    
+
     <section class=" scroll-transition py-4">
         <div class="container">
             <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
 
+                    <!-- Your static slides (keep them) -->
                     <!-- Slide 1 -->
                     <div class="carousel-item active">
                         <div class="row g-4">
+
                             <!-- Testimonial 1 -->
                             <div class="col-md-6">
                                 <div class="p-4 bg-light rounded-4 h-100">
@@ -513,12 +515,18 @@
                                             <small class="text-muted">Secretary General Exinos Global</small>
                                         </div>
                                     </div>
-                                    <p class="mb-0">
-                                        “Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s…”
+
+                                    <p class="mb-2">
+                                        “Lorem Ipsum is simply dummy text of the printing and typesetting industry...”
+                                    </p>
+
+                                    <!-- ⭐ STAR RATING -->
+                                    <p class="mb-0 small text-warning">
+                                        ★★★★★
                                     </p>
                                 </div>
                             </div>
+
                             <!-- Testimonial 2 -->
                             <div class="col-md-6 d-none d-md-block">
                                 <div class="p-4 bg-light rounded-4 h-100">
@@ -530,61 +538,137 @@
                                             <small class="text-muted">United States of America</small>
                                         </div>
                                     </div>
-                                    <p class="mb-0">
-                                        “Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s…”
+
+                                    <p class="mb-2">
+                                        “Lorem Ipsum is simply dummy text of the printing and typesetting industry...”
+                                    </p>
+
+                                    <!-- ⭐ STAR RATING -->
+                                    <p class="mb-0 small text-warning">
+                                        ★★★★☆
                                     </p>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
-                    <!-- Slide 2 -->
-                    <div class="carousel-item">
-                        <div class="row g-4">
-                            <!-- Testimonial 3 -->
-                            <div class="col-md-6">
-                                <div class="p-4 bg-light rounded-4 h-100">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <img src="/Assets/Person.png" alt="Sarah Lee" class="rounded-circle me-3"
-                                            width="60" height="60">
-                                        <div>
-                                            <h5 class="mb-0 fw-bold">Sarah Lee</h5>
-                                            <small class="text-muted">London, UK</small>
-                                        </div>
-                                    </div>
-                                    <p class="mb-0">
-                                        “Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                        It has survived not only five centuries but also the leap into electronic
-                                        typesetting.”
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- Testimonial 4 -->
-                            <div class="col-md-6 d-none d-md-block">
-                                <div class="p-4 bg-light rounded-4 h-100">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <img src="/Assets/Person.png" alt="Michael Scott" class="rounded-circle me-3"
-                                            width="60" height="60">
-                                        <div>
-                                            <h5 class="mb-0 fw-bold">Michael Scott</h5>
-                                            <small class="text-muted">New York, USA</small>
-                                        </div>
-                                    </div>
-                                    <p class="mb-0">
-                                        “It was popularised in the 1960s with the release of Letraset sheets
-                                        containing Lorem Ipsum passages, and more recently with desktop publishing
-                                        software.”
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    <!-- Slide 2 (etc...) -->
+                    <!-- ... your other static slides ... -->
 
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const inner = document.querySelector("#testimonialCarousel .carousel-inner");
+            if (!inner) return;
+
+            const stored = JSON.parse(localStorage.getItem("dynamicTestimonials") || "[]");
+
+            // Group testimonials → 2 per slide
+            for (let i = 0; i < stored.length; i += 2) {
+
+                const t1 = stored[i];
+                const t2 = stored[i + 1]; // may be undefined
+
+                const item = document.createElement("div");
+                item.classList.add("carousel-item");
+
+                const stars1 = "★".repeat(t1.rating) + "☆".repeat(5 - t1.rating);
+
+                let card1 = `
+            <div class="col-md-6">
+                <div class="p-4 bg-light rounded-4 h-100">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="${t1.img}" width="60" height="60"
+                             class="rounded-circle me-3">
+                        <div>
+                            <h5 class="mb-0 fw-bold">${t1.name}</h5>
+                            <small class="text-muted">${t1.city}</small>
+                        </div>
+                    </div>
+                    <p class="mb-2">“${t1.review}”</p>
+                    <p class="mb-0 small text-warning">${stars1}</p>
+                </div>
+            </div>
+        `;
+
+                let card2 = "";
+                if (t2) {
+                    const stars2 = "★".repeat(t2.rating) + "☆".repeat(5 - t2.rating);
+                    card2 = `
+                <div class="col-md-6 d-none d-md-block">
+                    <div class="p-4 bg-light rounded-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="${t2.img}" width="60" height="60"
+                                 class="rounded-circle me-3">
+                            <div>
+                                <h5 class="mb-0 fw-bold">${t2.name}</h5>
+                                <small class="text-muted">${t2.city}</small>
+                            </div>
+                        </div>
+                        <p class="mb-2">“${t2.review}”</p>
+                        <p class="mb-0 small text-warning">${stars2}</p>
+                    </div>
+                </div>
+            `;
+                }
+
+                item.innerHTML = `<div class="row g-4">${card1}${card2}</div>`;
+
+                inner.appendChild(item);
+            }
+
+            // If no existing active slide → activate the first dynamic slide
+            if (!inner.querySelector(".carousel-item.active")) {
+                const firstSlide = inner.querySelector(".carousel-item");
+                if (firstSlide) firstSlide.classList.add("active");
+            }
+
+            // Show success notification
+            if (sessionStorage.getItem("testimonialAdded") === "1") {
+                sessionStorage.removeItem("testimonialAdded");
+
+                const note = document.createElement("div");
+                note.textContent = "Testimonial added successfully!";
+                note.style.position = "fixed";
+                note.style.bottom = "20px";
+                note.style.right = "20px";
+                note.style.background = "#28a745";
+                note.style.color = "#fff";
+                note.style.padding = "10px 18px";
+                note.style.borderRadius = "8px";
+                note.style.zIndex = "99999";
+                document.body.appendChild(note);
+
+                setTimeout(() => note.remove(), 2500);
+            }
+        });
+    </script>
+
+
+
+    <!-- Developer Cleanup: Remove all dynamic test data -->
+    <script>
+        localStorage.removeItem("dynamicTestimonials");
+        sessionStorage.removeItem("testimonialAdded");
+    </script>
+
+
+
+    <style>
+        .testimonial-card {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+
+
+
 
 
     <!-- Digital Mortgage CTA Section (Responsive) -->
@@ -751,10 +835,14 @@
                 <div class="col-12 col-md-6 col-lg-3">
                     <h6 class="fw-bold mb-3">Resources</h6>
                     <ul class="list-unstyled small mb-0">
-                        <li><a href="/Resource/loanprograms.html" class="text-dark text-decoration-none">Loan Programs</a></li>
-                        <li><a href="/Resource/loan process.html" class="text-dark text-decoration-none">Loan Process</a></li>
-                        <li><a href="/Resource/Mortgage Basics.html" class="text-dark text-decoration-none">Mortgage Basics</a></li>
-                        <li><a href="/Resource/Online Forms.html" class="text-dark text-decoration-none">Online Forms</a></li>
+                        <li><a href="/Resource/loanprograms.html" class="text-dark text-decoration-none">Loan
+                                Programs</a></li>
+                        <li><a href="/Resource/loan process.html" class="text-dark text-decoration-none">Loan
+                                Process</a></li>
+                        <li><a href="/Resource/Mortgage Basics.html" class="text-dark text-decoration-none">Mortgage
+                                Basics</a></li>
+                        <li><a href="/Resource/Online Forms.html" class="text-dark text-decoration-none">Online
+                                Forms</a></li>
                         <li><a href="/Resource/faq.html" class="text-dark text-decoration-none">FAQ</a></li>
                     </ul>
                 </div>

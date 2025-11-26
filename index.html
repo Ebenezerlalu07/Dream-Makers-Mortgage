@@ -494,13 +494,18 @@
         </div>
     </section>
 
-    <section class=" scroll-transition py-4">
+    <!-- ============================
+     TESTIMONIAL CAROUSEL
+=============================== -->
+    <section class="scroll-transition py-4">
         <div class="container">
-            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+
+            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000"
+                data-bs-touch="true">
+
                 <div class="carousel-inner">
 
-                    <!-- Your static slides (keep them) -->
-                    <!-- Slide 1 -->
+                    <!-- YOUR STATIC SLIDE -->
                     <div class="carousel-item active">
                         <div class="row g-4">
 
@@ -508,22 +513,17 @@
                             <div class="col-md-6">
                                 <div class="p-4 bg-light rounded-4 h-100">
                                     <div class="d-flex align-items-center mb-3">
-                                        <img src="/Assets/Person.png" alt="Dr. Jenil Jake" class="rounded-circle me-3"
-                                            width="60" height="60">
+                                        <img src="/Assets/Person.png" width="60" height="60"
+                                            class="rounded-circle me-3">
                                         <div>
                                             <h5 class="mb-0 fw-bold">Dr. Jenil Jake</h5>
                                             <small class="text-muted">Dubai, UAE</small>
                                         </div>
                                     </div>
-
                                     <p class="mb-2">
                                         “Lorem Ipsum is simply dummy text of the printing and typesetting industry...”
                                     </p>
-
-                                    <!-- ⭐ STAR RATING -->
-                                    <p class="mb-0 small text-warning">
-                                        ★★★★★
-                                    </p>
+                                    <p class="mb-0 small text-warning">★★★★★</p>
                                 </div>
                             </div>
 
@@ -531,36 +531,172 @@
                             <div class="col-md-6 d-none d-md-block">
                                 <div class="p-4 bg-light rounded-4 h-100">
                                     <div class="d-flex align-items-center mb-3">
-                                        <img src="/Assets/Person.png" alt="Sam Jude" class="rounded-circle me-3"
-                                            width="60" height="60">
+                                        <img src="/Assets/Person.png" width="60" height="60"
+                                            class="rounded-circle me-3">
                                         <div>
                                             <h5 class="mb-0 fw-bold">Sam Jude</h5>
                                             <small class="text-muted">United States of America</small>
                                         </div>
                                     </div>
-
                                     <p class="mb-2">
                                         “Lorem Ipsum is simply dummy text of the printing and typesetting industry...”
                                     </p>
-
-                                    <!-- ⭐ STAR RATING -->
-                                    <p class="mb-0 small text-warning">
-                                        ★★★★☆
-                                    </p>
+                                    <p class="mb-0 small text-warning">★★★★☆</p>
                                 </div>
                             </div>
 
                         </div>
                     </div>
 
-
-                    <!-- Slide 2 (etc...) -->
-                    <!-- ... your other static slides ... -->
+                    <!-- DYNAMIC SLIDES WILL BE INSERTED HERE BY JS -->
 
                 </div>
+
+                <!-- Manual controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+
             </div>
+
         </div>
     </section>
+
+
+    <!-- ============================
+     BOOTSTRAP JS BUNDLE
+=============================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+
+    <!-- ============================
+     DYNAMIC TESTIMONIAL JS
+=============================== -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const inner = document.querySelector("#testimonialCarousel .carousel-inner");
+
+            let stored = JSON.parse(localStorage.getItem("dynamicTestimonials") || "[]");
+
+            /* -----------------------------
+               BUILD SLIDES (2 per slide)
+            ----------------------------- */
+            function buildSlides() {
+
+                // Remove old dynamic slides
+                inner.querySelectorAll(".dynamic-slide").forEach(el => el.remove());
+
+                for (let i = 0; i < stored.length; i += 2) {
+
+                    const t1 = stored[i];
+                    const t2 = stored[i + 1];
+
+                    let slide = document.createElement("div");
+                    slide.classList.add("carousel-item", "dynamic-slide");
+
+                    let stars1 = "★".repeat(t1.rating) + "☆".repeat(5 - t1.rating);
+
+                    let card1 = `
+                <div class="col-md-6">
+                    <div class="p-4 bg-light rounded-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="${t1.img}" width="60" height="60" class="rounded-circle me-3">
+                            <div>
+                                <h5 class="mb-0 fw-bold">${t1.name}</h5>
+                                <small class="text-muted">${t1.city}</small>
+                            </div>
+                        </div>
+                        <p class="mb-2">“${t1.review}”</p>
+                        <p class="mb-0 small text-warning">${stars1}</p>
+                    </div>
+                </div>
+            `;
+
+                    let card2 = "";
+                    if (t2) {
+                        let stars2 = "★".repeat(t2.rating) + "☆".repeat(5 - t2.rating);
+                        card2 = `
+                    <div class="col-md-6 d-none d-md-block">
+                        <div class="p-4 bg-light rounded-4 h-100">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="${t2.img}" width="60" height="60" class="rounded-circle me-3">
+                                <div>
+                                    <h5 class="mb-0 fw-bold">${t2.name}</h5>
+                                    <small class="text-muted">${t2.city}</small>
+                                </div>
+                            </div>
+                            <p class="mb-2">“${t2.review}”</p>
+                            <p class="mb-0 small text-warning">${stars2}</p>
+                        </div>
+                    </div>
+                `;
+                    }
+
+                    slide.innerHTML = `<div class="row g-4">${card1}${card2}</div>`;
+                    inner.appendChild(slide);
+                }
+
+                // Activate first slide ONLY if static is not active
+                if (!inner.querySelector(".carousel-item.active")) {
+                    inner.querySelector(".carousel-item")?.classList.add("active");
+                }
+            }
+
+            buildSlides();
+
+
+            /* -----------------------------
+               SHOW UNDO AFTER SUBMIT
+            ----------------------------- */
+            if (sessionStorage.getItem("testimonialAdded") === "1") {
+
+                sessionStorage.removeItem("testimonialAdded");
+                let latest = sessionStorage.getItem("latestIndex");
+                let t = stored[latest];
+
+                let box = document.createElement("div");
+                box.style = `
+            position:fixed; bottom:20px; right:20px;
+            background:#0d6efd; color:white;
+            padding:14px 20px; border-radius:12px;
+            z-index:999999; display:flex;
+            flex-direction:column; gap:10px;
+        `;
+                box.innerHTML = `
+            <strong>Submitted Successfully</strong>
+            <span>${t.name} - ${t.city}</span>
+            <button id="undo" style="
+                background:white; color:#0d6efd;
+                padding:6px 12px; border-radius:6px; border:none;
+            ">Remove Submission</button>
+        `;
+
+                document.body.appendChild(box);
+
+                document.getElementById("undo").onclick = () => {
+                    stored.splice(latest, 1);
+                    localStorage.setItem("dynamicTestimonials", JSON.stringify(stored));
+                    box.remove();
+                    buildSlides();
+                };
+
+                setTimeout(() => box.remove(), 6000);
+            }
+
+        });
+    </script>
+
+
+
 
     <script>
         const myCarousel = document.querySelector('#testimonialCarousel');
@@ -571,93 +707,6 @@
     </script>
 
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const inner = document.querySelector("#testimonialCarousel .carousel-inner");
-            if (!inner) return;
-
-            const stored = JSON.parse(localStorage.getItem("dynamicTestimonials") || "[]");
-
-            // Group testimonials → 2 per slide
-            for (let i = 0; i < stored.length; i += 2) {
-
-                const t1 = stored[i];
-                const t2 = stored[i + 1]; // may be undefined
-
-                const item = document.createElement("div");
-                item.classList.add("carousel-item");
-
-                const stars1 = "★".repeat(t1.rating) + "☆".repeat(5 - t1.rating);
-
-                let card1 = `
-            <div class="col-md-6">
-                <div class="p-4 bg-light rounded-4 h-100">
-                    <div class="d-flex align-items-center mb-3">
-                        <img src="${t1.img}" width="60" height="60"
-                             class="rounded-circle me-3">
-                        <div>
-                            <h5 class="mb-0 fw-bold">${t1.name}</h5>
-                            <small class="text-muted">${t1.city}</small>
-                        </div>
-                    </div>
-                    <p class="mb-2">“${t1.review}”</p>
-                    <p class="mb-0 small text-warning">${stars1}</p>
-                </div>
-            </div>
-        `;
-
-                let card2 = "";
-                if (t2) {
-                    const stars2 = "★".repeat(t2.rating) + "☆".repeat(5 - t2.rating);
-                    card2 = `
-                <div class="col-md-6 d-none d-md-block">
-                    <div class="p-4 bg-light rounded-4 h-100">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="${t2.img}" width="60" height="60"
-                                 class="rounded-circle me-3">
-                            <div>
-                                <h5 class="mb-0 fw-bold">${t2.name}</h5>
-                                <small class="text-muted">${t2.city}</small>
-                            </div>
-                        </div>
-                        <p class="mb-2">“${t2.review}”</p>
-                        <p class="mb-0 small text-warning">${stars2}</p>
-                    </div>
-                </div>
-            `;
-                }
-
-                item.innerHTML = `<div class="row g-4">${card1}${card2}</div>`;
-
-                inner.appendChild(item);
-            }
-
-            // If no existing active slide → activate the first dynamic slide
-            if (!inner.querySelector(".carousel-item.active")) {
-                const firstSlide = inner.querySelector(".carousel-item");
-                if (firstSlide) firstSlide.classList.add("active");
-            }
-
-            // Show success notification
-            if (sessionStorage.getItem("testimonialAdded") === "1") {
-                sessionStorage.removeItem("testimonialAdded");
-
-                const note = document.createElement("div");
-                note.textContent = "Testimonial added successfully!";
-                note.style.position = "fixed";
-                note.style.bottom = "20px";
-                note.style.right = "20px";
-                note.style.background = "#28a745";
-                note.style.color = "#fff";
-                note.style.padding = "10px 18px";
-                note.style.borderRadius = "8px";
-                note.style.zIndex = "99999";
-                document.body.appendChild(note);
-
-                setTimeout(() => note.remove(), 2500);
-            }
-        });
-    </script>
 
 
 
@@ -665,10 +714,10 @@
 
 
     <!-- Developer Cleanup: Remove all dynamic test data -->
-    <!-- <script>
+    <script>
         localStorage.removeItem("dynamicTestimonials");
         sessionStorage.removeItem("testimonialAdded");
-    </script> -->
+    </script>
 
 
 

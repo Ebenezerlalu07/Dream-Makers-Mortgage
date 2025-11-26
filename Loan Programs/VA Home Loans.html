@@ -506,17 +506,25 @@
         document.getElementById("gmailForm").addEventListener("submit", function (e) {
             e.preventDefault();
 
+            // Collect form data
             const data = new FormData(this);
             let body = "";
+
             data.forEach((value, key) => {
                 body += `${key}: ${value}\n`;
             });
 
+            // Encode subject & body
             const subject = encodeURIComponent("Quick Quote Request");
             const bodyEncoded = encodeURIComponent(body);
 
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&toMail.com&su=${subject}&body=${bodyEncoded}`;
+            // Set YOUR email here:
+            const toEmail = "info@dreammakers.com";   // ← change email if needed
 
+            // Gmail URL with TO email
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${toEmail}&su=${subject}&body=${bodyEncoded}`;
+
+            // Open Gmail compose
             window.open(gmailUrl, "_blank");
         });
     </script>

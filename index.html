@@ -569,29 +569,50 @@
         const WEB_APP_URL =
             "https://script.google.com/macros/s/AKfycbzXtHgVEVr8FeY-GtuFrQUEQdhwe4MOEkSWNZAxx9-lJqV1jpt4jQSs3RcDADjyZchI/exec";
 
-        function convertToArray(data) {
-            if (Array.isArray(data)) return data;
+        // ⭐ Flatten ANY JSON structure safely
+        function extractAllObjects(data) {
+            let result = [];
 
-            for (let k in data) {
-                if (Array.isArray(data[k])) return data[k];
-            }
+            function recurse(obj) {
+                if (Array.isArray(obj)) {
+                    obj.forEach(item => recurse(item));
+                } else if (typeof obj === "object" && obj !== null) {
 
-            if (typeof data === "object") {
-                const arr = [];
-                for (let k in data) {
-                    if (typeof data[k] === "object") arr.push(data[k]);
+                    if (
+                        obj.firstName || obj.lastName || obj.review ||
+                        obj.city || obj.cityState || obj.rating
+                    ) {
+                        result.push(obj);
+                    }
+
+                    Object.values(obj).forEach(value => recurse(value));
                 }
-                return arr;
             }
 
-            return [];
+            recurse(data);
+            return result;
+        }
+
+        // ⭐ Shuffle array for random order
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // swap
+            }
+            return array;
         }
 
         function handleTestimonials(data) {
             const track = document.getElementById("testimonialTrack");
 
-            const testimonials = convertToArray(data);
+            let testimonials = extractAllObjects(data);
 
+            // ⭐ RANDOM ORDER
+            testimonials = shuffle(testimonials);
+
+            console.log("Randomized testimonials:", testimonials);
+
+            // ⭐ Create cards
             testimonials.forEach(t => {
                 const card = document.createElement("div");
                 card.className = "testimonial-card";
@@ -609,7 +630,8 @@
 
                 card.innerHTML = `
                 <div class="d-flex align-items-center mb-3">
-                    <img src="${imgSrc}" class="rounded-circle me-3" onerror="this.src='/Assets/Person.png'">
+                    <img src="${imgSrc}" class="rounded-circle me-3"
+                         onerror="this.src='/Assets/Person.png'">
                     <div>
                         <h5 class="fw-bold mb-0">${name}</h5>
                         <small class="text-muted">${city}</small>
@@ -622,20 +644,27 @@
                 track.appendChild(card);
             });
 
-            // Duplicate for loop
+            // ⭐ Duplicate cards for infinite marquee loop
             const cards = [...track.children];
             cards.forEach(c => track.appendChild(c.cloneNode(true)));
 
-            // ⭐ Start animation AFTER all cards exist
-            track.style.animation = "scrollLeft 10s linear infinite";
+            // ⭐ Start marquee animation
+            setTimeout(() => {
+                track.style.animation = "scrollLeft 12s linear infinite";
+            }, 200);
         }
 
+        // Load JSONP
         window.addEventListener("load", () => {
             const s = document.createElement("script");
             s.src = WEB_APP_URL + "?callback=handleTestimonials";
             document.head.appendChild(s);
         });
     </script>
+
+
+
+
 
 
 

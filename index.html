@@ -504,35 +504,7 @@
         <div class="container">
             <div class="testimonial-marquee">
                 <div class="marquee-track" id="testimonialTrack">
-
-                    <!-- ✅ STATIC CARD 1 -->
-                    <div class="testimonial-card">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="/Assets/Person.png" width="60" height="60" class="rounded-circle me-3">
-                            <div>
-                                <h5 class="fw-bold mb-0">John Mathew</h5>
-                                <small class="text-muted">Dubai, UAE</small>
-                            </div>
-                        </div>
-                        <p>“Amazing service, very professional and reliable!”</p>
-                        <p class="text-warning small">★★★★★</p>
-                    </div>
-
-                    <!-- ✅ STATIC CARD 2 -->
-                    <div class="testimonial-card">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="/Assets/Person.png" width="60" height="60" class="rounded-circle me-3">
-                            <div>
-                                <h5 class="fw-bold mb-0">Sarah Johnson</h5>
-                                <small class="text-muted">New York, USA</small>
-                            </div>
-                        </div>
-                        <p>“The experience was smooth and stress-free. Highly recommend!”</p>
-                        <p class="text-warning small">★★★★☆</p>
-                    </div>
-
-                    <!-- Dynamic cards will load after this -->
-
+                    <!-- Dynamic cards will load here -->
                 </div>
             </div>
         </div>
@@ -551,23 +523,6 @@
             display: flex;
             flex-wrap: nowrap;
             gap: 25px;
-            animation: scrollLeft 10s linear infinite;
-        }
-
-        .testimonial-card {
-            width: 700px;
-            flex-shrink: 0;
-            background: #fff;
-            border-radius: 18px;
-            padding: 22px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
-        }
-
-        .testimonial-card img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
         }
 
         @keyframes scrollLeft {
@@ -580,7 +535,23 @@
             }
         }
 
-        @media (max-width: 576px) {
+        .testimonial-card {
+            width: 700px;
+            flex-shrink: 0;
+            background: #fff;
+            border-radius: 18px;
+            padding: 22px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        @media(max-width:576px) {
             .testimonial-card {
                 width: 260px;
                 padding: 18px;
@@ -593,39 +564,49 @@
     </style>
 
 
+
     <script>
         const WEB_APP_URL =
             "https://script.google.com/macros/s/AKfycbzXtHgVEVr8FeY-GtuFrQUEQdhwe4MOEkSWNZAxx9-lJqV1jpt4jQSs3RcDADjyZchI/exec";
 
-        function handleTestimonials(data) {
-            console.log("Raw data from API:", data);
+        function convertToArray(data) {
+            if (Array.isArray(data)) return data;
 
+            for (let k in data) {
+                if (Array.isArray(data[k])) return data[k];
+            }
+
+            if (typeof data === "object") {
+                const arr = [];
+                for (let k in data) {
+                    if (typeof data[k] === "object") arr.push(data[k]);
+                }
+                return arr;
+            }
+
+            return [];
+        }
+
+        function handleTestimonials(data) {
             const track = document.getElementById("testimonialTrack");
 
-            // 🟢 1) Extract testimonials safely from any format
-            let testimonials = [];
+            const testimonials = convertToArray(data);
 
-            if (Array.isArray(data)) testimonials = data;
-            else if (data?.data) testimonials = data.data;
-            else if (data?.records) testimonials = data.records;
-            else if (data?.rows) testimonials = data.rows;
-
-            console.log("Parsed testimonials:", testimonials);
-
-            // 🟢 2) Add dynamic testimonials AFTER 2 static cards
             testimonials.forEach(t => {
+                const card = document.createElement("div");
+                card.className = "testimonial-card";
+
                 const name = `${t.firstName || ""} ${t.lastName || ""}`.trim() || "Anonymous";
                 const city = t.cityState || t.city || "";
                 const review = t.review || "";
                 const ratingNum = Math.min(5, Math.max(0, Number(t.rating || 0)));
                 const rating = "★".repeat(ratingNum) + "☆".repeat(5 - ratingNum);
 
-                const imgSrc = (t.image && t.image.startsWith("data:"))
-                    ? t.image
-                    : (t.imageDriveUrlRaw || "/Assets/Person.png");
+                const imgSrc =
+                    (t.image && t.image.startsWith("data:"))
+                        ? t.image
+                        : (t.imageDriveUrlRaw || "/Assets/Person.png");
 
-                const card = document.createElement("div");
-                card.className = "testimonial-card";
                 card.innerHTML = `
                 <div class="d-flex align-items-center mb-3">
                     <img src="${imgSrc}" class="rounded-circle me-3" onerror="this.src='/Assets/Person.png'">
@@ -637,21 +618,27 @@
                 <p>“${review}”</p>
                 <p class="text-warning small">${rating}</p>
             `;
+
                 track.appendChild(card);
             });
 
-            // 🟢 3) Duplicate everything for smooth infinite looping
+            // Duplicate for loop
             const cards = [...track.children];
             cards.forEach(c => track.appendChild(c.cloneNode(true)));
+
+            // ⭐ Start animation AFTER all cards exist
+            track.style.animation = "scrollLeft 10s linear infinite";
         }
 
-        // JSONP Loader
         window.addEventListener("load", () => {
             const s = document.createElement("script");
             s.src = WEB_APP_URL + "?callback=handleTestimonials";
             document.head.appendChild(s);
         });
     </script>
+
+
+
 
 
 

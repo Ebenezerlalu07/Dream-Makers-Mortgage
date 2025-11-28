@@ -57,13 +57,11 @@
     </nav>
 
 
-    <!-- Navbar -->
+    <!-- Hero -->
     <section class="position-relative text-white"
-        style="background: url('/Assets/Review\ Us.png') center/cover no-repeat; min-height: 60vh;">
-        <!-- Overlay -->
+        style="background: url('/Assets/Review Us.png') center/cover no-repeat; min-height: 60vh;">
         <div class="position-absolute top-0 start-0 w-100 h-100"></div>
 
-        <!-- Text aligned at bottom -->
         <div class="container position-absolute bottom-0 start-0 end-0 pb-4">
             <div class="row">
                 <div class="col-lg-6 col-md-8 col-12">
@@ -75,24 +73,16 @@
 
 
     <section class="faq-section Paragraph container py-3">
-
         <div class="faq-item">
             <h4 class="fw-semibold">Review Us</h4>
-            <p class="">
-                Thank you for taking the time to leave your review!
-            </p>
+            <p>Thank you for taking the time to leave your review!</p>
         </div>
     </section>
-
-
-
-
 
     <!-- ============================
      REVIEW FORM SECTION
 =============================== -->
-
-    <section class="">
+    <section>
         <div class="container">
 
             <form id="reviewForm" class="p-4 rounded-4 shadow-sm border">
@@ -102,36 +92,36 @@
                     <!-- First Name -->
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">First Name<span class="text-danger">*</span></label>
-                        <input type="text" id="firstName" class="form-control" required>
+                        <input type="text" id="firstName" name="firstName" class="form-control" required>
                     </div>
 
                     <!-- Last Name -->
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">Last Name<span class="text-danger">*</span></label>
-                        <input type="text" id="lastName" class="form-control" required>
+                        <input type="text" id="lastName" name="lastName" class="form-control" required>
                     </div>
 
                     <!-- Email -->
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">Email<span class="text-danger">*</span></label>
-                        <input type="email" id="email" class="form-control" required>
+                        <input type="email" id="email" name="email" class="form-control" required>
                     </div>
 
                     <!-- City -->
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">Your City, State<span class="text-danger">*</span></label>
-                        <input type="text" id="city" class="form-control" required>
+                        <input type="text" id="city" name="cityState" class="form-control" required>
                     </div>
 
                     <!-- Review -->
                     <div class="col-12">
                         <label class="form-label fw-semibold">Review<span class="text-danger">*</span></label>
-                        <textarea id="reviewText" class="form-control" rows="4" required></textarea>
+                        <textarea id="reviewText" name="review" class="form-control" rows="4" required></textarea>
                     </div>
 
                     <!-- File Upload -->
                     <div class="col-12">
-                        <label class="form-label fw-semibold">Upload your iamge</label>
+                        <label class="form-label fw-semibold">Upload your image</label>
                         <div id="fileDrop" class="text-center p-4 border border-2 border-dashed rounded-3"
                             style="cursor:pointer;">
                             <i class="bi bi-cloud-arrow-up fs-4 text-secondary"></i>
@@ -139,7 +129,7 @@
                                 Drop files here or <span id="browseBtn" class="text-primary"
                                     style="cursor:pointer;">Browse</span>
                             </p>
-                            <input type="file" id="fileInput" hidden accept="image/*">
+                            <input type="file" id="fileInput" name="image" hidden accept="image/*">
                         </div>
                     </div>
 
@@ -153,6 +143,8 @@
                             <i class="bi bi-star" data-value="4"></i>
                             <i class="bi bi-star" data-value="5"></i>
                         </div>
+                        <!-- Hidden rating input that gets submitted -->
+                        <input type="hidden" id="ratingInput" name="rating" value="">
                     </div>
 
                     <!-- Submit -->
@@ -166,41 +158,35 @@
             </form>
 
         </div>
-    </section><br><br>
+    </section>
+    <br><br>
 
 
     <!-- ============================
      MODERN CONFIRM POPUP
 =============================== -->
-
-    <!-- ============================
-     MODERN CONFIRM POPUP
-=============================== -->
-
     <div id="confirmPopup" style="
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.65);
-    backdrop-filter:blur(6px);
-    justify-content:center;
-    align-items:center;
-    z-index:99999;
-">
-
-        <div id="popupBox" style="
-        background:white;
-        width:90%;
-        max-width:450px;
-        padding:35px 40px;
-        border-radius:22px;
-        text-align:center;
-        box-shadow:0 15px 50px rgba(0,0,0,0.30);
-        transform:scale(0.75);
-        opacity:0;
-        transition:0.25s ease;
+        display:none;
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,0.65);
+        backdrop-filter:blur(6px);
+        justify-content:center;
+        align-items:center;
+        z-index:99999;
     ">
-
+        <div id="popupBox" style="
+            background:white;
+            width:90%;
+            max-width:450px;
+            padding:35px 40px;
+            border-radius:22px;
+            text-align:center;
+            box-shadow:0 15px 50px rgba(0,0,0,0.30);
+            transform:scale(0.75);
+            opacity:0;
+            transition:0.25s ease;
+        ">
             <h3 class="fw-bold mb-3" style="font-size:26px;">Confirm Submission</h3>
 
             <p class="text-muted" style="font-size:16px;">
@@ -208,61 +194,73 @@
             </p>
 
             <div class="d-flex justify-content-center gap-4 mt-4">
-
                 <!-- YES BUTTON -->
                 <button id="confirmYes" style="
-                width:160px;                   /* Increased Width */
-                padding:14px 0;
-                background:#28A745;
-                color:white;
-                border:none;
-                border-radius:50px;            /* FULL ROUNDED */
-                font-size:17px;
-                font-weight:600;
-                cursor:pointer;
-            ">
+                    width:160px;
+                    padding:14px 0;
+                    background:#28A745;
+                    color:white;
+                    border:none;
+                    border-radius:50px;
+                    font-size:17px;
+                    font-weight:600;
+                    cursor:pointer;
+                ">
                     Yes
                 </button>
 
                 <!-- CANCEL BUTTON -->
                 <button id="confirmNo" style="
-                width:160px;                   /* Increased Width */
-                padding:14px 0;
-                background:#ED230D;
-                color:white;
-                border:none;
-                border-radius:50px;            /* FULL ROUNDED */
-                font-size:17px;
-                font-weight:600;
-                cursor:pointer;
-            ">
+                    width:160px;
+                    padding:14px 0;
+                    background:#ED230D;
+                    color:white;
+                    border:none;
+                    border-radius:50px;
+                    font-size:17px;
+                    font-weight:600;
+                    cursor:pointer;
+                ">
                     Cancel
                 </button>
-
             </div>
 
         </div>
     </div>
+
+    <div id="successToast" class="toast-glass">
+        <span class="toast-icon">✔</span>
+        <span class="toast-text">Thank you! Your review has been submitted.</span>
+    </div>
+
+
 
 
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
 
+            const WEB_APP_URL =
+                "https://script.google.com/macros/s/AKfycbzXtHgVEVr8FeY-GtuFrQUEQdhwe4MOEkSWNZAxx9-lJqV1jpt4jQSs3RcDADjyZchI/exec";
+
             let selectedRating = 0;
 
             /* ⭐ Rating Logic */
-            document.querySelectorAll(".rating i").forEach(star => {
+            const ratingStars = document.querySelectorAll(".rating i");
+            const ratingInput = document.getElementById("ratingInput");
+
+            ratingStars.forEach(star => {
                 star.addEventListener("click", function () {
                     selectedRating = this.dataset.value;
 
-                    document.querySelectorAll(".rating i").forEach(s => {
+                    ratingStars.forEach(s => {
                         s.classList.toggle("bi-star-fill", s.dataset.value <= selectedRating);
                         s.classList.toggle("bi-star", s.dataset.value > selectedRating);
                     });
+
+                    ratingInput.value = selectedRating;
                 });
             });
-
 
             /* ⭐ File Upload Logic */
             const fileInput = document.getElementById("fileInput");
@@ -298,8 +296,7 @@
                 }
             };
 
-
-            /* ⭐ Show Popup Before Submit */
+            /* ⭐ Popup Before Submit */
             document.getElementById("reviewForm").onsubmit = e => {
                 e.preventDefault();
                 showPopup();
@@ -328,61 +325,181 @@
                 setTimeout(() => popup.style.display = "none", 200);
             }
 
-
-            /* ⭐ Confirm Yes → Submit Review */
+            /* ⭐ Confirm Yes → Submit */
             document.getElementById("confirmYes").onclick = () => {
                 hidePopup();
+                showLoader(); // Show loader bottom-right
                 setTimeout(() => submitReview(), 200);
             };
 
-
+            /* ⭐ Submit Review */
             function submitReview() {
+                const form = document.getElementById("reviewForm");
+                const formData = new FormData(form);
 
-                const first = document.getElementById("firstName").value.trim();
-                const last = document.getElementById("lastName").value.trim();
-                const city = document.getElementById("city").value.trim();
-                const review = document.getElementById("reviewText").value.trim();
+                if (!formData.get("rating")) {
+                    formData.set("rating", "0");
+                }
+
                 const file = fileInput.files[0];
 
-                function save(imgPath) {
+                const sendForm = (fd) => {
+                    fetch(WEB_APP_URL, {
+                        method: "POST",
+                        body: fd,
+                        mode: "no-cors"
+                    })
+                        .then(() => {
+                            hideLoader();
+                            showToast();
 
-                    let list = JSON.parse(localStorage.getItem("dynamicTestimonials") || "[]");
+                            localStorage.setItem("showTestimonialToast", "1");
 
-                    list.push({
-                        name: first + " " + last,
-                        city: city,
-                        review: review,
-                        rating: selectedRating,
-                        img: imgPath
-                    });
-
-                    localStorage.setItem("dynamicTestimonials", JSON.stringify(list));
-
-                    // 🔹 Tell index page to show notification
-                    localStorage.setItem("showTestimonialToast", "1");
-
-                    // redirect to home/index page
-                    window.location.href = "/index.html"; // change path if needed
-                }
+                            setTimeout(() => {
+                                window.location.href = "/index.html";
+                            }, 1800);
+                        })
+                        .catch(err => {
+                            hideLoader();
+                            console.error(err);
+                            alert("Network error trying to submit your review.");
+                        });
+                };
 
                 if (file) {
                     const reader = new FileReader();
-                    reader.onload = e => save(e.target.result);
+                    reader.onload = (e) => {
+                        formData.set("imageData", e.target.result);
+                        sendForm(formData);
+                    };
                     reader.readAsDataURL(file);
                 } else {
-                    save("/Assets/Person.png");
+                    sendForm(formData);
                 }
+            }
+
+            /* ⭐ Bottom-right Loader */
+            function showLoader() {
+                document.getElementById("bottomLoader").classList.add("loader-show");
+            }
+
+            function hideLoader() {
+                document.getElementById("bottomLoader").classList.remove("loader-show");
+            }
+
+            /* ⭐ Toast Notification */
+            function showToast() {
+                const toast = document.getElementById("successToast");
+                toast.classList.add("show-toast");
+
+                setTimeout(() => {
+                    toast.classList.remove("show-toast");
+                }, 1500);
             }
 
         });
     </script>
 
-
+    <div id="bottomLoader" class="bottom-loader">
+        <div class="spinner"></div>
+        <span>Submitting...</span>
+    </div>
 
 
 
 
     <style>
+        .bottom-loader {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+
+            background: rgba(40, 167, 69, 0.75);
+            color: #fff;
+
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.35s ease;
+
+            z-index: 9999;
+        }
+
+        /* show state */
+        .bottom-loader.loader-show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Spinner */
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 3px solid #ffffff50;
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+
+        .toast-glass {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+
+            background: rgba(40, 167, 69, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            color: #fff;
+            padding: 16px 24px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 500;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25),
+                0 0 12px rgba(40, 167, 69, 0.55);
+
+            opacity: 0;
+            transform: translateY(25px) scale(0.92);
+            transition: all 0.35s cubic-bezier(0.4, 0.15, 0.2, 1);
+            z-index: 9999;
+        }
+
+        /* Icon bubble */
+        .toast-glass .toast-icon {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 6px 10px;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        /* smooth appear animation */
+        .toast-glass.show-toast {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+
         .form-control,
         textarea {
             background-color: #f4f3fc;
@@ -413,7 +530,7 @@
             transition: color 0.2s ease;
         }
 
-        .rating i.active {
+        .rating i.bi-star-fill {
             color: #ffb400;
         }
 
@@ -461,28 +578,6 @@
             margin-left: 6px;
         }
     </style>
-
-    <script>
-        // Star rating interactivity
-        const stars = document.querySelectorAll('.rating i');
-        stars.forEach((star, index) => {
-            star.addEventListener('click', () => {
-                stars.forEach((s, i) => s.classList.toggle('active', i <= index));
-            });
-        });
-    </script>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <!-- Footer Section -->
@@ -554,9 +649,7 @@
     </footer>
 
 
-
-
-    <!-- Footer Section -->
+    <!-- Second Footer Section -->
     <footer class="bg-white text-dark pt-5 border-top footer-custom">
         <div class="container">
             <div class="row gy-4">
@@ -641,26 +734,21 @@
             width: 100%;
             height: 100%;
             background: #fff;
-            /* you can change to dark (#000) or any color */
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            /* stay above everything */
             transition: opacity 0.5s ease, visibility 0.5s ease;
         }
 
-        /* Hide smoothly */
         #preloader.hidden {
             opacity: 0;
             visibility: hidden;
         }
 
-        /* Responsive image */
         #preloader img {
             max-width: 150px;
             width: 30vw;
-            /* scales with screen */
             height: auto;
         }
     </style>

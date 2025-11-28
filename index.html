@@ -548,17 +548,6 @@
 
                 </div>
 
-                <!-- Controls -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </button>
-
-                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </button>
-
             </div>
 
         </div>
@@ -566,140 +555,141 @@
 
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        // CONFIG: Google Apps Script URL
+        const WEB_APP_URL =
+            "https://script.google.com/macros/s/AKfycbzXtHgVEVr8FeY-GtuFrQUEQdhwe4MOEkSWNZAxx9-lJqV1jpt4jQSs3RcDADjyZchI/exec";
 
-            const inner = document.querySelector("#testimonialCarousel .carousel-inner");
-            let stored = JSON.parse(localStorage.getItem("dynamicTestimonials") || "[]");
+        // JSONP callback
+        function handleTestimonials(remoteData) {
+            try {
+                const remote = Array.isArray(remoteData) ? remoteData : [];
+                const local = JSON.parse(localStorage.getItem("dynamicTestimonials") || "[]") || [];
 
-            /* ============================
-               BUILD DYNAMIC SLIDES (2 per slide)
-            ============================ */
-            function buildSlides() {
+                const combined = remote.concat(local);
+
+                const inner = document.querySelector("#testimonialCarousel .carousel-inner");
+                if (!inner) return;
 
                 // Remove old dynamic slides
                 inner.querySelectorAll(".dynamic-slide").forEach(el => el.remove());
 
-                for (let i = 0; i < stored.length; i += 2) {
+                // Escape function
+                const esc = (s) =>
+                    s == null
+                        ? ""
+                        : String(s)
+                            .replaceAll("&", "&amp;")
+                            .replaceAll("<", "&lt;")
+                            .replaceAll(">", "&gt;")
+                            .replaceAll('"', "&quot;")
+                            .replaceAll("'", "&#039;");
 
-                    const t1 = stored[i];
-                    const t2 = stored[i + 1];
-
+                // Build slides
+                for (let i = 0; i < combined.length; i += 2) {
+                    const t1 = combined[i];
+                    const t2 = combined[i + 1];
                     if (!t1) continue;
 
-                    const slide = document.createElement("div");
-                    slide.classList.add("carousel-item", "dynamic-slide");
+                    const name1 = `${t1.firstName || ""} ${t1.lastName || ""}`.trim() || t1.name || "Anonymous";
+                    const city1 = t1.cityState || t1.city || "";
+                    const review1 = t1.review || "";
+                    const rating1 = Math.max(0, Math.min(5, Number(t1.rating || 0)));
+                    const img1 = (t1.image && t1.image.startsWith("data:"))
+                        ? t1.image
+                        : (t1.imageDriveUrlRaw || "/Assets/Person.png");
 
-                    let stars1 = "★".repeat(t1.rating) + "☆".repeat(5 - t1.rating);
-
-                    let card1 = `
-                <div class="col-md-6">
-                    <div class="p-4 bg-light rounded-4">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="${t1.img}" width="60" height="60" class="rounded-circle me-3">
-                            <div>
-                                <h5 class="fw-bold mb-0">${t1.name}</h5>
-                                <small class="text-muted">${t1.city}</small>
-                            </div>
-                        </div>
-                        <p>“${t1.review}”</p>
-                        <p class="text-warning small">${stars1}</p>
-                    </div>
-                </div>
-            `;
-
-                    let card2 = "";
-                    if (t2) {
-                        let stars2 = "★".repeat(t2.rating) + "☆".repeat(5 - t2.rating);
-
-                        card2 = `
-                    <div class="col-md-6 d-none d-md-block">
+                    const card1 = `
+                    <div class="col-md-6">
                         <div class="p-4 bg-light rounded-4">
                             <div class="d-flex align-items-center mb-3">
-                                <img src="${t2.img}" width="60" height="60" class="rounded-circle me-3">
+                                <img src="${esc(img1)}" width="60" height="60"
+                                     class="rounded-circle me-3"
+                                     loading="lazy"
+                                     onerror="this.src='/Assets/Person.png'">
                                 <div>
-                                    <h5 class="fw-bold mb-0">${t2.name}</h5>
-                                    <small class="text-muted">${t2.city}</small>
+                                    <h5 class="fw-bold mb-0">${esc(name1)}</h5>
+                                    <small class="text-muted">${esc(city1)}</small>
                                 </div>
                             </div>
-                            <p>“${t2.review}”</p>
-                            <p class="text-warning small">${stars2}</p>
+                            <p>“${esc(review1)}”</p>
+                            <p class="text-warning small">
+                                ${"★".repeat(rating1) + "☆".repeat(5 - rating1)}
+                            </p>
                         </div>
                     </div>
                 `;
+
+                    let card2 = "";
+                    if (t2) {
+                        const name2 = `${t2.firstName || ""} ${t2.lastName || ""}`.trim() || t2.name || "Anonymous";
+                        const city2 = t2.cityState || t2.city || "";
+                        const review2 = t2.review || "";
+                        const rating2 = Math.max(0, Math.min(5, Number(t2.rating || 0)));
+                        const img2 = (t2.image && t2.image.startsWith("data:"))
+                            ? t2.image
+                            : (t2.imageDriveUrlRaw || "/Assets/Person.png");
+
+                        card2 = `
+                        <div class="col-md-6 d-none d-md-block">
+                            <div class="p-4 bg-light rounded-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="${esc(img2)}" width="60" height="60"
+                                         class="rounded-circle me-3"
+                                         loading="lazy"
+                                         onerror="this.src='/Assets/Person.png'">
+                                    <div>
+                                        <h5 class="fw-bold mb-0">${esc(name2)}</h5>
+                                        <small class="text-muted">${esc(city2)}</small>
+                                    </div>
+                                </div>
+                                <p>“${esc(review2)}”</p>
+                                <p class="text-warning small">
+                                    ${"★".repeat(rating2) + "☆".repeat(5 - rating2)}
+                                </p>
+                            </div>
+                        </div>
+                    `;
                     }
 
+                    const slide = document.createElement("div");
+                    slide.classList.add("carousel-item", "dynamic-slide");
                     slide.innerHTML = `<div class="row g-4">${card1}${card2}</div>`;
                     inner.appendChild(slide);
                 }
+
+                // Initialize Bootstrap carousel ONLY ONCE
+                const myCarousel = document.querySelector('#testimonialCarousel');
+                if (myCarousel && !myCarousel._carouselInstance) {
+                    myCarousel._carouselInstance = new bootstrap.Carousel(myCarousel, { ride: "carousel" });
+                }
+
+            } catch (err) {
+                console.error("Error building testimonials:", err);
             }
+        }
 
-            buildSlides(); // build on load
+        // Load remote testimonials after DOM is fully ready
+        window.addEventListener("load", function () {
+            const script = document.createElement('script');
+            script.async = true;
 
+            // Cached version (FASTER)
+            script.src = WEB_APP_URL + '?callback=handleTestimonials';
 
-            /* ============================
-               GREEN NOTIFICATION (using localStorage flag)
-            ============================ */
-            if (localStorage.getItem("showTestimonialToast") === "1" && stored.length > 0) {
+            script.onerror = () => {
+                console.error("Failed loading testimonials JSONP");
+                try {
+                    handleTestimonials(JSON.parse(localStorage.getItem("dynamicTestimonials") || "[]"));
+                } catch (ex) { }
+            };
 
-                // clear flag so it doesn't repeat
-                localStorage.removeItem("showTestimonialToast");
-
-                const latestIndex = stored.length - 1;
-                const t = stored[latestIndex];
-                if (!t) return;
-
-                const toast = document.createElement("div");
-                toast.style = `
-            position:fixed;
-            bottom:20px;
-            right:20px;
-            background:rgba(40,167,69,0.90); /* green */
-            color:white;
-            padding:22px 28px;
-            border-radius:18px;
-            font-size:16px;
-            box-shadow:0 10px 30px rgba(0,0,0,0.25);
-            z-index:999999;
-            width:380px;
-            max-width:380px;
-            animation:fadeInUp 0.35s ease-out;
-        `;
-
-                toast.innerHTML = `
-            <strong style="font-size:18px;">Submitted Successfully</strong>
-            <div style="margin-top:8px;">${t.name} – ${t.city}</div>
-
-            <button id="undoBtn"
-                style="
-                    background:white;
-                    color:#28A745;
-                    border:none;
-                    padding:10px 20px;
-                    margin-top:14px;
-                    border-radius:50px;
-                    font-weight:600;
-                    cursor:pointer;
-                ">
-                Undo
-            </button>
-        `;
-
-                document.body.appendChild(toast);
-
-                // Undo click
-                document.getElementById("undoBtn").onclick = () => {
-                    stored.splice(latestIndex, 1);
-                    localStorage.setItem("dynamicTestimonials", JSON.stringify(stored));
-                    toast.remove();
-                    buildSlides();
-                };
-
-                // auto hide
-                setTimeout(() => toast.remove(), 6000);
-            }
-
+            document.head.appendChild(script);
         });
     </script>
+
+
+
+
 
 
 
@@ -720,15 +710,6 @@
     </style>
 
 
-
-
-    <script>
-        const myCarousel = document.querySelector('#testimonialCarousel');
-        const carousel = new bootstrap.Carousel(myCarousel, {
-            interval: 2500,  // change speed here (2 seconds)
-            ride: "carousel"
-        });
-    </script>
 
 
 

@@ -40,6 +40,11 @@ body {
   text-decoration: none;
 }
 
+.ft-logo {
+  width: auto;
+  height: 30px;
+}
+
 
 .bold {
   font-weight: 700;

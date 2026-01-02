@@ -702,7 +702,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             try {
                 // <-- REPLACE with your real public key from EmailJS dashboard
-                emailjs.init('ZCwpLgmqeh70qlx7K');
+                emailjs.init('n67N2v-2MXzo-ld0s');
                 console.log('✅ EmailJS loaded and initialized:', typeof emailjs);
             } catch (err) {
                 console.error('EmailJS init error', err);
@@ -962,8 +962,8 @@
             };
 
             // Replace these placeholders with values from your EmailJS account
-            const SERVICE_ID = 'Dream Makers Demo';    // copy 'service_id' here 
-            const TEMPLATE_ID = 'Dream Makers Template';   // copy 'template_id' here
+            const SERVICE_ID = 'Dream Makers IT Service';    // copy 'service_id' here 
+            const TEMPLATE_ID = 'Dream Makers IT Template';   // copy 'template_id' here
 
             emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
                 .then((response) => {

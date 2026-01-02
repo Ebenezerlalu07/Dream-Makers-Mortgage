@@ -503,28 +503,34 @@
     <section class="py-4">
         <div class="container">
             <div class="testimonial-marquee">
-                <div class="marquee-track" id="testimonialTrack">
-                    <!-- Dynamic cards will load here -->
-                </div>
+                <div class="marquee-track" id="testimonialTrack"></div>
             </div>
         </div>
     </section>
 
 
+
     <style>
+        /* =========================
+   TESTIMONIAL MARQUEE
+========================= */
+
         .testimonial-marquee {
             overflow: hidden;
             width: 100%;
             position: relative;
-            padding: 10px 0;
+            padding: 6px 0;
         }
 
+        /* Track */
         .marquee-track {
             display: flex;
-            flex-wrap: nowrap;
-            gap: 25px;
+            align-items: stretch;
+            gap: 22px;
+            width: max-content;
         }
 
+        /* Animation */
         @keyframes scrollLeft {
             from {
                 transform: translateX(0);
@@ -535,33 +541,88 @@
             }
         }
 
+        /* Card – Desktop */
         .testimonial-card {
             width: 700px;
+            min-height: 220px;
             flex-shrink: 0;
-            background: #fff;
-            border-radius: 18px;
-            padding: 22px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
         }
 
+        /* Header image */
         .testimonial-card img {
-            width: 60px;
-            height: 60px;
+            width: 54px;
+            height: 54px;
             border-radius: 50%;
             object-fit: cover;
         }
 
-        @media(max-width:576px) {
+        /* Review text */
+        .testimonial-card p {
+            margin: 8px 0;
+            line-height: 1.45;
+            font-size: 0.95rem;
+            color: #333;
+            flex-grow: 1;
+        }
+
+        /* Rating */
+        .testimonial-card .text-warning {
+            margin-top: 6px;
+            font-size: 0.85rem;
+        }
+
+        /* 📱 MOBILE – COMPACT */
+        @media (max-width: 576px) {
             .testimonial-card {
                 width: 260px;
-                padding: 18px;
+                min-height: 210px;
+                /* 🔥 REDUCED */
+                padding: 14px;
+                /* 🔥 reduced padding */
+            }
+
+            .testimonial-card img {
+                width: 44px;
+                height: 44px;
+            }
+
+            .testimonial-card p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+                margin: 6px 0;
             }
 
             .marquee-track {
-                gap: 18px;
+                gap: 14px;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .marquee-track {
+                animation: none !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .testimonial-card p {
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
             }
         }
     </style>
+
 
 
 
@@ -569,102 +630,87 @@
         const WEB_APP_URL =
             "https://script.google.com/macros/s/AKfycbxfboTqpROp-Hizcqbm4VpqLQpVyu0yRMuKmPTaE-L6LyYAHPBSWuzJVN6cQ3wjotMVIw/exec";
 
-        // ⭐ Flatten ANY JSON structure safely
+        function shuffle(arr) {
+            return arr.sort(() => Math.random() - 0.5);
+        }
+
         function extractAllObjects(data) {
-            let result = [];
+            const out = [];
+            (function walk(o) {
+                if (Array.isArray(o)) o.forEach(walk);
+                else if (o && typeof o === "object") {
+                    if (o.review) out.push(o);
+                    Object.values(o).forEach(walk);
+                }
+            })(data);
+            return out;
+        }
 
-            function recurse(obj) {
-                if (Array.isArray(obj)) {
-                    obj.forEach(item => recurse(item));
-                } else if (typeof obj === "object" && obj !== null) {
+        /* 🔥 IMAGE HANDLER */
+        function getImageSrc(t) {
+            if (!t) return "/Assets/Person.png";
 
-                    if (
-                        obj.firstName || obj.lastName || obj.review ||
-                        obj.city || obj.cityState || obj.rating
-                    ) {
-                        result.push(obj);
-                    }
+            if (t.image && t.image.startsWith("data:image")) {
+                return t.image;
+            }
 
-                    Object.values(obj).forEach(value => recurse(value));
+            if (t.imageDriveUrlRaw) {
+                return t.imageDriveUrlRaw;
+            }
+
+            if (t.image && t.image.includes("drive.google.com")) {
+                const id = t.image.match(/[-\w]{25,}/);
+                if (id) {
+                    return `https://drive.google.com/uc?export=view&id=${id[0]}`;
                 }
             }
 
-            recurse(data);
-            return result;
+            return "/Assets/Person.png";
         }
 
-        // ⭐ Shuffle array for random order
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]]; // swap
-            }
-            return array;
-        }
+        async function loadTestimonials() {
+            try {
+                const res = await fetch(WEB_APP_URL);
+                const data = await res.json();
 
-        function handleTestimonials(data) {
-            const track = document.getElementById("testimonialTrack");
+                const track = document.getElementById("testimonialTrack");
+                track.innerHTML = "";
 
-            let testimonials = extractAllObjects(data);
+                let reviews = shuffle(extractAllObjects(data));
 
-            // ⭐ RANDOM ORDER
-            testimonials = shuffle(testimonials);
+                reviews.forEach(t => {
+                    const card = document.createElement("div");
+                    card.className = "testimonial-card";
 
-            console.log("Randomized testimonials:", testimonials);
+                    const rating = "★".repeat(t.rating || 0) + "☆".repeat(5 - (t.rating || 0));
 
-            // ⭐ Create cards
-            testimonials.forEach(t => {
-                const card = document.createElement("div");
-                card.className = "testimonial-card";
-
-                const name = `${t.firstName || ""} ${t.lastName || ""}`.trim() || "Anonymous";
-                const city = t.cityState || t.city || "";
-                const review = t.review || "";
-                const ratingNum = Math.min(5, Math.max(0, Number(t.rating || 0)));
-                const rating = "★".repeat(ratingNum) + "☆".repeat(5 - ratingNum);
-
-                const imgSrc =
-                    (t.image && t.image.startsWith("data:"))
-                        ? t.image
-                        : (t.imageDriveUrlRaw || "/Assets/Person.png");
-
-                card.innerHTML = `
+                    card.innerHTML = `
                 <div class="d-flex align-items-center mb-3">
-                    <img src="${imgSrc}" class="rounded-circle me-3"
+                    <img src="${getImageSrc(t)}"
                          onerror="this.src='/Assets/Person.png'">
-                    <div>
-                        <h5 class="fw-bold mb-0">${name}</h5>
-                        <small class="text-muted">${city}</small>
+                    <div class="ms-3">
+                        <h5 class="fw-bold mb-0">${t.firstName || "Anonymous"}</h5>
+                        <small class="text-muted">${t.city || ""}</small>
                     </div>
                 </div>
-                <p>“${review}”</p>
+                <p>“${t.review || ""}”</p>
                 <p class="text-warning small">${rating}</p>
             `;
+                    track.appendChild(card);
+                });
 
-                track.appendChild(card);
-            });
+                [...track.children].forEach(c => track.appendChild(c.cloneNode(true)));
 
-            // ⭐ Duplicate cards for infinite marquee loop
-            const cards = [...track.children];
-            cards.forEach(c => track.appendChild(c.cloneNode(true)));
+                track.offsetWidth;
+                track.style.animation = "scrollLeft 18s linear infinite";
 
-            // ⭐ Start marquee animation
-            setTimeout(() => {
-                track.style.animation = "scrollLeft 12s linear infinite";
-            }, 200);
+            } catch (err) {
+                console.error("Review fetch failed:", err);
+            }
         }
 
-        // Load JSONP
-        window.addEventListener("load", () => {
-            const s = document.createElement("script");
-            s.src = WEB_APP_URL + "?callback=handleTestimonials";
-            document.head.appendChild(s);
-        });
+        window.addEventListener("load", loadTestimonials);
     </script>
-
-
-
-
 
 
 
@@ -892,7 +938,7 @@
                 <!-- Left: Text + Image -->
                 <div class="ft-logo d-flex align-items-center gap-3 mb-2 mb-md-0">
                     <p class="mb-0">All Rights Reserved</p>
-                    <img class="ft-logo" src="/Assets/ft-logo.png" alt="Badge" >
+                    <img class="ft-logo" src="/Assets/ft-logo.png" alt="Badge">
                 </div>
 
                 <!-- Right: Link -->

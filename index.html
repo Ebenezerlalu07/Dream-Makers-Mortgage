@@ -630,8 +630,13 @@
         const WEB_APP_URL =
             "https://script.google.com/macros/s/AKfycbxfboTqpROp-Hizcqbm4VpqLQpVyu0yRMuKmPTaE-L6LyYAHPBSWuzJVN6cQ3wjotMVIw/exec";
 
+        /* 🚀 FAST shuffle (no sort) */
         function shuffle(arr) {
-            return arr.sort(() => Math.random() - 0.5);
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
         }
 
         function extractAllObjects(data) {
@@ -648,7 +653,6 @@
 
         function getImageSrc(t) {
             if (!t) return "/Assets/Person.png";
-
             if (t.image?.startsWith("data:image")) return t.image;
             if (t.imageDriveUrlRaw) return t.imageDriveUrlRaw;
 
@@ -663,15 +667,18 @@
 
         async function loadTestimonials() {
             try {
-                const res = await fetch(WEB_APP_URL);
+                const res = await fetch(WEB_APP_URL, { cache: "no-store" });
                 const data = await res.json();
 
                 const track = document.getElementById("testimonialTrack");
-                track.innerHTML = "";
+                track.textContent = "";
 
                 const reviews = shuffle(extractAllObjects(data));
 
-                reviews.forEach(t => {
+                /* 🔥 FAST DOM BUILD */
+                const fragment = document.createDocumentFragment();
+
+                for (const t of reviews) {
                     const card = document.createElement("div");
                     card.className = "testimonial-card";
 
@@ -681,7 +688,8 @@
 
                     card.innerHTML = `
         <div class="d-flex align-items-center mb-3">
-          <img src="${getImageSrc(t)}" onerror="this.src='/Assets/Person.png'">
+          <img src="${getImageSrc(t)}" loading="lazy"
+               onerror="this.src='/Assets/Person.png'">
           <div class="ms-3">
             <h5 class="fw-bold mb-0">${t.firstName || "Anonymous"}</h5>
             <small class="text-muted">${t.city || ""}</small>
@@ -691,21 +699,22 @@
         <p class="text-warning small">${rating}</p>
       `;
 
-                    track.appendChild(card);
-                });
+                    fragment.appendChild(card);
+                }
 
-                /* 🔁 CLONE FOR INFINITE LOOP */
-                const originalWidth = track.scrollWidth;
-                [...track.children].forEach(c => {
-                    track.appendChild(c.cloneNode(true));
-                });
+                track.appendChild(fragment);
 
-                /* 🧠 WAIT FOR LAYOUT */
+                /* 🔁 CLONE ONCE FOR LOOP */
+                const cards = [...track.children];
+                cards.forEach(card => track.appendChild(card.cloneNode(true)));
+
+                /* 🚀 SINGLE layout read */
                 requestAnimationFrame(() => {
-                    track.style.setProperty("--marquee-width", originalWidth + "px");
+                    const width = track.scrollWidth / 2;
+                    track.style.setProperty("--marquee-width", width + "px");
 
-                    /* ⏱ SPEED BASED ON CONTENT */
-                    const duration = originalWidth / 60; // adjust speed here
+                    /* ⚡ MUCH FASTER SCROLL */
+                    const duration = width / 120; // 🔥 speed control
                     track.style.animation = `scrollLeft ${duration}s linear infinite`;
                 });
 
@@ -714,7 +723,7 @@
             }
         }
 
-        window.addEventListener("load", loadTestimonials);
+        window.addEventListener("DOMContentLoaded", loadTestimonials);
     </script>
 
 

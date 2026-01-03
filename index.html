@@ -537,16 +537,16 @@
             }
 
             to {
-                transform: translateX(-50%);
+                transform: translateX(calc(-1 * var(--marquee-width)));
             }
         }
+
 
         /* Card – Desktop */
         .testimonial-card {
             width: 700px;
             min-height: 220px;
             flex-shrink: 0;
-
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -585,9 +585,9 @@
             .testimonial-card {
                 width: 260px;
                 min-height: 210px;
-                /* 🔥 REDUCED */
+                /*  REDUCED */
                 padding: 14px;
-                /* 🔥 reduced padding */
+                /*  reduced padding */
             }
 
             .testimonial-card img {
@@ -646,25 +646,18 @@
             return out;
         }
 
-        /* 🔥 IMAGE HANDLER */
         function getImageSrc(t) {
             if (!t) return "/Assets/Person.png";
 
-            if (t.image && t.image.startsWith("data:image")) {
-                return t.image;
-            }
+            if (t.image?.startsWith("data:image")) return t.image;
+            if (t.imageDriveUrlRaw) return t.imageDriveUrlRaw;
 
-            if (t.imageDriveUrlRaw) {
-                return t.imageDriveUrlRaw;
-            }
-
-            if (t.image && t.image.includes("drive.google.com")) {
+            if (t.image?.includes("drive.google.com")) {
                 const id = t.image.match(/[-\w]{25,}/);
                 if (id) {
                     return `https://drive.google.com/uc?export=view&id=${id[0]}`;
                 }
             }
-
             return "/Assets/Person.png";
         }
 
@@ -676,33 +669,45 @@
                 const track = document.getElementById("testimonialTrack");
                 track.innerHTML = "";
 
-                let reviews = shuffle(extractAllObjects(data));
+                const reviews = shuffle(extractAllObjects(data));
 
                 reviews.forEach(t => {
                     const card = document.createElement("div");
                     card.className = "testimonial-card";
 
-                    const rating = "★".repeat(t.rating || 0) + "☆".repeat(5 - (t.rating || 0));
+                    const rating =
+                        "★".repeat(t.rating || 0) +
+                        "☆".repeat(5 - (t.rating || 0));
 
                     card.innerHTML = `
-                <div class="d-flex align-items-center mb-3">
-                    <img src="${getImageSrc(t)}"
-                         onerror="this.src='/Assets/Person.png'">
-                    <div class="ms-3">
-                        <h5 class="fw-bold mb-0">${t.firstName || "Anonymous"}</h5>
-                        <small class="text-muted">${t.city || ""}</small>
-                    </div>
-                </div>
-                <p>“${t.review || ""}”</p>
-                <p class="text-warning small">${rating}</p>
-            `;
+        <div class="d-flex align-items-center mb-3">
+          <img src="${getImageSrc(t)}" onerror="this.src='/Assets/Person.png'">
+          <div class="ms-3">
+            <h5 class="fw-bold mb-0">${t.firstName || "Anonymous"}</h5>
+            <small class="text-muted">${t.city || ""}</small>
+          </div>
+        </div>
+        <p>“${t.review || ""}”</p>
+        <p class="text-warning small">${rating}</p>
+      `;
+
                     track.appendChild(card);
                 });
 
-                [...track.children].forEach(c => track.appendChild(c.cloneNode(true)));
+                /* 🔁 CLONE FOR INFINITE LOOP */
+                const originalWidth = track.scrollWidth;
+                [...track.children].forEach(c => {
+                    track.appendChild(c.cloneNode(true));
+                });
 
-                track.offsetWidth;
-                track.style.animation = "scrollLeft 18s linear infinite";
+                /* 🧠 WAIT FOR LAYOUT */
+                requestAnimationFrame(() => {
+                    track.style.setProperty("--marquee-width", originalWidth + "px");
+
+                    /* ⏱ SPEED BASED ON CONTENT */
+                    const duration = originalWidth / 150; // adjust speed here
+                    track.style.animation = `scrollLeft ${duration}s linear infinite`;
+                });
 
             } catch (err) {
                 console.error("Review fetch failed:", err);
@@ -711,6 +716,7 @@
 
         window.addEventListener("load", loadTestimonials);
     </script>
+
 
 
 

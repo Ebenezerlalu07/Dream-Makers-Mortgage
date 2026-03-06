@@ -158,65 +158,37 @@
         </div>
     </section>
 
-    <!-- Success Toast -->
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index:9999">
-        <div id="successToast" class="toast align-items-center text-white border-0" role="alert"
-            style="background-color:#28a745;">
-            <div class="d-flex">
-                <div class="toast-body">
-                    Message sent successfully!
-                </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-            </div>
-        </div>
-    </div>
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
 
-    <!-- Error Toast -->
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index:9999">
-        <div id="errorToast" class="toast align-items-center text-white border-0" role="alert"
-            style="background-color:#dc3545;">
-            <div class="d-flex">
-                <div class="toast-body">
-                    Failed to send message. Please try again.
-                </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-            </div>
-        </div>
-    </div>
+            let name = document.querySelector("[name='fullName']").value;
+            let email = document.querySelector("[name='email']").value;
+            let phone = document.querySelector("[name='phone']").value;
+            let comments = document.querySelector("[name='comments']").value;
+
+            let subject = "Website Contact Form";
+
+            let body =
+                `Full Name: ${name}
+Email: ${email}
+Phone: ${phone}
+
+Comments:
+${comments}`;
+
+            let gmailURL = "https://mail.google.com/mail/?view=cm&fs=1&to=info@dmmtg.com"
+                + "&su=" + encodeURIComponent(subject)
+                + "&body=" + encodeURIComponent(body);
+
+            window.open(gmailURL, "_blank");
+        });
+    </script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
-    <script>
-        (function () {
-            emailjs.init("d12yWU7ZrnwQh0IFx"); // Replace with your EmailJS Public Key
-        })();
-    </script>
 
-
-    <script>
-        document.getElementById("contactForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            emailjs.sendForm("service_dream", "template_dream_", this)
-                .then(function () {
-
-                    document.getElementById("contactForm").reset();
-
-                    var toastElement = document.getElementById('successToast');
-                    var toast = new bootstrap.Toast(toastElement);
-                    toast.show();
-
-                }, function (error) {
-
-                    var toastElement = document.getElementById('errorToast');
-                    var toast = new bootstrap.Toast(toastElement);
-                    toast.show();
-
-                    console.log(error);
-                });
-        });
-    </script>
 
 
 

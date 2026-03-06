@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/style.css">
 </head>
 
@@ -51,8 +52,7 @@
                 </ul>
             </div>
 
-            <a href="https://dreammakersmortgage.loanzify.io/register"
-                class="btn btn-apply d-none d-lg-block ms-3">Apply Now</a>
+            <a href="/Pages/Loan orintation.html" class="btn btn-apply d-none d-lg-block ms-3">Apply Now</a>
         </div>
     </nav>
 
@@ -148,8 +148,8 @@
                 <div class="card border-0 shadow-sm h-100">
                     <div class="card-body p-0">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.624575565248!2d-95.5621613848907!3d29.627307881987076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c0c3d92d0a15%3A0x7aef4fa38cd3744b!2s10707%20Corporate%20Dr%2C%20Stafford%2C%20TX%2077477%2C%20USA!5e0!3m2!1sen!2sin!4v1698425034987!5m2!1sen!2sin"
-                            width="100%" height="100%" style="border:0; border-radius: .5rem;" allowfullscreen=""
+                            src="https://www.google.com/maps?q=10707+Corporate+Dr+Suite+120,+Stafford,+TX+77477,+USA&output=embed"
+                            width="100%" height="100%" style="border:0; border-radius:.5rem;" allowfullscreen=""
                             loading="lazy">
                         </iframe>
                     </div>
@@ -158,24 +158,65 @@
         </div>
     </section>
 
-    <!-- Optional: Gmail redirect -->
+    <!-- Success Toast -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index:9999">
+        <div id="successToast" class="toast align-items-center text-white border-0" role="alert"
+            style="background-color:#28a745;">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Message sent successfully!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Toast -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index:9999">
+        <div id="errorToast" class="toast align-items-center text-white border-0" role="alert"
+            style="background-color:#dc3545;">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Failed to send message. Please try again.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
     <script>
-        document.getElementById("contactForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-            const data = new FormData(this);
-            let body = "";
-            data.forEach((value, key) => { body += `${key}: ${value}\n`; });
-
-            const subject = encodeURIComponent("Contact Form Message");
-            const bodyEncoded = encodeURIComponent(body);
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=info@dmmtg.com&su=${subject}&body=${bodyEncoded}`;
-
-            window.open(gmailUrl, "_blank");
-        });
+        (function () {
+            emailjs.init("d12yWU7ZrnwQh0IFx"); // Replace with your EmailJS Public Key
+        })();
     </script>
 
 
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function (event) {
+            event.preventDefault();
 
+            emailjs.sendForm("service_dream", "template_dream_", this)
+                .then(function () {
+
+                    document.getElementById("contactForm").reset();
+
+                    var toastElement = document.getElementById('successToast');
+                    var toast = new bootstrap.Toast(toastElement);
+                    toast.show();
+
+                }, function (error) {
+
+                    var toastElement = document.getElementById('errorToast');
+                    var toast = new bootstrap.Toast(toastElement);
+                    toast.show();
+
+                    console.log(error);
+                });
+        });
+    </script>
 
 
 
@@ -203,7 +244,6 @@
                     <a href="https://www.facebook.com/DreamMakersMortgage" class="text-white"><i
                             class="bi bi-facebook"></i></a>
                     <a href="https://x.com/dreammakersmtg" class="text-white"><i class="bi bi-twitter-x"></i></a>
-                    <a href="https://www.linkedin.com/404/" class="text-white"><i class="bi bi-linkedin"></i></a>
                 </div>
             </div>
 
@@ -273,11 +313,12 @@
                 <!-- Contact Us -->
                 <div class="col-6 col-md-6 col-lg-3">
                     <h6 class="fw-bold mb-3">Contact Us</h6>
-                    <p class="small mb-1">10707 Corporate Drive</p>
-                    <p class="small mb-1">Suite 100-A</p>
+                    <p class="small mb-1">10707 Corporate Drive, Suite 100-A</p>
                     <p class="small mb-1">Stafford, TX 77477</p>
                     <p class="small mb-1">Phone: (832) 348-3711</p>
-                    <a href="mailto:info@dmmtg.com" class="small text-decoration-none">info@dmmtg.com</a>
+                    <a href="mailto:info@dmmtg.com" class="small text-decoration-none">
+                        info@dmmtg.com
+                    </a>
                 </div>
 
                 <!-- Disclaimers -->

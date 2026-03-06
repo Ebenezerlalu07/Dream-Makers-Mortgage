@@ -51,8 +51,7 @@
                 </ul>
             </div>
 
-            <a href="https://dreammakersmortgage.loanzify.io/register"
-                class="btn btn-apply d-none d-lg-block ms-3">Apply Now</a>
+            <a href="/Pages/Loan orintation.html" class="btn btn-apply d-none d-lg-block ms-3">Apply Now</a>
         </div>
     </nav>
 
@@ -437,7 +436,6 @@
 
 
 
-
     <section class="container my-5">
         <div class="row g-4 align-items-center">
             <!-- Form Section -->
@@ -465,12 +463,12 @@
                         <div class="col-md-6">
                             <label class="form-label">Email<span class="text-danger">*</span></label>
                             <input type="email" class="form-control bg-light border-0" name="email"
-                                placeholder="samualjhone01@gmail.com" required>
+                                placeholder="Enter your email" required>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Home Phone<span class="text-danger">*</span></label>
                             <input type="tel" class="form-control bg-light border-0" name="phone"
-                                placeholder="+1 254786258" required>
+                                placeholder="Enter your phone number" required>
                         </div>
 
                         <!-- Loan Amount & Property Value -->
@@ -561,6 +559,70 @@
         </div>
     </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <script>
+        (function () {
+            emailjs.init("n67N2v-2MXzo-ld0s");
+        })();
+    </script>
+
+
+    <!-- Success Toast -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index:9999">
+        <div id="successToast" class="toast text-white border-0" style="background:#28a745;">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Quote request sent successfully!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Toast -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index:9999">
+        <div id="errorToast" class="toast text-white border-0" style="background:#dc3545;">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Failed to send request. Please try again.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        document.getElementById("gmailForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            emailjs.sendForm(
+                "service_dream_about",
+                "template_contact_",
+                this
+            ).then(
+                function () {
+
+                    document.getElementById("gmailForm").reset();
+
+                    var toast = new bootstrap.Toast(document.getElementById('successToast'));
+                    toast.show();
+
+                },
+                function (error) {
+
+                    var toast = new bootstrap.Toast(document.getElementById('errorToast'));
+                    toast.show();
+
+                    console.log(error);
+                }
+            );
+        });
+    </script>
+
+
     <!-- Custom Toggle CSS -->
     <style>
         .form-check-input.custom-toggle {
@@ -586,39 +648,6 @@
             }
         }
     </style>
-
-    <!-- Gmail Redirect Script -->
-    <script>
-        document.getElementById("gmailForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            // Collect form data
-            const data = new FormData(this);
-            let body = "";
-
-            data.forEach((value, key) => {
-                body += `${key}: ${value}\n`;
-            });
-
-            // Encode subject & body
-            const subject = encodeURIComponent("Quick Quote Request");
-            const bodyEncoded = encodeURIComponent(body);
-
-            // Set YOUR email here:
-            const toEmail = "info@dreammakers.com";   // ← change email if needed
-
-            // Gmail URL with TO email
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${toEmail}&su=${subject}&body=${bodyEncoded}`;
-
-            // Open Gmail compose
-            window.open(gmailUrl, "_blank");
-        });
-    </script>
-
-
-
-
-
 
 
 
@@ -655,7 +684,6 @@
                     <a href="https://www.facebook.com/DreamMakersMortgage" class="text-white"><i
                             class="bi bi-facebook"></i></a>
                     <a href="https://x.com/dreammakersmtg" class="text-white"><i class="bi bi-twitter-x"></i></a>
-                    <a href="https://www.linkedin.com/404/" class="text-white"><i class="bi bi-linkedin"></i></a>
                 </div>
             </div>
 
@@ -725,11 +753,12 @@
                 <!-- Contact Us -->
                 <div class="col-6 col-md-6 col-lg-3">
                     <h6 class="fw-bold mb-3">Contact Us</h6>
-                    <p class="small mb-1">10707 Corporate Drive</p>
-                    <p class="small mb-1">Suite 100-A</p>
+                    <p class="small mb-1">10707 Corporate Drive, Suite 100-A</p>
                     <p class="small mb-1">Stafford, TX 77477</p>
                     <p class="small mb-1">Phone: (832) 348-3711</p>
-                    <a href="mailto:info@dmmtg.com" class="small text-decoration-none">info@dmmtg.com</a>
+                    <a href="mailto:info@dmmtg.com" class="small text-decoration-none">
+                        info@dmmtg.com
+                    </a>
                 </div>
 
                 <!-- Disclaimers -->

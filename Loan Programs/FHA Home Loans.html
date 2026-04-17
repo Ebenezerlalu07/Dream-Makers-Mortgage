@@ -326,6 +326,7 @@
 
 
 
+    <!-- Get a Quick Quote -->
     <section class="container my-5">
         <div class="row g-4 align-items-center">
             <!-- Form Section -->
@@ -363,23 +364,116 @@
 
                         <!-- Loan Amount & Property Value -->
                         <div class="col-md-6">
-                            <label class="form-label">Loan Amount<span class="text-danger">*</span></label>
+                            <label class="form-label">Loan Amount <span class="text-danger">*</span></label>
                             <select class="form-select bg-light border-0" name="loanAmount" required>
                                 <option selected disabled>Select an option</option>
-                                <option value="Below $100,000">Below $100,000</option>
-                                <option value="$100,000 - $300,000">$100,000 - $300,000</option>
-                                <option value="$300,000 - $500,000">$300,000 - $500,000</option>
-                                <option value="Above $500,000">Above $500,000</option>
+
+                                <option value="Less than $75,000">Less than $75,000</option>
+                                <option value="$75,000 - $100,000">$75,000 - $100,000</option>
+                                <option value="$100,000 - $125,000">$100,000 - $125,000</option>
+                                <option value="$125,000 - $150,000">$125,000 - $150,000</option>
+                                <option value="$150,000 - $175,000">$150,000 - $175,000</option>
+                                <option value="$175,000 - $200,000">$175,000 - $200,000</option>
+                                <option value="$200,000 - $225,000">$200,000 - $225,000</option>
+                                <option value="$225,000 - $250,000">$225,000 - $250,000</option>
+                                <option value="$250,000 - $275,000">$250,000 - $275,000</option>
+                                <option value="$275,000 - $300,000">$275,000 - $300,000</option>
+                                <option value="$300,000 - $325,000">$300,000 - $325,000</option>
+                                <option value="$325,000 - $350,000">$325,000 - $350,000</option>
+                                <option value="$350,000 - $375,000">$350,000 - $375,000</option>
+                                <option value="$375,000 - $400,000">$375,000 - $400,000</option>
+                                <option value="$400,000 - $425,000">$400,000 - $425,000</option>
+                                <option value="$425,000 - $450,000">$425,000 - $450,000</option>
+                                <option value="$450,000 - $475,000">$450,000 - $475,000</option>
+                                <option value="$475,000 - $500,000">$475,000 - $500,000</option>
+                                <option value="$500,000 - $525,000">$500,000 - $525,000</option>
+                                <option value="$525,000 - $550,000">$525,000 - $550,000</option>
+                                <option value="$550,000 - $575,000">$550,000 - $575,000</option>
+                                <option value="$575,000 - $600,000">$575,000 - $600,000</option>
+                                <option value="$600,000 - $625,000">$600,000 - $625,000</option>
+                                <option value="$625,000 - $650,000">$625,000 - $650,000</option>
+                                <option value="$650,000 - $675,000">$650,000 - $675,000</option>
+                                <option value="$675,000 - $700,000">$675,000 - $700,000</option>
+                                <option value="$700,000 - $725,000">$700,000 - $725,000</option>
+                                <option value="$725,000 - $750,000">$725,000 - $750,000</option>
+                                <option value="$750,000 - $775,000">$750,000 - $775,000</option>
+                                <option value="$775,000 - $800,000">$775,000 - $800,000</option>
+                                <option value="$800,000 - $825,000">$800,000 - $825,000</option>
+                                <option value="$825,000 - $850,000">$825,000 - $850,000</option>
+                                <option value="$850,000 - $875,000">$850,000 - $875,000</option>
+                                <option value="$875,000 - $900,000">$875,000 - $900,000</option>
+                                <option value="$900,000 - $925,000">$900,000 - $925,000</option>
+                                <option value="$925,000 - $950,000">$925,000 - $950,000</option>
+                                <option value="$950,000 - $975,000">$950,000 - $975,000</option>
+                                <option value="$975,000 - $1,000,000">$975,000 - $1,000,000</option>
+                                <option value="$1,000,000 - $1,100,000">$1,000,000 - $1,100,000</option>
+                                <option value="$1,100,000 - $1,200,000">$1,100,000 - $1,200,000</option>
+                                <option value="$1,200,000 - $1,300,000">$1,200,000 - $1,300,000</option>
+                                <option value="$1,300,000 - $1,400,000">$1,300,000 - $1,400,000</option>
+                                <option value="$1,400,000 - $1,500,000">$1,400,000 - $1,500,000</option>
+                                <option value="$1,500,000 - $1,600,000">$1,500,000 - $1,600,000</option>
+                                <option value="$1,600,000 - $1,700,000">$1,600,000 - $1,700,000</option>
+                                <option value="$1,700,000 - $1,800,000">$1,700,000 - $1,800,000</option>
+                                <option value="$1,800,000 - $1,900,000">$1,800,000 - $1,900,000</option>
+                                <option value="$1,900,000 - $2,000,000">$1,900,000 - $2,000,000</option>
+                                <option value="$2,000,000+">$2,000,000+</option>
+
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Property Value<span class="text-danger">*</span></label>
                             <select class="form-select bg-light border-0" name="propertyValue" required>
                                 <option selected disabled>Select an option</option>
-                                <option value="Below $200,000">Below $200,000</option>
-                                <option value="$200,000 - $500,000">$200,000 - $500,000</option>
-                                <option value="$500,000 - $1,000,000">$500,000 - $1,000,000</option>
-                                <option value="Above $1,000,000">Above $1,000,000</option>
+
+                                <option value="Less than $75,000">Less than $75,000</option>
+                                <option value="$75,000 - $100,000">$75,000 - $100,000</option>
+                                <option value="$100,000 - $125,000">$100,000 - $125,000</option>
+                                <option value="$125,000 - $150,000">$125,000 - $150,000</option>
+                                <option value="$150,000 - $175,000">$150,000 - $175,000</option>
+                                <option value="$175,000 - $200,000">$175,000 - $200,000</option>
+                                <option value="$200,000 - $225,000">$200,000 - $225,000</option>
+                                <option value="$225,000 - $250,000">$225,000 - $250,000</option>
+                                <option value="$250,000 - $275,000">$250,000 - $275,000</option>
+                                <option value="$275,000 - $300,000">$275,000 - $300,000</option>
+                                <option value="$300,000 - $325,000">$300,000 - $325,000</option>
+                                <option value="$325,000 - $350,000">$325,000 - $350,000</option>
+                                <option value="$350,000 - $375,000">$350,000 - $375,000</option>
+                                <option value="$375,000 - $400,000">$375,000 - $400,000</option>
+                                <option value="$400,000 - $425,000">$400,000 - $425,000</option>
+                                <option value="$425,000 - $450,000">$425,000 - $450,000</option>
+                                <option value="$450,000 - $475,000">$450,000 - $475,000</option>
+                                <option value="$475,000 - $500,000">$475,000 - $500,000</option>
+                                <option value="$500,000 - $525,000">$500,000 - $525,000</option>
+                                <option value="$525,000 - $550,000">$525,000 - $550,000</option>
+                                <option value="$550,000 - $575,000">$550,000 - $575,000</option>
+                                <option value="$575,000 - $600,000">$575,000 - $600,000</option>
+                                <option value="$600,000 - $625,000">$600,000 - $625,000</option>
+                                <option value="$625,000 - $650,000">$625,000 - $650,000</option>
+                                <option value="$650,000 - $675,000">$650,000 - $675,000</option>
+                                <option value="$675,000 - $700,000">$675,000 - $700,000</option>
+                                <option value="$700,000 - $725,000">$700,000 - $725,000</option>
+                                <option value="$725,000 - $750,000">$725,000 - $750,000</option>
+                                <option value="$750,000 - $775,000">$750,000 - $775,000</option>
+                                <option value="$775,000 - $800,000">$775,000 - $800,000</option>
+                                <option value="$800,000 - $825,000">$800,000 - $825,000</option>
+                                <option value="$825,000 - $850,000">$825,000 - $850,000</option>
+                                <option value="$850,000 - $875,000">$850,000 - $875,000</option>
+                                <option value="$875,000 - $900,000">$875,000 - $900,000</option>
+                                <option value="$900,000 - $925,000">$900,000 - $925,000</option>
+                                <option value="$925,000 - $950,000">$925,000 - $950,000</option>
+                                <option value="$950,000 - $975,000">$950,000 - $975,000</option>
+                                <option value="$975,000 - $1,000,000">$975,000 - $1,000,000</option>
+                                <option value="$1,000,000 - $1,100,000">$1,000,000 - $1,100,000</option>
+                                <option value="$1,100,000 - $1,200,000">$1,100,000 - $1,200,000</option>
+                                <option value="$1,200,000 - $1,300,000">$1,200,000 - $1,300,000</option>
+                                <option value="$1,300,000 - $1,400,000">$1,300,000 - $1,400,000</option>
+                                <option value="$1,400,000 - $1,500,000">$1,400,000 - $1,500,000</option>
+                                <option value="$1,500,000 - $1,600,000">$1,500,000 - $1,600,000</option>
+                                <option value="$1,600,000 - $1,700,000">$1,600,000 - $1,700,000</option>
+                                <option value="$1,700,000 - $1,800,000">$1,700,000 - $1,800,000</option>
+                                <option value="$1,800,000 - $1,900,000">$1,800,000 - $1,900,000</option>
+                                <option value="$1,900,000 - $2,000,000">$1,900,000 - $2,000,000</option>
+                                <option value="$2,000,000+">$2,000,000+</option>
                             </select>
                         </div>
 
@@ -390,16 +484,18 @@
                                 <option selected disabled>Select an option</option>
                                 <option value="Purchase">Purchase</option>
                                 <option value="Refinance">Refinance</option>
+                                <option value="Refinance">Debt Consolidation</option>
+                                <option value="Refinance">Home Equity</option>
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Credit Score<span class="text-danger">*</span></label>
                             <select class="form-select bg-light border-0" name="creditScore" required>
                                 <option selected disabled>Select an option</option>
-                                <option value="Excellent (720+)">Excellent (720+)</option>
-                                <option value="Good (680-719)">Good (680-719)</option>
-                                <option value="Fair (620-679)">Fair (620-679)</option>
-                                <option value="Poor (below 620)">Poor (below 620)</option>
+                                <option value="Excellent (720+)">Excellent</option>
+                                <option value="Good (680-719)">Good</option>
+                                <option value="Fair (620-679)">Fair</option>
+                                <option value="Poor (below 620)">Poor</option>
                             </select>
                         </div>
                     </div>
